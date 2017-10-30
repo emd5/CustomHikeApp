@@ -1,13 +1,12 @@
 package controller;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import model.Hike;
 
 
 import java.util.List;
 
 
-public class HikeController extends Application{
+public class HikeController{
 
     private static List<Hike> hikeList;
 

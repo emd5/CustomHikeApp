@@ -1,9 +1,12 @@
 package model;
 
+import java.util.List;
+
 public class TodoChecklist {
 
-    private  List<ChecklistItems>;
+    private List<ChecklistItems> items;
     private static SavedChecklist savedList;
+
 
     public void addItem(String item){
 

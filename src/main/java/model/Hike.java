@@ -11,7 +11,7 @@ public class Hike {
     private String location;
     private LocalDate date;
     private Fitness fitness;
-    private TodoChecklist;
+    private TodoChecklist todoChecklist;
 
     public Hike(String name, int duration, String location){
 
