@@ -1,33 +1,28 @@
 package model;
 
 
-import java.util.List;
+import java.time.LocalDate;
 
 public class Hike {
 
-    private static List<Hike> hikeList;
 
-    public void addHike(String name , int duration, String location){
+    private String name;
+    private int duration;
+    private String location;
+    private LocalDate date;
+    private Fitness fitness;
+    private TodoChecklist;
+
+    public Hike(String name, int duration, String location){
 
     }
 
-    public Hike getHike(String name){
-        return null;
-    }
-
-    public int getAverageHeartRateByHikeName(){
+    public int getHeartbeat(){
         return 0;
     }
 
-    public int getAverageSteps(){
+    public int getNumberOfSteps(){
         return 0;
     }
-
-    public String[] getHikeNames(){
-        return null;
-    }
-
-
-
 
 }
