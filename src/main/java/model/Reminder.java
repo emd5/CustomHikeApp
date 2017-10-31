@@ -6,7 +6,10 @@ public class Reminder {
 
     public Reminder(String message){
 
+        this.message = message;
+    }
 
-
+    public String getMessage(){
+        return message;
     }
 }
