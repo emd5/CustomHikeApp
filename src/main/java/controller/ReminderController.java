@@ -8,10 +8,14 @@ import java.util.List;
 public class ReminderController {
 
     private static List<Reminder> reminders;
-    private int counter = 0;
+    private static int counter = 0;
 
+    static {
+        reminders = new ArrayList<> ();
+        setup ();
+    }
 
-    public void setup(){
+    public static void setup(){
 
         String[] messageList = new String[]
                 {"Stop Eating", "Go workout",
@@ -26,14 +30,7 @@ public class ReminderController {
     }
 
 
-    public ReminderController(){
-
-        reminders = new ArrayList<> ();
-        setup ();
-
-    }
-
-    public void addReminder(String message){
+    public static void addReminder(String message){
 
         Reminder reminder = new Reminder (message);
 
@@ -41,7 +38,7 @@ public class ReminderController {
 
     }
 
-    public Reminder getReminder(){
+    public static Reminder getReminder(){
 
         if(counter > reminders.size ()){
             counter = 0;

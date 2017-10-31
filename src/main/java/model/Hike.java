@@ -13,16 +13,19 @@ public class Hike {
     private Fitness fitness;
     private TodoChecklist todoChecklist;
 
-    public Hike(String name, int duration, String location){
-
+    public Hike(String name, int duration, String location, int heartbeat, int numberOfSteps){
+        this.name = name;
+        this.duration = duration;
+        this.location = location;
+        this.fitness = new Fitness (heartbeat,numberOfSteps);
     }
 
-    public int getHeartbeat(){
-        return 0;
+    public int getHeartbeat() {
+        return fitness.getHeartbeat ();
     }
 
     public int getNumberOfSteps(){
-        return 0;
+        return fitness.getNumberOfSteps ();
     }
 
 }
