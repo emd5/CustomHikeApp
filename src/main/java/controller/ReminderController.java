@@ -4,17 +4,32 @@ import model.Reminder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 public class ReminderController {
 
     private static List<Reminder> reminders;
-    private static ListIterator<Reminder> iterator;
+    private int counter = 0;
+
+
+    public void setup(){
+
+        String[] messageList = new String[]
+                {"Stop Eating", "Go workout",
+                 "Be sure to stretch", "Wear your fitbit" };
+
+        for(String message : messageList){
+
+          addReminder (message);
+        }
+
+
+    }
+
 
     public ReminderController(){
 
         reminders = new ArrayList<> ();
-        iterator = reminders.listIterator ();
+        setup ();
 
     }
 
@@ -28,6 +43,10 @@ public class ReminderController {
 
     public Reminder getReminder(){
 
-        return  iterator.next ();
+        if(counter > reminders.size ()){
+            counter = 0;
+        }
+
+        return  reminders.get (counter++);
     }
 }
