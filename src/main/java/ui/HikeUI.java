@@ -1,6 +1,6 @@
 package ui;
 
-public class HikeUI {
+class HikeUI {
 
 
 

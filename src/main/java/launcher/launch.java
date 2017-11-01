@@ -10,7 +10,7 @@ public class launch extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
 
     }
 }

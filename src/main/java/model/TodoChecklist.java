@@ -3,33 +3,25 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodoChecklist {
+class TodoChecklist {
+    private final List<ChecklistItem> customCheckList = new ArrayList<> ();
+    private final static DefaultChecklist defaultCheckList = DefaultChecklist.getInstance ();
 
-    private List<ChecklistItem> customCheckList = new ArrayList<> ();
-    private static DefaultChecklist defaultCheckList = DefaultChecklist.getInstance ();
-
-    public void addItem(String item){
-
-        ChecklistItem checklistItem = new ChecklistItem (item, true);
+    public void addItem(final String item){
+        final ChecklistItem checklistItem = new ChecklistItem (item, true);
         customCheckList.add (checklistItem);
     }
 
-    public void removeItem(String item){
-
+    public void removeItem(final String item){
         ChecklistItem checklistItem = new ChecklistItem (item, true);
-
         customCheckList.remove (checklistItem);
     }
 
-    public List<ChecklistItem> getChecklistItems(){
-
-        List<ChecklistItem> items = new ArrayList<> ();
+    List<ChecklistItem> getChecklistItems(){
+        final List<ChecklistItem> items = new ArrayList<> ();
         items.addAll (defaultCheckList.getItems());
         items.addAll (customCheckList);
 
         return items;
     }
-
-
-
 }

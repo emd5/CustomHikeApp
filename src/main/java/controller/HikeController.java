@@ -20,8 +20,10 @@ import java.util.List;
  *@version 1.0
  */
 public class HikeController{
-
     private static List<Hike> hikeList;
+    private static HikeController hikeController;
+
+    private HikeController(){}
 
     /**
      *
@@ -31,8 +33,8 @@ public class HikeController{
      * @param heartbeat an int value that represents the average heartbeat.
      * @param numberOfSteps an int value that represents the number of steps during that hike
      */
-    public void addHike(String name , int duration, String location, int heartbeat, int numberOfSteps){
-        Hike hike = new Hike (name, duration, location,heartbeat, numberOfSteps);
+    public void addHike(final String name , final int duration, final String location, final int heartbeat, final int numberOfSteps){
+        final Hike hike = new Hike (name, duration, location,heartbeat, numberOfSteps);
         hikeList.add (hike);
     }
 
@@ -43,12 +45,9 @@ public class HikeController{
      * @param name the hike name
      * @return the name of the hike if found otherwise null
      */
-    private Hike getHike(String name){
-
-        for(Hike hike : hikeList){
-
+    private Hike getHike(final String name){
+        for(final Hike hike : hikeList){
             if(hike.getName().equals(name)){
-
                 return hike;
             }
         }
@@ -60,10 +59,8 @@ public class HikeController{
      * @param name the name of the hike
      * @return the average heart rate
      */
-    public int getAverageHeartRateByHikeName(String name){
-
-        Hike hike = getHike (name);
-
+    public int getAverageHeartRateByHikeName(final String name){
+        final Hike hike = getHike (name);
         return hike.getHeartbeat ();
     }
 
@@ -72,10 +69,8 @@ public class HikeController{
      * @param name
      * @return
      */
-    public int getNumberOfSteps(String name){
-
-        Hike hike = getHike (name);
-
+    public int getNumberOfSteps(final String name){
+        final Hike hike = getHike (name);
         return hike.getNumberOfSteps ();
     }
 
@@ -84,11 +79,10 @@ public class HikeController{
      * @return
      */
     public String[] getHikeNames(){
-
-        String[] hikeNames = new String[hikeList.size ()];
+        final String[] hikeNames = new String[hikeList.size ()];
 
         for(int i=0; i<hikeList.size() ; i++){
-           String name = hikeList.get (i).getName ();
+            final String name = hikeList.get (i).getName ();
            hikeNames[i] = name;
         }
         return hikeNames;
@@ -99,21 +93,23 @@ public class HikeController{
      * @param name
      * @return
      */
-    public String[] getChecklist(String name){
+    public String[] getChecklist(final String name){
+        final Hike hike = getHike (name);
+        final List<ChecklistItem> checklist = hike.getTodoChecklist();
+        final String[] checklistItems = new String[checklist.size ()];
 
-
-        Hike hike = getHike (name);
-        String[] checklistItems = new String[hike.getTodoChecklist ().size ()];
-
-        for(ChecklistItem item : hike.getTodoChecklist ()){
-
+        for(int i=0; i<checklist.size(); i++){
+            checklistItems[i] = checklist.get(i).getItem();
         }
 
-        return null;
-
+        return checklistItems;
     }
 
+    public static HikeController getInstance(){
+        if(hikeController == null){
+            hikeController = new HikeController ();
+        }
 
-
-
+        return hikeController;
+    }
 }

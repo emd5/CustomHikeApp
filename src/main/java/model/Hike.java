@@ -7,14 +7,14 @@ import java.util.List;
 public class Hike {
 
 
-    private String name;
-    private int duration;
-    private String location;
+    private final String name;
+    private final int duration;
+    private final String location;
     private LocalDate date;
-    private Fitness fitness;
-    private TodoChecklist todoChecklist;
+    private final Fitness fitness;
+    private final TodoChecklist todoChecklist;
 
-    public Hike(String name, int duration, String location, int heartbeat, int numberOfSteps){
+    public Hike(final String name, final int duration, final String location, final int heartbeat, final int numberOfSteps){
         this.name = name;
         this.duration = duration;
         this.location = location;
@@ -39,5 +39,4 @@ public class Hike {
     }
 
     //public String[] activeItems
-
 }

@@ -1,18 +1,16 @@
 package model;
 
 public class ChecklistItem {
-
-    private String item;
+    private final String item;
     private Boolean active;
 
-    public ChecklistItem(String item, Boolean active){
+    ChecklistItem(final String item, final Boolean active){
         this.item = item;
         this.active =active;
     }
 
     public String getItem(){
         return item;
-
     }
 
     public Boolean getActive() {
