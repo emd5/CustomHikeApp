@@ -1,16 +1,21 @@
 package launcher;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
+import ui.HikeUI;
 
-public class launch extends Application {
+public class launch {
 
+    /**
+     * This is the entry point of the program which allows to test
+     * the calculator ui class.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
-        launch (args);
+
+        Application.launch (HikeUI.class, args);
     }
 
-    @Override
-    public void start(Stage primaryStage) {
 
-    }
+
 }
