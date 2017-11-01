@@ -2,6 +2,7 @@ package model;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Hike {
 
@@ -18,6 +19,11 @@ public class Hike {
         this.duration = duration;
         this.location = location;
         this.fitness = new Fitness (heartbeat,numberOfSteps);
+        this.todoChecklist = new TodoChecklist ();
+    }
+
+    public List<ChecklistItem> getTodoChecklist() {
+        return todoChecklist.getChecklistItems ();
     }
 
     public int getHeartbeat() {
@@ -27,5 +33,11 @@ public class Hike {
     public int getNumberOfSteps(){
         return fitness.getNumberOfSteps ();
     }
+
+    public String getName() {
+        return name;
+    }
+
+    //public String[] activeItems
 
 }

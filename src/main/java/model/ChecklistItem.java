@@ -10,6 +10,16 @@ public class ChecklistItem {
         this.active =active;
     }
 
+    public String getItem(){
+        return item;
 
+    }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(boolean active){
+        this.active = active;
+    }
 }
