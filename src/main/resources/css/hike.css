@@ -1,0 +1,18 @@
+/*Liz Mahoney & Jacob Langham
+ * 11/1/2017
+ * hike.css
+ * This is a hike css file
+ */
+
+.root{
+    -fx-background-color:
+            #000000,
+            linear-gradient(#7ebcea, #338f41),
+            linear-gradient(#41b74a, #263e75),
+            linear-gradient(#26ab82, #091a68);
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+}

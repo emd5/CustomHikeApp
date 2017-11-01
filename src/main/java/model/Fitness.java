@@ -1,25 +1,20 @@
 package model;
 
 
-public class Fitness {
+class Fitness {
+    private final int heartbeat;
+    private final int numberOfSteps;
 
-    private int heartbeat;
-    private int numberOfSteps;
-
-
-    public Fitness(int heartbeat, int numberOfSteps){
+    Fitness(final int heartbeat, final int numberOfSteps){
         this.heartbeat = heartbeat;
         this.numberOfSteps = numberOfSteps;
-
     }
 
-    public int getHeartbeat(){
+    int getHeartbeat(){
         return heartbeat;
     }
 
-    public int getNumberOfSteps(){
+    int getNumberOfSteps(){
         return  numberOfSteps;
     }
-
-
 }

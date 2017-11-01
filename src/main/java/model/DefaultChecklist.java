@@ -3,21 +3,17 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DefaultChecklist {
-
+class DefaultChecklist {
     private static List<ChecklistItem> items;
     private static DefaultChecklist defaultChecklist;
 
-
     private void setup(){
-
-        String[] defaultItems = new String[]
+        final String[] defaultItems = new String[]
                 {"backpack", "food", "water",
                         "compass", "flash light", "binoculars"};
 
-        for(String item : defaultItems){
-            ChecklistItem checklistItem =
-                    new ChecklistItem (item, true);
+        for(final String item : defaultItems){
+            final ChecklistItem checklistItem = new ChecklistItem (item, true);
             items.add (checklistItem);
         }
     }
@@ -27,20 +23,15 @@ public class DefaultChecklist {
         setup();
     }
 
-    public List<ChecklistItem> getItems() {
+    List<ChecklistItem> getItems() {
         return items;
     }
 
-    public static DefaultChecklist getInstance(){
-
+    static DefaultChecklist getInstance(){
         if(defaultChecklist == null){
-
             defaultChecklist = new DefaultChecklist ();
-
         }
 
         return defaultChecklist;
     }
-
-
 }
