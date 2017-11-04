@@ -1,6 +1,7 @@
 
 package ui;
 
+import controller.HikeController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -21,6 +22,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Hike;
 
 import java.util.HashMap;
 
@@ -38,10 +40,9 @@ public class HikeUI extends Application {
     public static final int WINDOW_WIDTH = 400;
     public static final int WINDOW_HEIGHT = 500;
     public static final int HBOX_MAX_WIDTH = 400;
-    private static String[] menuLabel = {"View Hikes","+Hike",
-            "+HeartRate", "Avg Heart/Steps", "+CheckList" , "View Checklist"};
+    private  String[] menuLabel = {"View Hikes", "+HeartRate", "Avg Heart/Steps", "+Hike",
+              "+CheckList" , "View Checklist"};
 
-    private static HashMap<String, Scene>  pages = new HashMap<> ();
     private static  String[] fileNames = {"images/hike.png", "images/redheart.png",
             "images/data.png", "images/checklist.png", "images/profile.png"};
 
@@ -70,10 +71,6 @@ public class HikeUI extends Application {
         Timeline animation = new Timeline(frame);
         animation.play();
     }
-
-
-
-
 
     private Scene getWaitingScene(){
         VBox vBox = new VBox ();
@@ -105,38 +102,27 @@ public class HikeUI extends Application {
 
     private Scene homeScene(){
 
-        VBox vBox = new VBox () ;
-        vBox.setPadding (new Insets (10));
+        VBox mainBox = new VBox () ;
+        mainBox.setId("mainBox");
 
         //tophbox
-        HBox topHbox = new HBox ();
-        topHbox.setPadding (new Insets (20));
-        topHbox.setPrefWidth (HBOX_MAX_WIDTH);
-        topHbox.setAlignment (Pos.CENTER);
-        topHbox.setBorder (new Border(new BorderStroke(Color.BLACK,
-                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        HBox headingBox = new HBox ();
+        headingBox.setId ("headingBox");
 
-        Text text1 = new Text ("Log your apps Jose");
+        Text headingText = new Text ("Welcome Jose");
 
-        text1.setFont (Font.font ("Verdana", 20));
-
-        topHbox.getChildren ().add (text1);
+        headingBox.getChildren ().add (headingText);
 
         //middle hbox
-        HBox middleHbox = new HBox ();
-        middleHbox.setPadding (new Insets (10));
-        middleHbox.setPrefSize (HBOX_MAX_WIDTH, 400);
-        middleHbox.setBorder (new Border(new BorderStroke(Color.BLACK,
-                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        HBox bodyBox = new HBox ();
+        bodyBox.setId("bodyBox");
 
         VBox menuVbox = new VBox ();
         menuVbox.setSpacing (5);
 
-        //vBox.setVgap (5);
-        //gridPane.setHgap (5);
-
         Image[] images = new Image[fileNames.length];
         Button[] buttons = new Button[fileNames.length];
+
 
         for( int i=0; i<buttons.length; i++){
             String file = fileNames[i];
@@ -147,6 +133,7 @@ public class HikeUI extends Application {
             buttons[i].setContentDisplay (ContentDisplay.LEFT);
             buttons[i].setAlignment (Pos.CENTER_LEFT);
             buttons[i].getStyleClass().add("menu-button");
+
             buttons[i].setOnAction (new EventHandler<ActionEvent> () {
                 @Override
                 public void handle(ActionEvent event) {
@@ -154,31 +141,28 @@ public class HikeUI extends Application {
                 }
             });
             menuVbox.getChildren ().add (buttons[i]);
-            buttons[i].getStyleClass().add("menu-button");
+
 
         }
 
-
-        middleHbox.getChildren ().add(menuVbox);
+        bodyBox.getChildren ().add(menuVbox);
 
         //bottom hbox
-        HBox bottomHbox = new HBox ();
-        bottomHbox.setAlignment (Pos.CENTER);
-        bottomHbox.setPadding (new Insets (5));
-        bottomHbox.setPrefWidth (HBOX_MAX_WIDTH);
-        bottomHbox.setBorder (new Border(new BorderStroke(Color.BLACK,
-                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        HBox footerBox = new HBox ();
+        footerBox.setId("footerBox");
+
 
         Text reminderMessage = new Text("Stop eating junk!");
         reminderMessage.setId ("reminder-message");
 
-        bottomHbox.getChildren ().addAll (reminderMessage);
+        footerBox.getChildren ().addAll (reminderMessage);
 
-        vBox.getChildren ().addAll (topHbox,middleHbox,bottomHbox);
-        vBox.getStylesheets ().addAll ("css/hike.css");
+        mainBox.getChildren ().addAll (headingBox,bodyBox,footerBox);
+        mainBox.getStylesheets ().addAll ("css/hike.css");
 
-        return new Scene (vBox, WINDOW_WIDTH, WINDOW_HEIGHT);
+        return new Scene (mainBox, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
+
 
     private Scene hikeScene(){
         VBox vBox = new VBox();
@@ -194,55 +178,86 @@ public class HikeUI extends Application {
 
         vBox.getChildren().add(header);
 
-        //add form controls
+        //name field
         HBox row1 = new HBox();
         row1.setSpacing(10);
 
-        Label nameLabel = new Label("Hike Name: ");
-        nameLabel.setPrefWidth(90);
+        Label nameLabel = new Label("Name: ");
+        nameLabel.setPrefWidth(80);
         nameLabel.setAlignment(Pos.CENTER_RIGHT);
 
-        TextField field = new TextField();
-        field.setPrefWidth(180);
+        TextField nameField = new TextField();
+        nameField.setPrefWidth(180);
 
-        row1.getChildren().addAll(nameLabel, field);
-        vBox.getChildren().add(row1);
+        row1.getChildren().addAll(nameLabel, nameField);
+        //vBox.getChildren().add(row1);
 
-        //add more form controls
+        //location field
         HBox row2 = new HBox();
         row2.setSpacing(10);
 
-        Label bioLabel = new Label("Bio: ");
-        bioLabel.setPrefWidth(90);
-        bioLabel.setAlignment(Pos.CENTER_RIGHT);
+        Label locationLabel = new Label("Location: ");
+        locationLabel.setPrefWidth(80);
+        locationLabel.setAlignment(Pos.CENTER_RIGHT);
 
-        TextArea area = new TextArea();
-        area.setPrefWidth(180);
+        TextField locationField = new TextField ();
+        locationField.setPrefWidth(180);
 
+        row2.getChildren().addAll(locationLabel, locationField);
+        //vBox.getChildren().add(row2);
+
+        //date field
+        HBox row3 = new HBox();
+        row3.setSpacing (10);
+
+        Label dateLabel = new Label("Date: ");
+        dateLabel.setPrefWidth(80);
+        dateLabel.setAlignment(Pos.CENTER_RIGHT);
+
+        DatePicker datePicker = new DatePicker ();
+        datePicker.setPrefWidth(180);
+
+        row3.getChildren().addAll(dateLabel, datePicker);
+        //vBox.getChildren().add(row3);
+
+        //button row
+        HBox rowButton = new HBox ();
+        rowButton.setSpacing (10);
+        rowButton.setPrefWidth (80);
+        rowButton.setAlignment (Pos.CENTER);
+
+        //submit button
+        Button submit = new Button ("submit");
+        submit.setOnAction (new EventHandler<ActionEvent> () {
+            @Override
+            public void handle(ActionEvent event) {
+
+                HikeController addHike = HikeController.getInstance ();
+                stage.setScene (homeScene ());
+            }
+        });
+
+        //go back button??
         Button goBack = new Button("Go Back");
         goBack.setOnAction (new EventHandler<ActionEvent> () {
             @Override
             public void handle(ActionEvent event) {
                 stage.setScene (homeScene ());
+
             }
         });
 
-        row2.getChildren().addAll(bioLabel, area, goBack);
-        vBox.getChildren().add(row2);
+        rowButton.getChildren ().addAll (submit,goBack);
+
+        vBox.getChildren ().addAll (row1,row2,row3,rowButton);
+
+        vBox.getStylesheets ().addAll ("css/hike.css");
 
         return new Scene(vBox, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
 
-//    private Scene hikeFormScene(){
-//
-//
-//
-//
-//        return new Scene(vBox, WINDOW_WIDTH, WINDOW_HEIGHT);
-//
-//
-//    }
+
 
 
     private static void createButtons(){

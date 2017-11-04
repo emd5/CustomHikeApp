@@ -30,9 +30,39 @@
 
 }
 
+#mainBox{
+    -fx-padding: 10px;
+
+}
+
+#headingBox{
+    -fx-alignment: center;
+    -fx-padding: 10px;
+    -fx-max-width: inherit;
+    -fx-border-color: black ;
+    -fx-border-style: solid;
+    -fx-font:  bold italic 20pt "Verdana";
+}
+
+
+
+#bodyBox{
+    -fx-padding: 10px;
+    -fx-max-width: inherit;
+    -fx-border-color: black ;
+    -fx-border-style: solid;
+}
+#footerBox{
+    -fx-alignment: center;
+    -fx-padding: 10px;
+    -fx-max-width: inherit;
+    -fx-border-color: black ;
+    -fx-border-style: solid;
+}
+
 #reminder-message{
     -fx-font: bold italic 20pt "Tahoma";
-    -fx-effect:  innershadow(gaussian, purple, 10, 1.0, 100, 100);
+    -fx-effect:  innershadow(gaussian, rgba(6, 10, 104, 0.97), 10, 1.0, 100, 100);
 
 
 }
