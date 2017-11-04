@@ -15,10 +15,36 @@
     -fx-font-weight: 300;
 }
 
+#form-label{
+    -fx-pref-width: 80;
+    -fx-alignment: center-right;
+}
+
+#form-field{
+    -fx-pref-width: 180px;
+    -fx-pref-height: 40;
+}
+
+#padding10{
+    -fx-spacing: 10px;
+
+}
+
+#formButton{
+    -fx-spacing: 10px;
+    -fx-pref-width: 100;
+    -fx-alignment: center-right;
+}
+
+#menuFrame{
+    -fx-spacing: 5px;
+}
 .menu-button{
     -fx-padding: 2px;
     -fx-background-color: transparent ;
     -fx-border-color: #26ab82;
+    -fx-max-width: 200px;
+    -fx-alignment: center-left;
 }
 
 .menu-button:hover{
@@ -30,12 +56,11 @@
 
 }
 
-#mainBox{
+#mainFrame{
     -fx-padding: 10px;
-
 }
 
-#headingBox{
+#headingFrame{
     -fx-alignment: center;
     -fx-padding: 10px;
     -fx-max-width: inherit;
@@ -44,15 +69,13 @@
     -fx-font:  bold italic 20pt "Verdana";
 }
 
-
-
-#bodyBox{
+#bodyFrame{
     -fx-padding: 10px;
-    -fx-max-width: inherit;
+    -fx-pref-height: 400px;
     -fx-border-color: black ;
     -fx-border-style: solid;
 }
-#footerBox{
+#footerFrame{
     -fx-alignment: center;
     -fx-padding: 10px;
     -fx-max-width: inherit;
