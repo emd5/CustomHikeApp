@@ -9,10 +9,37 @@
             #000000,
             linear-gradient(#7ebcea, #338f41),
             linear-gradient(#41b74a, #263e75),
-            linear-gradient(#26ab82, #091a68);
+            linear-gradient(#26ab82, #f6f8ec);
     -fx-background-insets: 0,1,2,3;
     -fx-background-radius: 3,2,2,2;
-
-    -fx-text-fill: white;
-    -fx-font-size: 10px;
+    -fx-font-weight: 300;
 }
+
+.menu-button{
+    -fx-padding: 2px;
+    -fx-background-color: transparent ;
+    -fx-border-color: #26ab82;
+}
+
+.menu-button:hover{
+    -fx-background-color: #ffffff;
+}
+
+.menu-button:pressed {
+    -fx-background-color: #FF5037;
+
+}
+
+#reminder-message{
+    -fx-font: bold italic 20pt "Tahoma";
+    -fx-effect:  innershadow(gaussian, purple, 10, 1.0, 100, 100);
+
+
+}
+
+
+
+
+
+
+
