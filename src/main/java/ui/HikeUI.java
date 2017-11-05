@@ -1,5 +1,9 @@
 package ui;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -43,9 +47,12 @@ public class HikeUI extends Application {
 
     private Stage stage;
 
+    private Map<String, Callable> buttonsMap = new HashMap<>();
+
     @Override
     public void start(Stage stage) {
         this.stage = stage;
+        makeButtonMap();
 
         stage.setTitle("Hike Log Application");
         stage.setScene(WaitingScene.waitingScene());
@@ -55,7 +62,6 @@ public class HikeUI extends Application {
         KeyFrame frame = new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
                 stage.setScene(homeScene());
             }
         });
@@ -104,16 +110,10 @@ public class HikeUI extends Application {
             buttons[i].setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    if (label.equals(menuLabel[0])) {
-                        stage.setScene(ViewHikeScene.viewHikeScene(stage, HikeUI.this));
-                    } else if (label.equals(menuLabel[1])) {
-                        stage.setScene(HeartScene.addHeartScene(stage, HikeUI.this));
-                    } else if (label.equals(menuLabel[2])) {
-                        stage.setScene(AverageHeartStepScene.averageHeartStepScene(stage, HikeUI.this));
-                    } else if (label.equals(menuLabel[3])) {
-                        stage.setScene(AddHikeScene.addHikeScene(stage, HikeUI.this));
-                    } else if (label.equals(menuLabel[4])) {
-                        stage.setScene(CheckListScene.addChecklistScene(stage, HikeUI.this));
+                    try {
+                        stage.setScene((Scene) buttonsMap.get(label).call());
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             });
@@ -124,5 +124,14 @@ public class HikeUI extends Application {
 
         anchorPane.getChildren().add(menuVbox);
         return anchorPane;
+    }
+
+    private void makeButtonMap() {
+        buttonsMap.put(menuLabel[0], () -> ViewHikeScene.viewHikeScene(stage, HikeUI.this));
+        buttonsMap.put(menuLabel[1], () -> HeartScene.addHeartScene(stage, HikeUI.this));
+        buttonsMap.put(menuLabel[2], () -> AverageHeartStepScene.averageHeartStepScene(stage, HikeUI.this));
+        buttonsMap.put(menuLabel[3], () -> AddHikeScene.addHikeScene(stage, HikeUI.this));
+        buttonsMap.put(menuLabel[4], () -> CheckListScene.addChecklistScene(stage, HikeUI.this));
+        //Callable<Integer> callableObj = () -> { return 2*3; };
     }
 }
