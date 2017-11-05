@@ -1,41 +1,78 @@
 package model;
 
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import model.JacksonSerializers.LocalDateDeserializer;
+import model.JacksonSerializers.LocalDateSerializer;
 
 public class Hike {
 
-
     private final String name;
-    private final int duration;
+
+    private int duration;
+
     private final String location;
-    private LocalDate date;
+
     private final Fitness fitness;
+
     private final TodoChecklist todoChecklist;
 
-    public Hike(final String name, final int duration, final String location, final int heartbeat, final int numberOfSteps){
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate date;
+
+    public Hike(final String name, final String location) {
         this.name = name;
-        this.duration = duration;
+        this.duration = 0;
         this.location = location;
-        this.fitness = new Fitness (heartbeat,numberOfSteps);
-        this.todoChecklist = new TodoChecklist ();
+        this.fitness = new Fitness();
+        this.todoChecklist = new TodoChecklist();
     }
 
     public List<ChecklistItem> getTodoChecklist() {
-        return todoChecklist.getChecklistItems ();
+        return new ArrayList<>(todoChecklist.getChecklistItems());
     }
 
     public int getHeartbeat() {
-        return fitness.getHeartbeat ();
+        return fitness.getHeartbeat();
     }
 
-    public int getNumberOfSteps(){
-        return fitness.getNumberOfSteps ();
+    public int getNumberOfSteps() {
+        return fitness.getNumberOfSteps();
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public void setFitness(int heartbeat, int numberOfSteps) {
+        this.fitness.setHeartbeat(heartbeat);
+        this.fitness.setNumberOfSteps(numberOfSteps);
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     //public String[] activeItems

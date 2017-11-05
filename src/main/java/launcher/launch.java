@@ -1,5 +1,6 @@
 package launcher;
 
+import controller.ProgramStatusController;
 import javafx.application.Application;
 import ui.HikeUI;
 
@@ -12,10 +13,9 @@ public class launch {
      * @param args command-line arguments
      */
     public static void main(String[] args) {
-
-        Application.launch (HikeUI.class, args);
+        Application.launch(HikeUI.class, args);
+        ProgramStatusController programStatusController = new ProgramStatusController();
+        //exitController.exit();
+        //exitController.start();
     }
-
-
-
 }

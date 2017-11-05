@@ -8,12 +8,12 @@ class TodoChecklist {
     private final static DefaultChecklist defaultCheckList = DefaultChecklist.getInstance ();
 
     public void addItem(final String item){
-        final ChecklistItem checklistItem = new ChecklistItem (item, true);
+        final ChecklistItem checklistItem = new ChecklistItem (item);
         customCheckList.add (checklistItem);
     }
 
     public void removeItem(final String item){
-        ChecklistItem checklistItem = new ChecklistItem (item, true);
+        ChecklistItem checklistItem = new ChecklistItem (item);
         customCheckList.remove (checklistItem);
     }
 
