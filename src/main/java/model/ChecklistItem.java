@@ -1,15 +1,17 @@
 package model;
 
 public class ChecklistItem {
+
     private final String item;
+
     private Boolean active;
 
-    ChecklistItem(final String item){
+    ChecklistItem(final String item) {
         this.item = item;
         this.active = true;
     }
 
-    public String getItem(){
+    public String getItem() {
         return item;
     }
 
@@ -17,7 +19,7 @@ public class ChecklistItem {
         return active;
     }
 
-    public void setActive(boolean active){
+    public void setActive(boolean active) {
         this.active = active;
     }
 }
