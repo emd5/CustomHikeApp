@@ -15,7 +15,7 @@ public class launch {
     public static void main(String[] args) {
         Application.launch(HikeUI.class, args);
         ProgramStatusController programStatusController = new ProgramStatusController();
-        //exitController.exit();
-        //exitController.start();
+        //programController.exit();
+        //programController.start();
     }
 }
