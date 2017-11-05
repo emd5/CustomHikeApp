@@ -23,6 +23,7 @@ import ui.Scenes.AddHikeScene;
 import ui.Scenes.AverageHeartStepScene;
 import ui.Scenes.CheckListScene;
 import ui.Scenes.HeartScene;
+import ui.Scenes.SceneUtils;
 import ui.Scenes.ViewHikeScene;
 import ui.Scenes.WaitingScene;
 
@@ -35,11 +36,11 @@ import ui.Scenes.WaitingScene;
  */
 public class HikeUI extends Application {
 
-    public static final int WINDOW_WIDTH = 400;
+    private static final int WINDOW_WIDTH = 400;
 
-    public static final int WINDOW_HEIGHT = 500;
+    private static final int WINDOW_HEIGHT = 500;
 
-    private String[] menuLabel = { "View Hikes", "+HeartRate", "Avg Heart/Steps", "+Hike", "+CheckList",
+    private static final String[] menuLabel = { "View Hikes", "+HeartRate", "Avg Heart/Steps", "+Hike", "+CheckList",
             "View Checklist" };
 
     private static final String[] fileNames = { "images/hike.png", "images/redheart.png", "images/data.png",
@@ -47,39 +48,39 @@ public class HikeUI extends Application {
 
     private Stage stage;
 
-    private Map<String, Callable> buttonsMap = new HashMap<>();
+    private static final Map<String, Callable> buttonsMap = new HashMap<>();
 
     @Override
-    public void start(Stage stage) {
+    public void start(final Stage stage) {
         this.stage = stage;
         makeButtonMap();
 
         stage.setTitle("Hike Log Application");
-        stage.setScene(WaitingScene.waitingScene());
+        stage.setScene(WaitingScene.waitingScene(this));
         //stage.setResizable (false);
         stage.show();
 
-        KeyFrame frame = new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+        final KeyFrame frame = new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 stage.setScene(homeScene());
             }
         });
 
-        Timeline animation = new Timeline(frame);
+        final Timeline animation = new Timeline(frame);
         animation.play();
     }
 
     public Scene homeScene() {
-        Text headerText = new Text("Welcome Jose");
-        AnchorPane menuVbox = homeMenuButtons();
-        Text reminderMessage = reminderMessage();
+        final Text headerText = new Text("Welcome Jose");
+        final AnchorPane menuVbox = homeMenuButtons();
+        final Text reminderMessage = reminderMessage();
 
-        VBox mainFrame = SceneUtils.mainFrame();
-        HBox header = SceneUtils.headingFrame(headerText);
+        final VBox mainFrame = SceneUtils.mainFrame();
+        final HBox header = SceneUtils.headingFrame(headerText);
 
-        HBox bodyFrame = SceneUtils.bodyFrame(menuVbox);
-        HBox footer = SceneUtils.footerFrame(reminderMessage);
+        final HBox bodyFrame = SceneUtils.bodyFrame(menuVbox);
+        final HBox footer = SceneUtils.footerFrame(reminderMessage);
 
         mainFrame.getChildren().addAll(header, bodyFrame, footer);
         mainFrame.getStylesheets().addAll("css/hike.css");
@@ -89,21 +90,21 @@ public class HikeUI extends Application {
 
     private Text reminderMessage() {
 
-        Text reminderMessage = new Text("Stop eating junk!");
+        final Text reminderMessage = new Text("Stop eating junk!");
         reminderMessage.setId("reminder-message");
         return reminderMessage;
     }
 
     private AnchorPane homeMenuButtons() {
-        AnchorPane anchorPane = new AnchorPane();
-        VBox menuVbox = new VBox();
+        final AnchorPane anchorPane = new AnchorPane();
+        final VBox menuVbox = new VBox();
         menuVbox.setId("menuFrame");
 
-        Image[] images = new Image[fileNames.length];
-        Button[] buttons = new Button[fileNames.length];
+        final Image[] images = new Image[fileNames.length];
+        final Button[] buttons = new Button[fileNames.length];
 
         for (int i = 0; i < buttons.length; i++) {
-            String file = fileNames[i];
+            final String file = fileNames[i];
             images[i] = new Image(file, 60, 50, false, false);
             buttons[i] = new Button(menuLabel[i], new ImageView(images[i]));
             final String label = menuLabel[i];
@@ -132,6 +133,13 @@ public class HikeUI extends Application {
         buttonsMap.put(menuLabel[2], () -> AverageHeartStepScene.averageHeartStepScene(stage, HikeUI.this));
         buttonsMap.put(menuLabel[3], () -> AddHikeScene.addHikeScene(stage, HikeUI.this));
         buttonsMap.put(menuLabel[4], () -> CheckListScene.addChecklistScene(stage, HikeUI.this));
-        //Callable<Integer> callableObj = () -> { return 2*3; };
+    }
+
+    public int getWindowWidth() {
+        return WINDOW_WIDTH;
+    }
+
+    public int getWindowHeight() {
+        return WINDOW_HEIGHT;
     }
 }

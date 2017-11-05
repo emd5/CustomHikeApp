@@ -1,8 +1,5 @@
 package ui.Scenes;
 
-import static ui.HikeUI.WINDOW_HEIGHT;
-import static ui.HikeUI.WINDOW_WIDTH;
-
 import controller.HikeController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
-import ui.SceneUtils;
 
 public class AddHikeScene {
 
@@ -37,7 +33,7 @@ public class AddHikeScene {
 
         final VBox mainFrame = mainFrame(anchorPane);
 
-        return new Scene(mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
+        return new Scene(mainFrame, hikeUI.getWindowWidth(), hikeUI.getWindowHeight());
     }
 
     private static Button submitButton(final Stage stage, final HikeUI hikeUI) {

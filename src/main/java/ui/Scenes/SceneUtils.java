@@ -1,7 +1,4 @@
-package ui;
-
-import static ui.HikeUI.WINDOW_HEIGHT;
-import static ui.HikeUI.WINDOW_WIDTH;
+package ui.Scenes;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,49 +9,45 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ui.HikeUI;
 
 public class SceneUtils {
 
     public static VBox mainFrame() {
-
-        VBox mainFrame = new VBox();
+        final VBox mainFrame = new VBox();
         mainFrame.setId("mainFrame");
 
         return mainFrame;
     }
 
-    public static HBox headingFrame(Text headingContent) {
-
-        HBox headingFrame = new HBox();
+    public static HBox headingFrame(final Text headingContent) {
+        final HBox headingFrame = new HBox();
         headingFrame.setId("headingFrame");
         headingFrame.getChildren().add(headingContent);
 
         return headingFrame;
     }
 
-    public static HBox bodyFrame(AnchorPane bodyContent) {
-
-        HBox bodyFrame = new HBox();
+    public static HBox bodyFrame(final AnchorPane bodyContent) {
+        final HBox bodyFrame = new HBox();
         bodyFrame.setId("bodyFrame");
         bodyFrame.getChildren().add(bodyContent);
 
         return bodyFrame;
     }
 
-    public static HBox footerFrame(Text footerContent) {
-
-        HBox footerFrame = new HBox();
+    public static HBox footerFrame(final Text footerContent) {
+        final HBox footerFrame = new HBox();
 
         footerFrame.setId("footerFrame");
         footerFrame.getChildren().addAll(footerContent);
         return footerFrame;
     }
 
-    public static AnchorPane backButton(Stage stage, HikeUI hikeUI) {
+    static AnchorPane backButton(final Stage stage, final HikeUI hikeUI) {
+        final AnchorPane anchorPane = new AnchorPane();
 
-        AnchorPane anchorPane = new AnchorPane();
-
-        Button goBack = new Button("Go Back");
+        final Button goBack = new Button("Go Back");
         goBack.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -67,7 +60,7 @@ public class SceneUtils {
         return anchorPane;
     }
 
-    public static Scene makeBasicScene(Text headerText, Text footerText, Stage stage, HikeUI hikeUI) {
+    static Scene makeBasicScene(final Text headerText, final Text footerText, final Stage stage, final HikeUI hikeUI) {
         final VBox mainFrame = SceneUtils.mainFrame();
         final HBox header = SceneUtils.headingFrame(headerText);
 
@@ -79,6 +72,6 @@ public class SceneUtils {
         mainFrame.getChildren().addAll(header, body, footer);
         mainFrame.getStylesheets().addAll("css/hike.css");
 
-        return new Scene(mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
+        return new Scene(mainFrame, hikeUI.getWindowWidth(), hikeUI.getWindowHeight());
     }
 }

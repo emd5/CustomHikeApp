@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
-import ui.SceneUtils;
 
 public class AverageHeartStepScene {
 
