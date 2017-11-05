@@ -7,7 +7,6 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,16 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Hike;
-
-import java.util.HashMap;
-import java.util.HashSet;
 
 
 /**
@@ -44,7 +36,7 @@ public class HikeUI extends Application {
               "+CheckList" , "View Checklist"};
 
     private static final String[] fileNames = {"images/hike.png", "images/redheart.png",
-            "images/data.png", "images/checklist.png", "images/profile.png"};
+            "images/data.png", "images/marker.png", "images/checklist.png"};
 
     private Stage stage;
 
@@ -58,14 +50,13 @@ public class HikeUI extends Application {
         //stage.setResizable (false);
         stage.show ();
 
-
         KeyFrame frame = new KeyFrame(Duration.millis(1000),
                 new EventHandler<ActionEvent> () {
                     @Override
                     public void handle(ActionEvent event)
                     {
 
-                        stage.setScene(homeScene());
+                        stage.setScene(homeScene ());
                     }
                 });
 
@@ -74,18 +65,16 @@ public class HikeUI extends Application {
     }
 
     private Scene getWaitingScene(){
+
         VBox vBox = new VBox ();
 
         ImageView backgroundImage = new ImageView ("progress/boots.jpg");
         backgroundImage.setFitHeight (WINDOW_HEIGHT);
         backgroundImage.setFitWidth (WINDOW_WIDTH);
 
-
         ProgressBar progress = new ProgressBar ();
         progress.setMaxWidth (WINDOW_WIDTH/2);
-
         progress.getStyleClass ().add ("progress-bar");
-
 
         Text text = new Text("Lets Hike!");
 
@@ -94,158 +83,175 @@ public class HikeUI extends Application {
         stackPane.setAlignment (text, Pos.CENTER);
         stackPane.getChildren().addAll( backgroundImage,progress, text );
 
-
         vBox.getChildren ().addAll (stackPane);
         vBox.getStylesheets ().addAll ("css/hike.css");
+
         return new Scene (vBox, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
 
+
     private Scene homeScene(){
+
+        Text headerText = new Text ("Welcome Jose");
+        AnchorPane menuVbox = homeMenuButtons ();
+        Text reminderMessage = reminderMessage ();
+
+        VBox mainFrame = mainFrame ();
+        HBox header = headingFrame (headerText);
+
+        HBox bodyFrame = bodyFrame (menuVbox);
+        HBox footer = footerFrame (reminderMessage);
+
+        mainFrame.getChildren ().addAll (header,bodyFrame,footer);
+        mainFrame.getStylesheets ().addAll ("css/hike.css");
+
+        return new Scene (mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
+    }
+
+    private VBox mainFrame(){
 
         VBox mainFrame = new VBox () ;
         mainFrame.setId("mainFrame");
 
-        //top frame
+        return mainFrame;
+    }
+
+    private HBox headingFrame(Text headingContent){
+
         HBox headingFrame = new HBox ();
         headingFrame.setId ("headingFrame");
+        headingFrame.getChildren ().add (headingContent);
 
-        Text headingText = new Text ("Welcome Jose");
+        return  headingFrame;
+    }
 
-        headingFrame.getChildren ().add (headingText);
+    private HBox bodyFrame(AnchorPane bodyContent){
 
-        //body frame
         HBox bodyFrame = new HBox ();
         bodyFrame.setId("bodyFrame");
+        bodyFrame.getChildren ().add(bodyContent);
 
+        return bodyFrame;
+    }
+
+    private HBox footerFrame(Text footerContent){
+
+        HBox footerFrame = new HBox ();
+
+        footerFrame.setId("footerFrame");
+        footerFrame.getChildren ().addAll (footerContent);
+        return footerFrame;
+    }
+
+    private Text reminderMessage(){
+
+        Text reminderMessage = new Text("Stop eating junk!");
+        reminderMessage.setId ("reminder-message");
+        return reminderMessage;
+    }
+
+    private AnchorPane homeMenuButtons(){
+
+        AnchorPane anchorPane = new AnchorPane ();
         VBox menuVbox = new VBox ();
         menuVbox.setId ("menuFrame");
 
         Image[] images = new Image[fileNames.length];
         Button[] buttons = new Button[fileNames.length];
-        Scene[] scenes = {addHikeScene(), addChecklistScene()};
+
         for( int i=0; i<buttons.length; i++){
             String file = fileNames[i];
             images[i] = new Image(file, 60,50,
                     false, false);
             buttons[i] = new Button (new String (menuLabel[i]), new ImageView (images[i]));
-                final String label = menuLabel[i];
-                    buttons[i].setOnAction (new EventHandler<ActionEvent> () {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            if(label.equals (menuLabel[0])){
-                                stage.setScene (viewHikeScene ());
-                            }
-                            else if(label.equals (menuLabel[1])){
-                                stage.setScene (addHeartScene ());
-                            }
-                            else if(label.equals (menuLabel[2])){
-                                stage.setScene (averageHeartStepScene ());
-                            }
-                            else if(label.equals (menuLabel[3])){
-                                stage.setScene (addHikeScene ());
-                            }
-                            else if(label.equals (menuLabel[4])){
-                                stage.setScene (addChecklistScene ());
-                            }
-                        }
-                    });
+            final String label = menuLabel[i];
+            buttons[i].setOnAction (new EventHandler<ActionEvent> () {
+                @Override
+                public void handle(ActionEvent event) {
+                    if(label.equals (menuLabel[0])){
+                        stage.setScene (viewHikeScene ());
+                    }
+                    else if(label.equals (menuLabel[1])){
+                        stage.setScene (addHeartScene ());
+                    }
+                    else if(label.equals (menuLabel[2])){
+                        stage.setScene (averageHeartStepScene ());
+                    }
+                    else if(label.equals (menuLabel[3])){
+                        stage.setScene (addHikeScene ());
+                    }
+                    else if(label.equals (menuLabel[4])){
+                        stage.setScene (addChecklistScene ());
+                    }
+                }
+            });
 
             buttons[i].getStyleClass().add("menu-button");
-            menuVbox.getChildren ().add (buttons[i]);
+            menuVbox.getChildren ().add(buttons[i]);
+
         }
 
-        bodyFrame.getChildren ().add(menuVbox);
+        anchorPane.getChildren ().add (menuVbox);
 
-        //footer frame
-        HBox footerFrame = footerPane ();
+        return anchorPane;
+    }
 
-        mainFrame.getChildren ().addAll (headingFrame,bodyFrame,footerFrame);
+
+
+    private Scene viewHikeScene() {
+
+        Text headerText = new Text ("View All Hikes");
+
+        Text footerText = new Text ("footer");
+
+        VBox mainFrame = mainFrame ();
+
+        HBox header = headingFrame (headerText);
+
+        AnchorPane anchorPane = backButton ();
+        HBox body = bodyFrame (anchorPane);
+        HBox footer = footerFrame (footerText);
+
+        mainFrame.getChildren ().addAll (header,body,footer);
+
         mainFrame.getStylesheets ().addAll ("css/hike.css");
 
         return new Scene (mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
-    private Scene viewHikeScene(){
-
-        VBox mainFrame = new VBox () ;
-        mainFrame.setId("mainFrame");
-
-        //top frame
-        HBox headingFrame = new HBox ();
-        headingFrame.setId ("headingFrame");
-
-        Text headingText = new Text ("View All Hikes");
-
-        headingFrame.getChildren ().add (headingText);
-
-        //body frame
-        HBox bodyFrame = new HBox ();
-        bodyFrame.setId("bodyFrame");
-
-        Button goBack = backButton ();
-        bodyFrame.getChildren ().add(goBack);
-
-        //footer frame
-        HBox footerFrame = footerPane ();
-
-        mainFrame.getChildren ().addAll (headingFrame,bodyFrame,footerFrame);
-        mainFrame.getStylesheets ().addAll ("css/hike.css");
-
-        return new Scene (mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
-    }
     private Scene addHeartScene(){
-        VBox mainFrame = new VBox () ;
-        mainFrame.setId("mainFrame");
+        Text headerText = new Text ("Add heart rate");
 
-        //top frame
-        HBox headingFrame = new HBox ();
-        headingFrame.setId ("headingFrame");
+        VBox mainFrame = mainFrame ();
+        HBox header = headingFrame (headerText);
 
-        Text headingText = new Text ("Add Heart Rate");
+        AnchorPane anchorPane = backButton ();
+        HBox body = bodyFrame (anchorPane);
 
-        headingFrame.getChildren ().add (headingText);
+        Text footerText = new Text ("footer");
+        HBox footer = footerFrame (footerText);
 
-        //body frame
-        HBox bodyFrame = new HBox ();
-        bodyFrame.setId("bodyFrame");
-
-        Button goBack = backButton ();
-        bodyFrame.getChildren ().add(goBack);
-
-        //footer frame
-        HBox footerFrame = footerPane ();
-
-        mainFrame.getChildren ().addAll (headingFrame,bodyFrame,footerFrame);
+        mainFrame.getChildren ().addAll (header,body,footer);
         mainFrame.getStylesheets ().addAll ("css/hike.css");
 
         return new Scene (mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     private Scene averageHeartStepScene(){
-        VBox mainFrame = new VBox () ;
-        mainFrame.setId("mainFrame");
 
-        //top frame
-        HBox headingFrame = new HBox ();
-        headingFrame.setId ("headingFrame");
+        Text headerText = new Text ("Average Heart and Steps");
 
-        Text headingText = new Text
-                ("Avg Heart rate & Steps");
+        VBox mainFrame = mainFrame ();
+        HBox header = headingFrame (headerText);
 
-        headingFrame.getChildren ().add (headingText);
+        AnchorPane anchorPane = backButton ();
+        HBox body = bodyFrame (anchorPane);
 
-        //body frame
-        HBox bodyFrame = new HBox ();
-        bodyFrame.setId("bodyFrame");
+        Text footerText = new Text ("footer");
+        HBox footer = footerFrame (footerText);
 
-        Button backButton = backButton ();
-        bodyFrame.getChildren ().add(backButton);
-
-        //footer frame
-        HBox footerFrame = footerPane ();
-
-        mainFrame.getChildren ().addAll (headingFrame,bodyFrame,footerFrame);
+        mainFrame.getChildren ().addAll (header,body,footer);
         mainFrame.getStylesheets ().addAll ("css/hike.css");
 
         return new Scene (mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -253,34 +259,18 @@ public class HikeUI extends Application {
 
     private Scene addChecklistScene(){
 
-        VBox mainFrame = new VBox () ;
-        mainFrame.setId("mainFrame");
+        Text headerText = new Text ("Add Checklist");
 
-        //top frame
-        HBox headingFrame = new HBox ();
-        headingFrame.setId ("headingFrame");
+        VBox mainFrame = mainFrame ();
+        HBox header = headingFrame (headerText);
 
-        Text headingText = new Text ("Add CheckList");
+        AnchorPane anchorPane = backButton ();
+        HBox body = bodyFrame (anchorPane);
 
-        headingFrame.getChildren ().add (headingText);
+        Text footerText = new Text ("footer");
+        HBox footer = footerFrame (footerText);
 
-        //body frame
-        HBox bodyFrame = new HBox ();
-        bodyFrame.setId("bodyFrame");
-
-        VBox menuVbox = new VBox ();
-        menuVbox.setId ("menuFrame");
-
-        CheckBox checkBoxes = new CheckBox ();
-        checkBoxes.setText ("Backpack");
-
-        Button backButton = backButton ();
-        bodyFrame.getChildren ().addAll(menuVbox,backButton);
-
-        //footer frame
-        HBox footerFrame = footerPane ();
-
-        mainFrame.getChildren ().addAll (headingFrame,bodyFrame,footerFrame);
+        mainFrame.getChildren ().addAll (header,body,footer);
         mainFrame.getStylesheets ().addAll ("css/hike.css");
 
         return new Scene (mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -290,25 +280,20 @@ public class HikeUI extends Application {
 
     private Scene addHikeScene(){
 
-        VBox mainFrame = new VBox () ;
-        mainFrame.setId("mainFrame");
+        Text headerText = new Text ("View All Hikes");
 
-        //title box
-        HBox headingFrame = new HBox ();
-        headingFrame.setId ("headingFrame");
+        VBox mainFrame = mainFrame ();
 
-        Text headingText = new Text ("Add a Hike");
-
-        headingFrame.getChildren ().add (headingText);
-
-        //body box
-        HBox bodyFrame = new HBox ();
-        bodyFrame.setId("bodyFrame");
+        HBox header = headingFrame (headerText);
 
         //box to stack input fields
-        VBox formFrame = new VBox ();
-        formFrame.setId ("padding10");
+        VBox formPane = new VBox ();
+        formPane.setId ("padding10");
 
+        AnchorPane anchorPane = new AnchorPane ();
+        anchorPane.getChildren ().addAll (formPane);
+        //body box
+        HBox body = bodyFrame (anchorPane);
         //name field
         HBox row1 = new HBox();
         row1.setId ("padding10");
@@ -386,25 +371,31 @@ public class HikeUI extends Application {
         });
 
         //go back button??
-        Button goBack = backButton ();
+        AnchorPane goBack = backButton ();
 
 
         row6.getChildren ().addAll (goBack,submit);
-        formFrame.getChildren ().addAll
+
+        formPane.getChildren ().addAll
                 (row1,row2,row3, row4, row5,row6);
-        bodyFrame.getChildren ().addAll (formFrame);
+
+        //body.getChildren ().addAll (formFrame);
 
         //bottom box
-        HBox footerFrame = footerPane ();
+        Text footerText = new Text ("footer");
+        HBox footer = footerFrame (footerText);
 
-        mainFrame.getChildren ().addAll (headingFrame,bodyFrame,footerFrame);
+
+        mainFrame.getChildren ().addAll (header, body, footer);
         mainFrame.getStylesheets ().addAll ("css/hike.css");
 
         return new Scene (mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
-
     }
 
-    private Button backButton(){
+
+    private AnchorPane backButton(){
+
+        AnchorPane anchorPane = new AnchorPane ();
 
         Button goBack = new Button("Go Back");
         goBack.setOnAction (new EventHandler<ActionEvent> () {
@@ -414,31 +405,15 @@ public class HikeUI extends Application {
 
             }
         });
-        return goBack;
-    }
 
-    private HBox footerPane(){
-
-        HBox footerFrame = new HBox ();
-        footerFrame.setId("footerFrame");
-
-        Text reminderMessage = new Text("Stop eating junk!");
-        reminderMessage.setId ("reminder-message");
-
-        footerFrame.getChildren ().addAll (reminderMessage);
-
-        return footerFrame;
+        anchorPane.getChildren ().addAll (goBack);
+        return anchorPane;
     }
 
 
 
-    private static void createButtons(){
 
-    }
 
-    private static void addButtons(){
-
-    }
 
 }
 
