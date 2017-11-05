@@ -4,9 +4,9 @@ public class ChecklistItem {
     private final String item;
     private Boolean active;
 
-    ChecklistItem(final String item, final Boolean active){
+    ChecklistItem(final String item){
         this.item = item;
-        this.active =active;
+        this.active = true;
     }
 
     public String getItem(){

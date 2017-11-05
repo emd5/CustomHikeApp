@@ -8,11 +8,11 @@ import model.Exit.ExitData;
 import model.Hike;
 import model.Startup.StartupData;
 
-public class ExitController {
+public class ProgramStatusController {
 
     private static final String SAVE_FILE = "src/main/resources/hikeList.txt";
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public void exit() {
         final List<Hike> hikeList = HikeController.getInstance().getHikeList();

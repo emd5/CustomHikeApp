@@ -13,7 +13,7 @@ class DefaultChecklist {
                         "compass", "flash light", "binoculars"};
 
         for(final String item : defaultItems){
-            final ChecklistItem checklistItem = new ChecklistItem (item, true);
+            final ChecklistItem checklistItem = new ChecklistItem (item);
             items.add (checklistItem);
         }
     }

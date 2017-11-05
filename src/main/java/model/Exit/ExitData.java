@@ -14,7 +14,7 @@ import model.Hike;
 
 public class ExitData {
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     public ExitData(final ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
