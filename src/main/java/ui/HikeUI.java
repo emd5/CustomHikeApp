@@ -79,8 +79,8 @@ public class HikeUI extends Application {
         Text text = new Text("Lets Hike!");
 
         StackPane stackPane = new StackPane ();
-        stackPane.setAlignment (progress, Pos.CENTER);
-        stackPane.setAlignment (text, Pos.CENTER);
+        StackPane.setAlignment (progress, Pos.CENTER);
+        StackPane.setAlignment (text, Pos.CENTER);
         stackPane.getChildren().addAll( backgroundImage,progress, text );
 
         vBox.getChildren ().addAll (stackPane);
