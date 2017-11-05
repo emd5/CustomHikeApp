@@ -1,7 +1,11 @@
 package ui;
 
+import static ui.HikeUI.WINDOW_HEIGHT;
+import static ui.HikeUI.WINDOW_WIDTH;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -61,5 +65,20 @@ public class SceneUtils {
 
         anchorPane.getChildren().addAll(goBack);
         return anchorPane;
+    }
+
+    public static Scene makeBasicScene(Text headerText, Text footerText, Stage stage, HikeUI hikeUI) {
+        final VBox mainFrame = SceneUtils.mainFrame();
+        final HBox header = SceneUtils.headingFrame(headerText);
+
+        final AnchorPane anchorPane = SceneUtils.backButton(stage, hikeUI);
+        final HBox body = SceneUtils.bodyFrame(anchorPane);
+
+        final HBox footer = SceneUtils.footerFrame(footerText);
+
+        mainFrame.getChildren().addAll(header, body, footer);
+        mainFrame.getStylesheets().addAll("css/hike.css");
+
+        return new Scene(mainFrame, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 }
