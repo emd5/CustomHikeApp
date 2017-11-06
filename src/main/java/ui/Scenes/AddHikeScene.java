@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +43,7 @@ public class AddHikeScene {
             @Override
             public void handle(ActionEvent event) {
                 HikeController addHike = HikeController.getInstance();
+                //addHike.addHike ();
                 stage.setScene(hikeUI.homeScene());
             }
         });
@@ -71,6 +73,7 @@ public class AddHikeScene {
 
     private static HBox getFormBox(final String field) {
         final HBox row1 = new HBox();
+
         row1.setId(PADDING_10);
 
         final Label nameLabel = new Label(field);
@@ -78,6 +81,15 @@ public class AddHikeScene {
 
         final TextField nameField = new TextField();
         nameField.setId("form-field");
+
+        if(field.equals ("Date: ")){
+
+            final DatePicker dateField = new DatePicker ();
+            dateField.setId("form-field");
+            row1.getChildren ().addAll (nameLabel, dateField);
+
+            return row1;
+        }
 
         row1.getChildren().addAll(nameLabel, nameField);
         return row1;
@@ -88,6 +100,7 @@ public class AddHikeScene {
         final HBox body = SceneUtils.bodyFrame(anchorPane);
         final HBox header = SceneUtils.headingFrame(headerText);
         final VBox mainFrame = SceneUtils.mainFrame();
+
 
         mainFrame.getChildren().addAll(header, body, footer);
         mainFrame.getStylesheets().addAll("css/hike.css");
