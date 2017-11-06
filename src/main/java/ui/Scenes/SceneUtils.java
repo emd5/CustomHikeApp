@@ -14,6 +14,7 @@ import ui.HikeUI;
 public class SceneUtils {
 
     public static VBox mainFrame() {
+
         final VBox mainFrame = new VBox();
         mainFrame.setId("mainFrame");
 
@@ -21,6 +22,7 @@ public class SceneUtils {
     }
 
     public static HBox headingFrame(final Text headingContent) {
+
         final HBox headingFrame = new HBox();
         headingFrame.setId("headingFrame");
         headingFrame.getChildren().add(headingContent);
@@ -29,6 +31,7 @@ public class SceneUtils {
     }
 
     public static HBox bodyFrame(final AnchorPane bodyContent) {
+
         final HBox bodyFrame = new HBox();
         bodyFrame.setId("bodyFrame");
         bodyFrame.getChildren().add(bodyContent);
@@ -37,10 +40,12 @@ public class SceneUtils {
     }
 
     public static HBox footerFrame(final Text footerContent) {
+
         final HBox footerFrame = new HBox();
 
         footerFrame.setId("footerFrame");
         footerFrame.getChildren().addAll(footerContent);
+
         return footerFrame;
     }
 
@@ -60,7 +65,8 @@ public class SceneUtils {
         return anchorPane;
     }
 
-    static Scene makeBasicScene(final Text headerText, final Text footerText, final Stage stage, final HikeUI hikeUI) {
+    static Scene makeBasicScene(final Text headerText, final Text footerText,
+                                final Stage stage, final HikeUI hikeUI) {
         final VBox mainFrame = SceneUtils.mainFrame();
         final HBox header = SceneUtils.headingFrame(headerText);
 

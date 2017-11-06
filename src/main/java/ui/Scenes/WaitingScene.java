@@ -13,7 +13,7 @@ public class WaitingScene {
 
     private static final Text text = new Text("Lets Hike!");
 
-    private static final ImageView backgroundImage = new ImageView("progress/boots.jpg");
+    private static final ImageView backgroundImage = new ImageView("bgimages/boots.jpg");
 
     public static Scene waitingScene(HikeUI hikeUI) {
         final VBox vBox = new VBox();

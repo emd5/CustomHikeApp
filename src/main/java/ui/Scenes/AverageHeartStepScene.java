@@ -12,6 +12,7 @@ public class AverageHeartStepScene {
     private static final Text footerText = new Text("footer");
 
     public static Scene averageHeartStepScene(final Stage stage, final HikeUI hikeUI) {
+
         return SceneUtils.makeBasicScene(headerText, footerText, stage, hikeUI);
     }
 }

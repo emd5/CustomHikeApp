@@ -12,6 +12,7 @@ public class HeartScene {
     private final static Text footerText = new Text("footer");
 
     public static Scene addHeartScene(final Stage stage, final HikeUI hikeUI) {
+
         return SceneUtils.makeBasicScene(headerText, footerText, stage, hikeUI);
     }
 
