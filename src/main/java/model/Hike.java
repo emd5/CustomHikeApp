@@ -1,14 +1,13 @@
 package model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import model.JacksonSerializers.LocalDateDeserializer;
+import model.JacksonSerializers.LocalDateSerializer;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import model.JacksonSerializers.LocalDateDeserializer;
-import model.JacksonSerializers.LocalDateSerializer;
 
 public class Hike {
 
@@ -26,10 +25,11 @@ public class Hike {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate date;
 
-    public Hike(final String name, final String location) {
+    public Hike(final String name, final String location, LocalDate date) {
         this.name = name;
         this.duration = 0;
         this.location = location;
+        this.date = date;
         this.fitness = new Fitness();
         this.todoChecklist = new TodoChecklist();
     }
@@ -65,10 +65,6 @@ public class Hike {
     public void setFitness(int heartbeat, int numberOfSteps) {
         this.fitness.setHeartbeat(heartbeat);
         this.fitness.setNumberOfSteps(numberOfSteps);
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 
     public void setDuration(int duration) {

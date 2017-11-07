@@ -9,6 +9,7 @@ package controller;
 import model.ChecklistItem;
 import model.Hike;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +35,9 @@ public class HikeController {
      * @param name     a string that represents the hike name
      * @param location a string that represents the hike location
      */
-    public void addHike(final String name, final String location) {
+    public void addHike(final String name, final String location, LocalDate date) {
 
-        final Hike hike = new Hike(name, location);
+        final Hike hike = new Hike(name, location, date);
         hikeList.add(hike);
     }
 

@@ -1,26 +1,34 @@
 package ui.Scenes;
 
+import controller.HikeController;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
 
-    public class AddHikeScene {
+import java.time.LocalDate;
+
+public class AddHikeScene {
 
         private static final Text headerText = new Text("Add A Hike");
 
         private static final Text footerText = new Text("footer");
 
         private static final String PADDING_10 = "padding10";
+        private static TextField nameField;
+        private static TextField locationField;
+        private static DatePicker dateField;
 
-        public static Scene addHikeScene(Stage stage, HikeUI hikeUI) {
+    public static Scene addHikeScene(Stage stage, HikeUI hikeUI) {
             final Button submit = submitButton(stage, hikeUI);
             final Button goBack = SceneUtils.backButton(stage, hikeUI);
             final HBox buttonRow = buttonRow(submit);
@@ -39,7 +47,8 @@ import ui.HikeUI;
             submit.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-//                    HikeController addHike = HikeController.getInstance().addHike ();
+                    HikeController.getInstance().addHike (nameField.getText (), locationField.getText (),
+                            dateField.getValue ());
                     stage.setScene(hikeUI.homeScene());
                 }
             });
@@ -75,19 +84,38 @@ import ui.HikeUI;
             formLabel.setId("form-label");
 
             final Label formField = new Label ();
+            if(labelName.equals ("Name: ")){
 
-            formField.setId("form-field");
+                nameField = new TextField ();
+                formField.setText (nameField.getText ());
+                formField.setId("form-field");
+                rowField.getChildren().addAll(formLabel, formField, nameField);
+            }
+            if(labelName.equals ("Location: ")){
+
+                locationField = new TextField ();
+                formField.setText (nameField.getText ());
+                formField.setId("form-field");
+                rowField.getChildren().addAll(formLabel, formField, locationField);
+
+            }
+
 
             if(labelName.equals ("Date: ")){
 
-                final DatePicker dateField = new DatePicker ();
+                dateField = new DatePicker (LocalDate.now ());
+                dateField.setOnAction(new EventHandler() {
+                    public void handle(Event t) {
+                        dateField.setValue (dateField.getValue ());
+
+                    }
+                });
                 dateField.setId("form-field");
+
                 rowField.getChildren ().addAll (formLabel, dateField);
 
                 return rowField;
             }
-
-            rowField.getChildren().addAll(formLabel, formField);
 
             return rowField;
         }
