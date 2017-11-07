@@ -1,13 +1,11 @@
 package ui.Scenes;
 
-import controller.HikeController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -36,13 +34,12 @@ import ui.HikeUI;
             return new Scene(mainFrame, hikeUI.getWindowWidth(), hikeUI.getWindowHeight());
         }
 
-        private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
+        private static Button submitButton(final Stage stage, final HikeUI hikeUI ) {
             final Button submit = new Button("Submit");
             submit.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    HikeController addHike = HikeController.getInstance();
-                    //addHike.addHike ();
+//                    HikeController addHike = HikeController.getInstance().addHike ();
                     stage.setScene(hikeUI.homeScene());
                 }
             });
@@ -61,38 +58,42 @@ import ui.HikeUI;
             final HBox name = getFormBox("Name: ");
             final HBox location = getFormBox("Location: ");
             final HBox date = getFormBox("Date: ");
-            final HBox heartRate = getFormBox("Heart Rate: ");
-            final HBox steps = getFormBox("Total Steps: ");
             final VBox formPane = new VBox();
             formPane.setId(PADDING_10);
 
-            formPane.getChildren().addAll(name, location, date, heartRate, steps, bottomRow);
+            formPane.getChildren().addAll(name, location, date, bottomRow);
             return formPane;
         }
 
-        private static HBox getFormBox(final String field) {
-            final HBox row1 = new HBox();
+        private static HBox getFormBox(final String labelName) {
 
-            row1.setId(PADDING_10);
+            final HBox rowField = new HBox();
 
-            final Label nameLabel = new Label(field);
-            nameLabel.setId("form-label");
+            rowField.setId(PADDING_10);
 
-            final TextField nameField = new TextField();
-            nameField.setId("form-field");
+            final Label formLabel = new Label(labelName);
+            formLabel.setId("form-label");
 
-            if(field.equals ("Date: ")){
+            final Label formField = new Label ();
+
+            formField.setId("form-field");
+
+            if(labelName.equals ("Date: ")){
 
                 final DatePicker dateField = new DatePicker ();
                 dateField.setId("form-field");
-                row1.getChildren ().addAll (nameLabel, dateField);
+                rowField.getChildren ().addAll (formLabel, dateField);
 
-                return row1;
+                return rowField;
             }
 
-            row1.getChildren().addAll(nameLabel, nameField);
-            return row1;
+            rowField.getChildren().addAll(formLabel, formField);
+
+            return rowField;
         }
+
+
+
 
         private static VBox mainFrame(final VBox bodyBox) {
             final HBox footer = SceneUtils.footerFrame(footerText);

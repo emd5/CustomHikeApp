@@ -20,29 +20,23 @@ public class AverageHeartStepScene {
 
     public static Scene averageHeartStepScene(final Stage stage, final HikeUI hikeUI) {
         Button back = SceneUtils.backButton (stage, hikeUI);
-
         return SceneUtils.makeBasicScene(headerText, bodyContent (back), footerText, stage, hikeUI);
     }
 
     private static VBox bodyContent(Button back){
+        VBox vBox = new VBox ();
+        vBox.setAlignment (Pos.CENTER_RIGHT);
+        HBox rows = new HBox ();
 
-        VBox bodyContent = new VBox ();
 
-        HBox hBox = new HBox ();
 
-        bodyContent.setAlignment (Pos.CENTER);
         final Label heartLabel = new Label("Average Heart Rate: ");
-        //heartLabel.setId("form-label");
-
         final Label stepLabel = new Label("Average Steps: ");
-       // stepLabel.setId ("form-label");
 
+        vBox.getChildren().addAll(heartLabel,stepLabel, back);
+        rows.getChildren ().add(vBox);
 
-        bodyContent.getChildren().addAll(heartLabel,stepLabel, back);
-        hBox.getChildren ().add(bodyContent);
-
-
-        return bodyContent;
+        return vBox;
     }
 
 }

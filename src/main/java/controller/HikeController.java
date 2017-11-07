@@ -40,7 +40,8 @@ public class HikeController {
         hikeList.add(hike);
     }
 
-    public void addHike(final Hike hike) {
+    public void addHike(final Hike hike)
+    {
         hikeList.add(hike);
     }
 
@@ -118,5 +119,9 @@ public class HikeController {
         }
 
         return hikeController;
+    }
+
+    public static void addChecklistItem(String item){
+
     }
 }
