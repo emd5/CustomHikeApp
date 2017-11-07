@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -25,23 +24,34 @@ import ui.HikeUI;
 public class AddStepsScene {
     private static final Text headerText = new Text("Add Steps to your Hike");
 
-    private static final Text footerText = new Text("footer");
+    private static final Text footerText = new Text("");
 
     private static final String PADDING_10 = "padding10";
 
     public static Scene addStepsScene(Stage stage, HikeUI hikeUI) {
-        final Button submit = submitButton(stage, hikeUI);
-        final AnchorPane goBack = SceneUtils.backButton(stage, hikeUI);
 
-        final HBox buttonRow = buttonRow(goBack, submit);
+        Button back = SceneUtils.backButton (stage,hikeUI);
 
-        final VBox formPane = formPane(buttonRow);
-        final AnchorPane anchorPane = new AnchorPane();
-        anchorPane.getChildren().addAll(formPane);
+        return SceneUtils.makeBasicScene(headerText, totalStepsForm (back), footerText, stage, hikeUI);
+    }
 
-       // final VBox mainFrame = mainFrame(anchorPane);
-        return SceneUtils.makeBasicScene(headerText, footerText, stage, hikeUI);
-       // return new Scene(mainFrame, hikeUI.getWindowWidth(), hikeUI.getWindowHeight());
+    private static VBox totalStepsForm(Button back){
+
+        final VBox contentBox = new VBox ();
+
+        final HBox rows = new HBox();
+        contentBox.setId(PADDING_10);
+
+        final Label nameLabel = new Label("Total Steps");
+        nameLabel.setId("form-label");
+
+        final TextField nameField = new TextField();
+        nameField.setId("form-field");
+
+        rows.getChildren().addAll(nameLabel, nameField,back);
+        contentBox.getChildren ().add (rows);
+
+        return contentBox;
     }
 
     private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
@@ -57,49 +67,40 @@ public class AddStepsScene {
         return submit;
     }
 
-    private static HBox buttonRow(final AnchorPane anchorPane, final Button button) {
-        final HBox formButton = new HBox();
-        formButton.setId("formButton");
 
-        formButton.getChildren().addAll(anchorPane, button);
-        return formButton;
-    }
-
-    private static VBox formPane(HBox bottomRow) {
-
-        final HBox steps = getFormBox("Total Steps: ");
-        final VBox formPane = new VBox();
-        formPane.setId(PADDING_10);
-
-        formPane.getChildren().addAll( steps, bottomRow);
-        return formPane;
-    }
-
-    private static HBox getFormBox(final String field) {
-        final HBox row1 = new HBox();
-
-        row1.setId(PADDING_10);
-
-        final Label nameLabel = new Label(field);
-        nameLabel.setId("form-label");
-
-        final TextField nameField = new TextField();
-        nameField.setId("form-field");
-
-        row1.getChildren().addAll(nameLabel, nameField);
-        return row1;
-    }
-
-//    private static VBox mainFrame(final AnchorPane anchorPane) {
-//        final HBox footer = SceneUtils.footerFrame(footerText);
-//        final HBox body = SceneUtils.bodyFrame(anchorPane);
-//        final HBox header = SceneUtils.headingFrame(headerText);
-//        final VBox mainFrame = SceneUtils.mainFrame();
+//    private static HBox buttonRow(final AnchorPane anchorPane, final Button button) {
+//        final HBox formButton = new HBox();
+//        formButton.setId("formButton");
 //
-//
-//        mainFrame.getChildren().addAll(header, body, footer);
-//        mainFrame.getStylesheets().addAll("css/hike.css");
-//
-//        return mainFrame;
+//        formButton.getChildren().addAll(anchorPane, button);
+//        return formButton;
 //    }
+//
+//    private static VBox formPane(HBox bottomRow) {
+//
+//        final HBox steps = getFormBox("Total Steps: ");
+//        final VBox formPane = new VBox();
+//        formPane.setId(PADDING_10);
+//
+//        formPane.getChildren().addAll( steps, bottomRow);
+//        return formPane;
+//    }
+//
+//    private static HBox getFormBox(final String field) {
+//        final HBox row1 = new HBox();
+//
+//        row1.setId(PADDING_10);
+//
+//        final Label nameLabel = new Label(field);
+//        nameLabel.setId("form-label");
+//
+//        final TextField nameField = new TextField();
+//        nameField.setId("form-field");
+//
+//        row1.getChildren().addAll(nameLabel, nameField);
+//        return row1;
+//    }
+
+
+
 }

@@ -26,7 +26,7 @@ public class ReminderController {
         }
     }
 
-    private void addReminder(final String message){
+    public void addReminder(final String message){
         final Reminder reminder = new Reminder (message);
         reminders.add (reminder);
     }
@@ -46,4 +46,6 @@ public class ReminderController {
 
         return reminderController;
     }
+
+
 }

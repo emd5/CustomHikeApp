@@ -12,7 +12,7 @@
             linear-gradient(#26ab82, #427a22);
     -fx-background-insets: 0,1,2,3;
     -fx-background-radius: 3,2,2,2;
-    -fx-font-weight: 300px;
+    -fx-font-size: 12px;
 }
 
 #form-label{
@@ -119,9 +119,9 @@
 
 
 
-#view-hikelist{
+#view-hikeList{
     -fx-spacing: 5px;
-    -fx-alignment: center;
+    -fx-alignment: baseline-center;
 }
 
 

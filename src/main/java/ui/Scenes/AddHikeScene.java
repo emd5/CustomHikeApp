@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -25,14 +24,14 @@ import ui.HikeUI;
 
         public static Scene addHikeScene(Stage stage, HikeUI hikeUI) {
             final Button submit = submitButton(stage, hikeUI);
-            final AnchorPane goBack = SceneUtils.backButton(stage, hikeUI);
-            final HBox buttonRow = buttonRow(goBack, submit);
+            final Button goBack = SceneUtils.backButton(stage, hikeUI);
+            final HBox buttonRow = buttonRow(submit);
 
             final VBox formPane = formPane(buttonRow);
-            final AnchorPane anchorPane = new AnchorPane();
-            anchorPane.getChildren().addAll(formPane);
 
-            final VBox mainFrame = mainFrame(anchorPane);
+            formPane.getChildren().addAll( goBack);
+
+            final VBox mainFrame = mainFrame(formPane);
 
             return new Scene(mainFrame, hikeUI.getWindowWidth(), hikeUI.getWindowHeight());
         }
@@ -50,11 +49,11 @@ import ui.HikeUI;
             return submit;
         }
 
-        private static HBox buttonRow(final AnchorPane anchorPane, final Button button) {
+        private static HBox buttonRow(final Button button) {
             final HBox formButton = new HBox();
             formButton.setId("formButton");
 
-            formButton.getChildren().addAll(anchorPane, button);
+            formButton.getChildren().addAll(button);
             return formButton;
         }
 
@@ -95,9 +94,9 @@ import ui.HikeUI;
             return row1;
         }
 
-        private static VBox mainFrame(final AnchorPane anchorPane) {
+        private static VBox mainFrame(final VBox bodyBox) {
             final HBox footer = SceneUtils.footerFrame(footerText);
-            final HBox body = SceneUtils.bodyFrame(anchorPane);
+            final HBox body = SceneUtils.bodyFrame(bodyBox);
             final HBox header = SceneUtils.headingFrame(headerText);
             final VBox mainFrame = SceneUtils.mainFrame();
 

@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -30,7 +29,7 @@ public class SceneUtils {
         return headingFrame;
     }
 
-    public static HBox bodyFrame(final AnchorPane bodyContent) {
+    public static HBox bodyFrame(final VBox bodyContent) {
 
         final HBox bodyFrame = new HBox();
         bodyFrame.setId("bodyFrame");
@@ -42,15 +41,15 @@ public class SceneUtils {
     public static HBox footerFrame(final Text footerContent) {
 
         final HBox footerFrame = new HBox();
-
         footerFrame.setId("footerFrame");
+
         footerFrame.getChildren().addAll(footerContent);
 
         return footerFrame;
     }
 
-    static AnchorPane backButton(final Stage stage, final HikeUI hikeUI) {
-        final AnchorPane anchorPane = new AnchorPane();
+    static Button backButton(final Stage stage, final HikeUI hikeUI) {
+        //final AnchorPane anchorPane = new AnchorPane();
 
         final Button goBack = new Button("Go Back");
         goBack.setOnAction(new EventHandler<ActionEvent>() {
@@ -61,18 +60,18 @@ public class SceneUtils {
             }
         });
 
-        anchorPane.getChildren().addAll(goBack);
-        return anchorPane;
+       // anchorPane.getChildren().addAll(goBack);
+        return goBack;
     }
 
-    static Scene makeBasicScene(final Text headerText, final Text footerText,
+    static Scene makeBasicScene(final Text headerText, final VBox bodyContent, final Text footerText,
                                 final Stage stage, final HikeUI hikeUI) {
         final VBox mainFrame = SceneUtils.mainFrame();
         final HBox header = SceneUtils.headingFrame(headerText);
 
-        final AnchorPane anchorPane = SceneUtils.backButton(stage, hikeUI);
-        final HBox body = SceneUtils.bodyFrame(anchorPane);
-
+        final Button backButton = SceneUtils.backButton(stage, hikeUI);
+        //final AnchorPane anchorBodyContent = SceneUtils.bodyFrame (bodyContent);
+        final HBox body = SceneUtils.bodyFrame(bodyContent);
         final HBox footer = SceneUtils.footerFrame(footerText);
 
         mainFrame.getChildren().addAll(header, body, footer);

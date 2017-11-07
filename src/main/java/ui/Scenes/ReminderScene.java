@@ -4,10 +4,18 @@ package ui.Scenes;/*
  *ReminderScene.java
  */
 
+import controller.ReminderController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ui.HikeUI; /**
+import ui.HikeUI;
+
+/**
  * @author Liz Mahoney
  * @version 1.0
  */
@@ -20,6 +28,47 @@ public class ReminderScene {
 
     public static Scene reminderScene(Stage stage, HikeUI hikeUI) {
 
-        return SceneUtils.makeBasicScene(headerText, footerText, stage, hikeUI);
+        final Button back = SceneUtils.backButton (stage, hikeUI);
+        final Button submit = submitButton (stage,hikeUI);
+        final VBox bodyContent = bodyContent (back, submit);
+
+
+
+        return SceneUtils.makeBasicScene (headerText, bodyContent ,footerText, stage, hikeUI);
     }
+
+    private static VBox bodyContent(Button back, Button submit){
+
+        VBox bodyContent = new VBox ();
+        Label getLabelReminder = getReminders ();
+
+        bodyContent.getChildren ().addAll (getLabelReminder);
+
+        return bodyContent;
+    }
+
+    private static Label getReminders(){
+
+        String getReminder = ReminderController.getInstance ()
+                .getReminder ().getMessage ();
+
+        Label getLabelReminder = new Label (getReminder);
+
+        return getLabelReminder;
+    }
+
+
+    private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
+        final Button submit = new Button("Submit");
+        submit.setOnAction(new EventHandler<ActionEvent> () {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.setScene(hikeUI.homeScene());
+            }
+        });
+        return submit;
+    }
+
+
+
 }

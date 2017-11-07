@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -37,11 +36,11 @@ public class HikeUI extends Application {
 
     private static final String[] menuLabel =
             { "+ New Hike", "View Hikes", "+HeartRate", "View Avg \n Heart/Steps",
-             "+Steps", "View Checklist", "+CheckList", "+/- Reminders"};
+             "+Steps", "View Checklist", "+/- Reminders"};
 
     private static final String[] iconFileNames =
             { "images/marker.png", "images/hike.png","images/redheart.png", "images/data.png",
-             "images/steps.png", "images/addchecklist.png" ,"images/checklist.png" ,"images/reminder.png"};
+             "images/steps.png" ,"images/checklist.png" ,"images/reminder.png"};
     public static final int ICON_IMAGE_WIDTH = 60;
     public static final int ICON_IMAGE_HEIGHT = 50;
 
@@ -51,7 +50,9 @@ public class HikeUI extends Application {
 
     @Override
     public void start(final Stage stage) {
+
         this.stage = stage;
+
         makeButtonMap();
 
         stage.setTitle("Hike Log Application");
@@ -72,7 +73,7 @@ public class HikeUI extends Application {
 
     public Scene homeScene() {
         final Text headerText = new Text("Welcome Jose");
-        final AnchorPane menuVbox = homeMenuButtons();
+        final VBox menuVbox = homeMenuButtons();
         final Text reminderMessage = reminderMessage();
 
         final VBox mainFrame = SceneUtils.mainFrame();
@@ -95,10 +96,10 @@ public class HikeUI extends Application {
         return reminderMessage;
     }
 
-    private AnchorPane homeMenuButtons() {
-        final AnchorPane anchorPane = new AnchorPane();
-        final GridPane menuVbox = new GridPane ();
-        menuVbox.setId("menuFrame");
+    private VBox homeMenuButtons() {
+        final VBox menuBox = new VBox ();
+        final GridPane menuGrid = new GridPane ();
+        menuGrid.setId("menuFrame");
 
         final Image[] images = new Image[iconFileNames.length];
         final Button[] buttons = new Button[iconFileNames.length];
@@ -122,30 +123,31 @@ public class HikeUI extends Application {
             });
 
             buttons[i].getStyleClass().add("menu-button");
-            menuVbox.add(buttons[i], i%2, i/2);
+            menuGrid.add(buttons[i], i%2, i/2);
         }
 
+        menuBox.getChildren ().add (menuGrid);
 
-        anchorPane.getChildren().add(menuVbox);
-        return anchorPane;
+        return menuBox;
     }
+
 
     private void makeButtonMap() {
         buttonsMap.put (menuLabel[0], () ->
                 AddHikeScene.addHikeScene (stage, HikeUI.this));
         buttonsMap.put (menuLabel[1], () ->
-                HeartScene.addHeartScene (stage, HikeUI.this));
+               ViewHikeScene.viewHikeScene (stage, HikeUI.this));
         buttonsMap.put (menuLabel[2], () ->
-                AddStepsScene.addStepsScene (stage, HikeUI.this));
+                HeartScene.addHeartScene  (stage, HikeUI.this));
         buttonsMap.put (menuLabel[3], () ->
-                CheckListScene.addChecklistScene (stage, HikeUI.this));
-        buttonsMap.put (menuLabel[4], () ->
-                ViewHikeScene.viewHikeScene (stage, HikeUI.this));
-        buttonsMap.put (menuLabel[5], () ->
                 AverageHeartStepScene.averageHeartStepScene (stage, HikeUI.this));
-        buttonsMap.put (menuLabel[6], () ->
+        buttonsMap.put (menuLabel[4], () ->
+                AddStepsScene.addStepsScene (stage, HikeUI.this));
+        buttonsMap.put (menuLabel[5], () ->
                 ViewChecklistScene.viewChecklistScene (stage, HikeUI.this));
-        buttonsMap.put (menuLabel[7], () ->
+//        buttonsMap.put (menuLabel[6], () ->
+//                ViewChecklistScene. (stage, HikeUI.this));
+        buttonsMap.put (menuLabel[6], () ->
                 ReminderScene.reminderScene (stage, HikeUI.this));
     }
 

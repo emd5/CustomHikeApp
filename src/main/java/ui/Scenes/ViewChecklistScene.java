@@ -5,6 +5,8 @@ package ui.Scenes;/*
  */
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
@@ -24,7 +26,15 @@ public class ViewChecklistScene {
 
     public static Scene viewChecklistScene(Stage stage, HikeUI hikeUI) {
 
+        Button back = SceneUtils.backButton (stage,hikeUI);
+        return SceneUtils.makeBasicScene(headerText, bodyContent(back), footerText, stage, hikeUI);
+    }
 
-        return SceneUtils.makeBasicScene(headerText, footerText, stage, hikeUI);
+    private static VBox bodyContent(Button back){
+
+        VBox bodyContent = new VBox ();
+
+        bodyContent.getChildren ().add (back);
+        return bodyContent;
     }
 }
