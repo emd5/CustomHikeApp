@@ -21,6 +21,8 @@ public class AddHikeScene {
 
         private static final Text headerText = new Text("Add A Hike");
 
+        private static final Text footerText = new Text("footer");
+
         private static final String PADDING_10 = "padding10";
         private static TextField nameField;
         private static TextField locationField;
