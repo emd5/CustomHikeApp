@@ -98,7 +98,7 @@ public class HikeController {
      * @param name
      * @return
      */
-    public String[] getChecklist(final String name) {
+    public List<String> getChecklist(final String name) {
         final Hike hike = getHike(name);
         final List<ChecklistItem> checklist = hike.getTodoChecklist();
         final String[] checklistItems = new String[checklist.size()];
@@ -107,7 +107,8 @@ public class HikeController {
             checklistItems[i] = checklist.get(i).getItem();
         }
 
-        return checklistItems;
+        //return checklistItems;
+        return new ArrayList<>();
     }
 
     List<Hike> getHikeList() {
@@ -122,11 +123,19 @@ public class HikeController {
         return hikeController;
     }
 
-    public static void addChecklistItem(String item){
+    public void addHeartRateForHike(String name, int rate){
 
     }
 
-    public static void addHeartRateForHike(String name, int rate){
+    public void addStepsForHike(String name, int steps){
+
+    }
+
+    public void addItemToCheckList(String name, String item){
+
+    }
+
+    public void setCheckListItemToInactive(String item){
 
     }
 }

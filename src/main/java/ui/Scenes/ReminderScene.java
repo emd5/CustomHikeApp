@@ -25,9 +25,7 @@ public class ReminderScene {
 
     private static final Text footerText = new Text("footer");
 
-
     public static Scene reminderScene(Stage stage, HikeUI hikeUI) {
-
         final Button back = SceneUtils.backButton (stage, hikeUI);
         final Button submit = submitButton (stage,hikeUI);
         final VBox bodyContent = bodyContent (back, submit);

@@ -48,8 +48,6 @@ public class HeartScene {
         hikeField.setText (hikeText.getText ());
         hikeField.setId("form-field");
 
-
-
         final Label formLabel = new Label("Enter HeartRate");
         formLabel.setId("form-label");
 

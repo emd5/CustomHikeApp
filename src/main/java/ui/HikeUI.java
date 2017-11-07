@@ -144,7 +144,7 @@ public class HikeUI extends Application {
         buttonsMap.put (menuLabel[4], () ->
                 AddStepsScene.addStepsScene (stage, HikeUI.this));
         buttonsMap.put (menuLabel[5], () ->
-                ViewChecklistScene.viewChecklistScene (stage, HikeUI.this));
+                AddCheckListScene.addChecklistScene (stage, HikeUI.this));
 //        buttonsMap.put (menuLabel[6], () ->
 //                ViewChecklistScene. (stage, HikeUI.this));
         buttonsMap.put (menuLabel[6], () ->
