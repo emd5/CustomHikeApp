@@ -58,7 +58,6 @@ public class AddHikeScene {
         private static HBox buttonRow(final Button button) {
             final HBox formButton = new HBox();
             formButton.setId("formButton");
-
             formButton.getChildren().addAll(button);
             return formButton;
         }
@@ -88,14 +87,14 @@ public class AddHikeScene {
 
                 nameField = new TextField ();
                 formField.setText (nameField.getText ());
-                formField.setId("form-field");
+                nameField.setId("form-field");
                 rowField.getChildren().addAll(formLabel, formField, nameField);
             }
             if(labelName.equals ("Location: ")){
 
                 locationField = new TextField ();
                 formField.setText (nameField.getText ());
-                formField.setId("form-field");
+                locationField.setId("form-field");
                 rowField.getChildren().addAll(formLabel, formField, locationField);
 
             }
@@ -112,7 +111,7 @@ public class AddHikeScene {
                 });
                 dateField.setId("form-field");
 
-                rowField.getChildren ().addAll (formLabel, dateField);
+                rowField.getChildren ().addAll (formLabel,formField, dateField);
 
                 return rowField;
             }
