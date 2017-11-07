@@ -37,11 +37,11 @@ public class HikeUI extends Application {
 
     private static final String[] menuLabel =
             { "+ New Hike", "View Hikes", "+HeartRate", "View Avg \n Heart/Steps",
-             "+Steps", "View Checklist", "+CheckList" };
+             "+Steps", "View Checklist", "+CheckList", "+/- Reminders"};
 
     private static final String[] iconFileNames =
             { "images/marker.png", "images/hike.png","images/redheart.png", "images/data.png",
-             "images/steps.png", "images/addchecklist.png" ,"images/checklist.png" };
+             "images/steps.png", "images/addchecklist.png" ,"images/checklist.png" ,"images/reminder.png"};
     public static final int ICON_IMAGE_WIDTH = 60;
     public static final int ICON_IMAGE_HEIGHT = 50;
 
@@ -131,20 +131,22 @@ public class HikeUI extends Application {
     }
 
     private void makeButtonMap() {
-        buttonsMap.put(menuLabel[0], () ->
-                AddHikeScene.addHikeScene(stage, HikeUI.this));
-        buttonsMap.put(menuLabel[1], () ->
-                HeartScene.addHeartScene(stage, HikeUI.this));
-        buttonsMap.put(menuLabel[2], () ->
-                AddStepsScene.addStepsScene (stage,HikeUI.this));
-        buttonsMap.put(menuLabel[3], () ->
-                CheckListScene.addChecklistScene(stage, HikeUI.this));
-        buttonsMap.put(menuLabel[4], () ->
-                ViewHikeScene.viewHikeScene(stage, HikeUI.this));
-        buttonsMap.put(menuLabel[5], () ->
+        buttonsMap.put (menuLabel[0], () ->
+                AddHikeScene.addHikeScene (stage, HikeUI.this));
+        buttonsMap.put (menuLabel[1], () ->
+                HeartScene.addHeartScene (stage, HikeUI.this));
+        buttonsMap.put (menuLabel[2], () ->
+                AddStepsScene.addStepsScene (stage, HikeUI.this));
+        buttonsMap.put (menuLabel[3], () ->
+                CheckListScene.addChecklistScene (stage, HikeUI.this));
+        buttonsMap.put (menuLabel[4], () ->
+                ViewHikeScene.viewHikeScene (stage, HikeUI.this));
+        buttonsMap.put (menuLabel[5], () ->
                 AverageHeartStepScene.averageHeartStepScene (stage, HikeUI.this));
-        buttonsMap.put(menuLabel[6], () ->
+        buttonsMap.put (menuLabel[6], () ->
                 ViewChecklistScene.viewChecklistScene (stage, HikeUI.this));
+        buttonsMap.put (menuLabel[7], () ->
+                ReminderScene.reminderScene (stage, HikeUI.this));
     }
 
     public int getWindowWidth() {
