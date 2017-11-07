@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -35,12 +36,14 @@ public class HikeUI extends Application {
     private static final int WINDOW_HEIGHT = 500;
 
     private static final String[] menuLabel =
-            { "View Hikes", "+HeartRate", "Avg Heart/Steps",
-                    "+Hike", "+CheckList", "View Checklist" };
+            { "+ New Hike", "View Hikes", "+HeartRate", "View Avg \n Heart/Steps",
+             "+Steps", "View Checklist", "+CheckList" };
 
     private static final String[] iconFileNames =
-            { "images/hike.png", "images/redheart.png", "images/data.png",
-            "images/marker.png", "images/checklist.png" };
+            { "images/marker.png", "images/hike.png","images/redheart.png", "images/data.png",
+             "images/steps.png", "images/addchecklist.png" ,"images/checklist.png" };
+    public static final int ICON_IMAGE_WIDTH = 60;
+    public static final int ICON_IMAGE_HEIGHT = 50;
 
     private Stage stage;
 
@@ -94,7 +97,7 @@ public class HikeUI extends Application {
 
     private AnchorPane homeMenuButtons() {
         final AnchorPane anchorPane = new AnchorPane();
-        final VBox menuVbox = new VBox();
+        final GridPane menuVbox = new GridPane ();
         menuVbox.setId("menuFrame");
 
         final Image[] images = new Image[iconFileNames.length];
@@ -102,9 +105,10 @@ public class HikeUI extends Application {
 
         for (int i = 0; i < buttons.length; i++) {
             final String file = iconFileNames[i];
-            images[i] = new Image(file, 60, 50,
+            images[i] = new Image(file, ICON_IMAGE_WIDTH, ICON_IMAGE_HEIGHT,
                     false, false);
             buttons[i] = new Button(menuLabel[i], new ImageView(images[i]));
+
             final String label = menuLabel[i];
             buttons[i].setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -118,8 +122,9 @@ public class HikeUI extends Application {
             });
 
             buttons[i].getStyleClass().add("menu-button");
-            menuVbox.getChildren().add(buttons[i]);
+            menuVbox.add(buttons[i], i%2, i/2);
         }
+
 
         anchorPane.getChildren().add(menuVbox);
         return anchorPane;
@@ -127,15 +132,19 @@ public class HikeUI extends Application {
 
     private void makeButtonMap() {
         buttonsMap.put(menuLabel[0], () ->
-                ViewHikeScene.viewHikeScene(stage, HikeUI.this));
+                AddHikeScene.addHikeScene(stage, HikeUI.this));
         buttonsMap.put(menuLabel[1], () ->
                 HeartScene.addHeartScene(stage, HikeUI.this));
         buttonsMap.put(menuLabel[2], () ->
-                AverageHeartStepScene.averageHeartStepScene (stage, HikeUI.this));
+                AddStepsScene.addStepsScene (stage,HikeUI.this));
         buttonsMap.put(menuLabel[3], () ->
-                AddHikeScene.addHikeScene(stage, HikeUI.this));
-        buttonsMap.put(menuLabel[4], () ->
                 CheckListScene.addChecklistScene(stage, HikeUI.this));
+        buttonsMap.put(menuLabel[4], () ->
+                ViewHikeScene.viewHikeScene(stage, HikeUI.this));
+        buttonsMap.put(menuLabel[5], () ->
+                AverageHeartStepScene.averageHeartStepScene (stage, HikeUI.this));
+        buttonsMap.put(menuLabel[6], () ->
+                ViewChecklistScene.viewChecklistScene (stage, HikeUI.this));
     }
 
     public int getWindowWidth() {

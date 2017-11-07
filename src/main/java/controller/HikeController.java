@@ -6,11 +6,11 @@
 
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.ChecklistItem;
 import model.Hike;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is the hike controller which interacts with the model.
@@ -26,6 +26,7 @@ public class HikeController {
     private static HikeController hikeController;
 
     private HikeController() {
+
         hikeList = new ArrayList<>();
     }
 
@@ -34,6 +35,7 @@ public class HikeController {
      * @param location a string that represents the hike location
      */
     public void addHike(final String name, final String location) {
+
         final Hike hike = new Hike(name, location);
         hikeList.add(hike);
     }
@@ -86,7 +88,6 @@ public class HikeController {
 
         for (int i = 0; i < hikeList.size(); i++) {
             final String name = hikeList.get(i).getName();
-            hikeNames[i] = name;
         }
         return hikeNames;
     }

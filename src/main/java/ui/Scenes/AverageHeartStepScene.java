@@ -13,6 +13,9 @@ public class AverageHeartStepScene {
 
     public static Scene averageHeartStepScene(final Stage stage, final HikeUI hikeUI) {
 
+
         return SceneUtils.makeBasicScene(headerText, footerText, stage, hikeUI);
     }
+
+
 }
