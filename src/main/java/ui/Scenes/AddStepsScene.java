@@ -39,17 +39,18 @@ public class AddStepsScene {
 
         final VBox contentBox = new VBox ();
 
+
         final HBox rows = new HBox();
         contentBox.setId(PADDING_10);
 
-        final Label nameLabel = new Label("Total Steps");
-        nameLabel.setId("form-label");
+        final Label nameLabel = new Label("Total Steps: ");
+        nameLabel.setId("steps-label");
 
         final TextField nameField = new TextField();
-        nameField.setId("form-field");
+        nameField.setId("steps-field");
 
-        rows.getChildren().addAll(nameLabel, nameField,back);
-        contentBox.getChildren ().add (rows);
+        rows.getChildren().addAll(nameLabel, nameField);
+        contentBox.getChildren ().addAll (rows, back);
 
         return contentBox;
     }
