@@ -106,7 +106,7 @@ public class HikeUI extends Application {
         for (int i = 0; i < buttons.length; i++) {
             final String file = iconFileNames[i];
             images[i] = new Image(file, ICON_IMAGE_WIDTH, ICON_IMAGE_HEIGHT,
-                    false, false);
+                    true, true);
             buttons[i] = new Button(menuLabel[i], new ImageView(images[i]));
 
             final String label = menuLabel[i];
