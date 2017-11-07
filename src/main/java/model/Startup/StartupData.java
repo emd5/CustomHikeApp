@@ -1,18 +1,12 @@
 package model.Startup;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.time.LocalDate;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import controller.HikeController;
 import model.Hike;
+
+import java.io.*;
+import java.time.LocalDate;
 
 public class StartupData {
 
@@ -43,8 +37,7 @@ public class StartupData {
 
     private Hike createHike(final String name, final String location, final int duration, final LocalDate date,
                             final int heartbeat, final int numberOfSteps) {
-        final Hike hike = new Hike(name, location);
-        hike.setDate(date);
+        final Hike hike = new Hike(name, location,date);
         hike.setDuration(duration);
         hike.setFitness(heartbeat, numberOfSteps);
         HikeController.getInstance().addHike(hike);

@@ -125,4 +125,8 @@ public class HikeController {
     public static void addChecklistItem(String item){
 
     }
+
+    public static void addHeartRateForHike(String name, int rate){
+
+    }
 }
