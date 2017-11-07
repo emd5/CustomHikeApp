@@ -25,9 +25,7 @@ import java.util.List;
 public class AddCheckListScene {
 
     private static final Text headerText = new Text("Add Checklist");
-
     private static final Text footerText = new Text("footer");
-
     private static final String PADDING_10 = "padding10";
 
     private static final ImageView backgroundImage =
@@ -73,39 +71,46 @@ public class AddCheckListScene {
 
         Button back = SceneUtils.backButton (stage, hikeUI);
         Button hikeSubmit = hikeSubmitButton (stage, hikeUI);
+        hikeSubmit.setAlignment (Pos.CENTER_RIGHT);
         Button checklistSubmit = checklistSubmitButton (stage, hikeUI);
 
-        return SceneUtils.makeBasicScene(headerText, bodyContent (back, vbox, hikeSubmit, checklistSubmit),footerText, stage, hikeUI);
+        return SceneUtils.makeBasicScene(headerText,
+                bodyContent (back, vbox, hikeSubmit, checklistSubmit),footerText, stage, hikeUI);
     }
 
-    private static VBox bodyContent(Button back, VBox vBox, Button hikeSubmit, Button checklistSubmit){
+    private static VBox bodyContent(Button back, VBox vBox,
+                                    Button hikeSubmit, Button checklistSubmit){
 
         VBox contentBox = new VBox ();
+        contentBox.setAlignment (Pos.CENTER);
 
-        final HBox rows = new HBox();
-        rows.setId(PADDING_10);
+        final HBox hikeBoxForm = new HBox();
 
-        final Label hikeNameLabel = new Label("Enter Hike Name:");
+        final Label hikeNameLabel = new Label("Hike Name: ");
         hikeNameLabel.setId("form-label");
 
         hikeNameField = new TextField();
         hikeNameField.setId("form-field");
 
+        hikeBoxForm.getChildren ().addAll(hikeNameLabel,hikeNameField);
 
-        final Label nameLabel = new Label("Add Item:");
-        nameLabel.setId("form-label");
+        final HBox itemChecklistBoxForm = new HBox();
+
+        final Label addItemLabel = new Label("Add Item: ");
+        addItemLabel.setId("form-label");
 
         checklistItemNameField = new TextField();
         checklistItemNameField.setId("form-field");
 
+        itemChecklistBoxForm.getChildren ().addAll(addItemLabel, checklistItemNameField);
 
-        rows.getChildren().addAll(hikeNameLabel, hikeNameField, nameLabel, checklistItemNameField, back);
-        contentBox.getChildren ().addAll (hikeSubmit, checklistSubmit, rows, vBox);
+        contentBox.getChildren ().addAll (hikeBoxForm, hikeSubmit, itemChecklistBoxForm, checklistSubmit, vBox, back);
 
         return contentBox;
     }
 
     private static Button hikeSubmitButton(final Stage stage, final HikeUI hikeUI ) {
+
         final Button submit = new Button("Submit");
         submit.setOnAction(new EventHandler<ActionEvent> () {
             @Override
@@ -120,14 +125,16 @@ public class AddCheckListScene {
     }
 
     private static Button checklistSubmitButton(final Stage stage, final HikeUI hikeUI ) {
+
         final Button submit = new Button("Submit");
         submit.setOnAction(new EventHandler<ActionEvent> () {
             @Override
             public void handle(ActionEvent event) {
 
-                HikeController.getInstance().addItemToCheckList(hikeNameField.getText (), checklistItemNameField.getText ());
+                HikeController.getInstance().addItemToCheckList(hikeNameField.getText (),
+                        checklistItemNameField.getText ());
 
-                stage.setScene(hikeUI.homeScene());
+                stage.setScene(hikeUI.homeScene ());
                 //should reloadui scene instead
             }
         });
