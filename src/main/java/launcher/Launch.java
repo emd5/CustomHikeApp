@@ -4,7 +4,7 @@ import controller.ProgramStatusController;
 import javafx.application.Application;
 import ui.HikeUI;
 
-public class launch {
+public class Launch {
 
     /**
      * This is the entry point of the program which allows to test

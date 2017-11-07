@@ -6,12 +6,12 @@
 
 package controller;
 
-import model.ChecklistItem;
-import model.Hike;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.ChecklistItem;
+import model.Hike;
 
 /**
  * This class is the hike controller which interacts with the model.
@@ -27,7 +27,6 @@ public class HikeController {
     private static HikeController hikeController;
 
     private HikeController() {
-
         hikeList = new ArrayList<>();
     }
 
@@ -35,7 +34,7 @@ public class HikeController {
      * @param name     a string that represents the hike name
      * @param location a string that represents the hike location
      */
-    public void addHike(final String name, final String location, LocalDate date) {
+    public void addHike(final String name, final String location, final LocalDate date) {
 
         final Hike hike = new Hike(name, location, date);
         hikeList.add(hike);
@@ -90,6 +89,7 @@ public class HikeController {
 
         for (int i = 0; i < hikeList.size(); i++) {
             final String name = hikeList.get(i).getName();
+            hikeNames[i] = name;
         }
         return hikeNames;
     }
@@ -101,14 +101,12 @@ public class HikeController {
     public List<String> getChecklist(final String name) {
         final Hike hike = getHike(name);
         final List<ChecklistItem> checklist = hike.getTodoChecklist();
-        final String[] checklistItems = new String[checklist.size()];
+        final List<String> newChecklist = new ArrayList<>();
 
-        for (int i = 0; i < checklist.size(); i++) {
-            checklistItems[i] = checklist.get(i).getItem();
+        for(ChecklistItem item : checklist){
+            newChecklist.add(item.getItem());
         }
-
-        //return checklistItems;
-        return new ArrayList<>();
+        return newChecklist;
     }
 
     List<Hike> getHikeList() {
@@ -123,19 +121,19 @@ public class HikeController {
         return hikeController;
     }
 
-    public void addHeartRateForHike(String name, int rate){
-
+    public void addHeartRateForHike(String name, int heartRate){
+        getHike(name).setHeartBeat(heartRate);
     }
 
     public void addStepsForHike(String name, int steps){
-
+        getHike(name).setNumberOfSteps(steps);
     }
 
     public void addItemToCheckList(String name, String item){
-
+        getHike(name).addChecklistItem(item);
     }
 
-    public void setCheckListItemToInactive(String item){
-
+    public void setCheckListItemToInactive(String name, String item){
+        getHike(name).setChecklistItemToInactive(item);
     }
 }

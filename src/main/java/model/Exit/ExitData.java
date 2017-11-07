@@ -1,15 +1,16 @@
 package model.Exit;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import controller.HikeController;
-import model.Hike;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import controller.HikeController;
+import model.Hike;
 
 public class ExitData {
 
@@ -23,7 +24,7 @@ public class ExitData {
         final Hike hike = new Hike("first hike", "firstHikeLoc",LocalDate.now ());
 
         hike.setDuration(500);
-        hike.setFitness(50, 1000);
+        //hike.setFitness(50, 1000);
         HikeController.getInstance().addHike(hike);
 
         final JsonNode node = objectMapper.convertValue(hikeList, JsonNode.class);

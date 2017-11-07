@@ -19,7 +19,7 @@ public class ChecklistItem {
         return active;
     }
 
-    public void setActive(boolean active) {
+    void setActive(boolean active) {
         this.active = active;
     }
 }
