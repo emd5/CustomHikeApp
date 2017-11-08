@@ -42,7 +42,7 @@ public class AverageHeartStepScene {
         gridPane.setId("form-grid-spacing");
         //gridPane.setGridLinesVisible (true);
 
-        inputHikeName = SceneUtils.inputTextFieldWithLabel("form-field");
+        inputHikeName = SceneUtils.inputTextField("form-field");
 
         final Label hikeNameLabel = new Label("Enter Hike Name for Avg heart rate: ");
 

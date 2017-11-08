@@ -14,22 +14,19 @@ import ui.HikeUI;
 
 public class SceneUtils {
 
-    public static Label label(final String labelText, final String labelId) {
+    static Label label(final String labelText, final String labelId) {
         final Label label = new Label(labelText);
         label.setId(labelId);
         return label;
     }
 
-    public static TextField inputTextFieldWithLabel(String id) {
-        TextField textField = new TextField();
+    static TextField inputTextField(final String id) {
+        final TextField textField = new TextField();
         textField.setId(id);
-        final Label label = new Label();
-        label.setText(textField.getText());
         return textField;
     }
 
     public static VBox mainFrame() {
-
         final VBox mainFrame = new VBox();
         mainFrame.setId("mainFrame");
 
@@ -37,7 +34,6 @@ public class SceneUtils {
     }
 
     public static HBox headingFrame(final Text headingContent) {
-
         final HBox headingFrame = new HBox();
         headingFrame.setId("headingFrame");
         headingFrame.getChildren().add(headingContent);
@@ -55,7 +51,6 @@ public class SceneUtils {
     }
 
     public static HBox footerFrame(final Text footerContent) {
-
         final HBox footerFrame = new HBox();
         footerFrame.setId("footerFrame");
 
@@ -66,7 +61,6 @@ public class SceneUtils {
 
     static Button backButton(final Stage stage, final HikeUI hikeUI) {
         //final AnchorPane anchorPane = new AnchorPane();
-
         final Button goBack = new Button("Go Back");
         goBack.setOnAction(new EventHandler<ActionEvent>() {
             @Override

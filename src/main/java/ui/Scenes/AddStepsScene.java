@@ -51,7 +51,7 @@ public class AddStepsScene {
 
         final Label hikeLabel = SceneUtils.label("Hike Name: ", "form-label");
 
-        hikeText = SceneUtils.inputTextFieldWithLabel("form-field");
+        hikeText = SceneUtils.inputTextField("form-field");
 
         final Label stepsLabel = SceneUtils.label("Total Steps: ", "form-label");
 
@@ -59,7 +59,7 @@ public class AddStepsScene {
         //        stepsText = new TextField();
         //        stepsField.setText(stepsText.getText());
         //        stepsField.setId("form-field");
-        stepsText = SceneUtils.inputTextFieldWithLabel("form-field");
+        stepsText = SceneUtils.inputTextField("form-field");
 
         gridPane.add(hikeLabel, 0, 0);
         gridPane.add(hikeText, 1, 0);
