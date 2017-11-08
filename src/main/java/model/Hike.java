@@ -36,9 +36,9 @@ public class Hike {
     /**
      * This is the hike constructor which sets the default duration to 0
      *
-     * @param name the name of the hike
+     * @param name     the name of the hike
      * @param location the location of the hike
-     * @param date the date of the hike
+     * @param date     the date of the hike
      */
     public Hike(final String name, final String location, final LocalDate date) {
         this.name = name;

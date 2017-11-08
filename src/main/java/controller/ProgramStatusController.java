@@ -36,7 +36,9 @@ public class ProgramStatusController {
      */
     public void start() {
         final StartupData startupData = new StartupData(objectMapper);
-        startupData.loadSavedData(SAVE_FILE);
-        //HikeController.getInstance().getHikeList();
+        List<Hike> hikeList = startupData.loadSavedData(SAVE_FILE);
+        for(Hike hike : hikeList){
+            HikeController.getInstance().addHike(hike);
+        }
     }
 }

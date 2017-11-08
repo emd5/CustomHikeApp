@@ -8,6 +8,7 @@ package model;
  * @version 1.0
  */
 public class Reminder {
+
     private final String message;
 
     /**
@@ -15,7 +16,7 @@ public class Reminder {
      *
      * @param message the message of the reminder
      */
-    public Reminder(final String message){
+    public Reminder(final String message) {
         this.message = message;
     }
 
@@ -24,7 +25,7 @@ public class Reminder {
      *
      * @return the message
      */
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 }

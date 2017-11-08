@@ -2,14 +2,12 @@ package model.Exit;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-import controller.HikeController;
 import model.Hike;
 
 /**
@@ -38,12 +36,6 @@ public class ExitData {
      * @param saveFile the name of the file path
      */
     public void exit(final List<Hike> hikeList, final String saveFile) {
-        final Hike hike = new Hike("first hike", "firstHikeLoc", LocalDate.now());
-
-        hike.setDuration(500);
-        //hike.setFitness(50, 1000);
-        HikeController.getInstance().addHike(hike);
-
         final JsonNode node = objectMapper.convertValue(hikeList, JsonNode.class);
         try {
             saveJsonNodeToFile(node, saveFile);

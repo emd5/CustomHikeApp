@@ -38,7 +38,6 @@ public class HikeController {
      * @param date     represents the date of the hike
      */
     public void addHike(final String name, final String location, final LocalDate date) {
-
         final Hike hike = new Hike(name, location, date);
         hikeList.add(hike);
     }
@@ -48,7 +47,7 @@ public class HikeController {
      *
      * @param hike the hike object
      */
-    public void addHike(final Hike hike) {
+    void addHike(final Hike hike) {
         hikeList.add(hike);
     }
 
@@ -59,58 +58,6 @@ public class HikeController {
             }
         }
         return null;
-    }
-
-    /**
-     * This method gets the average heartrate by hike name
-     *
-     * @param name the name of the hike
-     * @return the average heart rate
-     */
-    public int getAverageHeartRateByHikeName(final String name) {
-        final Hike hike = getHike(name);
-        return hike.getHeartbeat();
-    }
-
-    /**
-     * Get the number of steps for a hike
-     *
-     * @param name the hike name
-     * @return the number of steps
-     */
-    public int getNumberOfSteps(final String name) {
-        final Hike hike = getHike(name);
-        return hike.getNumberOfSteps();
-    }
-
-    /**
-     * @return
-     */
-    public String[] getHikeNames() {
-        final String[] hikeNames = new String[hikeList.size()];
-
-        for (int i = 0; i < hikeList.size(); i++) {
-            final String name = hikeList.get(i).getName();
-            hikeNames[i] = name;
-        }
-        return hikeNames;
-    }
-
-    /**
-     * This function gets a list of the names of items in a checklist
-     *
-     * @param name the name of the hike
-     * @return a list of checklist item names
-     */
-    public List<String> getChecklist(final String name) {
-        final Hike hike = getHike(name);
-        final List<ChecklistItem> checklist = hike.getTodoChecklist();
-        final List<String> newChecklist = new ArrayList<>();
-
-        for (final ChecklistItem item : checklist) {
-            newChecklist.add(item.getItem());
-        }
-        return newChecklist;
     }
 
     /**
@@ -146,6 +93,17 @@ public class HikeController {
     }
 
     /**
+     * This method gets the average heartrate by hike name
+     *
+     * @param name the name of the hike
+     * @return the average heart rate
+     */
+    public int getAverageHeartRateByHikeName(final String name) {
+        final Hike hike = getHike(name);
+        return hike.getHeartbeat();
+    }
+
+    /**
      * adds number of steps for a hike
      *
      * @param name  the name of the hike
@@ -153,6 +111,34 @@ public class HikeController {
      */
     public void addStepsForHike(final String name, final int steps) {
         getHike(name).setNumberOfSteps(steps);
+    }
+
+    /**
+     * Get the number of steps for a hike
+     *
+     * @param name the hike name
+     * @return the number of steps
+     */
+    public int getNumberOfSteps(final String name) {
+        final Hike hike = getHike(name);
+        return hike.getNumberOfSteps();
+    }
+
+    /**
+     * This function gets a list of the names of items in a checklist
+     *
+     * @param name the name of the hike
+     * @return a list of checklist item names
+     */
+    public List<String> getChecklist(final String name) {
+        final Hike hike = getHike(name);
+        final List<ChecklistItem> checklist = hike.getTodoChecklist();
+        final List<String> newChecklist = new ArrayList<>();
+
+        for (final ChecklistItem item : checklist) {
+            newChecklist.add(item.getItem());
+        }
+        return newChecklist;
     }
 
     /**

@@ -14,7 +14,7 @@ class TodoChecklist {
 
     private final List<ChecklistItem> customCheckList = new ArrayList<>();
 
-    TodoChecklist(){
+    TodoChecklist() {
         customCheckList.addAll(DefaultChecklist.getInstance().getItems());
     }
 
@@ -46,8 +46,8 @@ class TodoChecklist {
      * @param item the item name
      */
     void setItemToInactive(final String item) {
-        for(ChecklistItem checklistItem : customCheckList){
-            if(checklistItem.getItem().equals(item)){
+        for (ChecklistItem checklistItem : customCheckList) {
+            if (checklistItem.getItem().equals(item)) {
                 checklistItem.setActive(false);
             }
         }
