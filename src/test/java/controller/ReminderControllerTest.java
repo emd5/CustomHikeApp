@@ -1,14 +1,15 @@
 package controller;
 
-import model.Reminder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import model.Reminder;
 
 class ReminderControllerTest {
+
     private static ReminderController controller;
 
     @BeforeEach
@@ -22,9 +23,9 @@ class ReminderControllerTest {
     }
 
     @Test
-    void addTest(){
-        Reminder controllerReminder = controller.getReminder ();
-        Reminder reminder = new Reminder ("Stop Eating");
-        assertEquals(reminder.getMessage (), controllerReminder.getMessage ());
+    void addTest() {
+        final String actualReminder = controller.getReminder();
+        final Reminder expectedReminder = new Reminder("Stop Eating");
+        assertEquals(expectedReminder, actualReminder);
     }
 }
