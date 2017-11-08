@@ -26,39 +26,35 @@ public class ReminderScene {
     private static final Text footerText = new Text("footer");
 
     public static Scene reminderScene(Stage stage, HikeUI hikeUI) {
-        final Button back = SceneUtils.backButton (stage, hikeUI);
-        final Button submit = submitButton (stage,hikeUI);
-        final VBox bodyContent = bodyContent (back, submit);
+        final Button back = SceneUtils.backButton(stage, hikeUI);
+        final Button submit = submitButton(stage, hikeUI);
+        final VBox bodyContent = bodyContent(back, submit);
 
-
-
-        return SceneUtils.makeBasicScene (headerText, bodyContent ,footerText, stage, hikeUI);
+        return SceneUtils.makeBasicScene(headerText, bodyContent, footerText, stage, hikeUI);
     }
 
-    private static VBox bodyContent(Button back, Button submit){
+    private static VBox bodyContent(final Button back, final Button submit) {
 
-        VBox bodyContent = new VBox ();
-        Label getLabelReminder = getReminders ();
+        final VBox bodyContent = new VBox();
+        final Label getLabelReminder = getReminders();
 
-        bodyContent.getChildren ().addAll (getLabelReminder);
+        bodyContent.getChildren().addAll(getLabelReminder);
 
         return bodyContent;
     }
 
-    private static Label getReminders(){
+    private static Label getReminders() {
 
-        String getReminder = ReminderController.getInstance ()
-                .getReminder ().getMessage ();
+        final String getReminder = ReminderController.getInstance().getReminder().getMessage();
 
-        Label getLabelReminder = new Label (getReminder);
+        final Label getLabelReminder = new Label(getReminder);
 
         return getLabelReminder;
     }
 
-
     private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
         final Button submit = new Button("Submit");
-        submit.setOnAction(new EventHandler<ActionEvent> () {
+        submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 stage.setScene(hikeUI.homeScene());
@@ -66,7 +62,5 @@ public class ReminderScene {
         });
         return submit;
     }
-
-
 
 }

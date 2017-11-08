@@ -23,72 +23,66 @@ import ui.HikeUI;
  */
 public class AddStepsScene {
 
-    private static final Text headerText = new Text ("Add Steps to your Hike");
-    private static final Text footerText = new Text ("");
+    private static final Text headerText = new Text("Add Steps to your Hike");
+
+    private static final Text footerText = new Text("");
+
     private static final String PADDING_10 = "padding10";
 
     private static TextField stepsText;
+
     private static TextField hikeText;
 
-    public static Scene addStepsScene(Stage stage, HikeUI hikeUI) {
+    public static Scene addStepsScene(final Stage stage, final HikeUI hikeUI) {
 
-        Button back = SceneUtils.backButton (stage, hikeUI);
-        final Button submit = submitButton (stage, hikeUI);
-        final VBox contentBox = totalStepsForm (back, submit);
+        final Button back = SceneUtils.backButton(stage, hikeUI);
+        final Button submit = submitButton(stage, hikeUI);
+        final VBox contentBox = totalStepsForm(back, submit);
 
-        return SceneUtils.makeBasicScene (headerText, contentBox, footerText, stage, hikeUI);
+        return SceneUtils.makeBasicScene(headerText, contentBox, footerText, stage, hikeUI);
     }
 
-    private static VBox totalStepsForm(Button back, Button submit) {
+    private static VBox totalStepsForm(final Button back, final Button submit) {
+        final VBox contentBox = new VBox();
+        contentBox.setId(PADDING_10);
 
-        final VBox contentBox = new VBox ();
-        contentBox.setId (PADDING_10);
-
-        final GridPane gridPane = new GridPane ();
+        final GridPane gridPane = new GridPane();
         gridPane.setId("form-grid-spacing");
 
-        final Label hikeLabel = new Label ("Hike Name: ");
-        hikeLabel.setId ("form-label");
+        final Label hikeLabel = SceneUtils.label("Hike Name: ", "form-label");
 
-        final Label hikeField = new Label ();
-        hikeText = new TextField ();
-        hikeField.setText (hikeText.getText ());
-        hikeField.setId ("form-field");
+        hikeText = SceneUtils.inputTextFieldWithLabel("form-field");
 
-        final Label stepsLabel = new Label ("Total Steps: ");
-        stepsLabel.setId ("form-label");
+        final Label stepsLabel = SceneUtils.label("Total Steps: ", "form-label");
 
-        final Label stepsField = new Label ();
-        stepsText = new TextField ();
-        stepsField.setText (stepsText.getText ());
-        stepsField.setId ("form-field");
+        //        final Label stepsField = new Label();
+        //        stepsText = new TextField();
+        //        stepsField.setText(stepsText.getText());
+        //        stepsField.setId("form-field");
+        stepsText = SceneUtils.inputTextFieldWithLabel("form-field");
 
-        gridPane.add (hikeLabel, 0,0);
-        gridPane.add (hikeText, 1,0);
-        gridPane.add (stepsLabel,0,1);
-        gridPane.add (stepsText, 1,1);
-        gridPane.add (back, 1,20);
-        gridPane.add(submit, 1,2);
+        gridPane.add(hikeLabel, 0, 0);
+        gridPane.add(hikeText, 1, 0);
+        gridPane.add(stepsLabel, 0, 1);
+        gridPane.add(stepsText, 1, 1);
+        gridPane.add(back, 1, 20);
+        gridPane.add(submit, 1, 2);
 
-        contentBox.getChildren ().addAll (gridPane);
+        contentBox.getChildren().addAll(gridPane);
 
         return contentBox;
     }
 
     private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
-        final Button submit = new Button ("Submit");
-        submit.setOnAction (new EventHandler<ActionEvent> () {
+        final Button submit = new Button("Submit");
+        submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println (hikeText.getText ());
-                System.out.println (stepsText.getText ());
-                HikeController.getInstance ().addStepsForHike (hikeText.getText (),
-                        Integer.parseInt (stepsText.getText ()));
-                stage.setScene (hikeUI.homeScene ());
+                HikeController.getInstance().addStepsForHike(hikeText.getText(), Integer.parseInt(stepsText.getText()));
+                stage.setScene(hikeUI.homeScene());
             }
         });
         return submit;
     }
-
 
 }

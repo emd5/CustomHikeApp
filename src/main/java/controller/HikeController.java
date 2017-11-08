@@ -40,8 +40,7 @@ public class HikeController {
         hikeList.add(hike);
     }
 
-    public void addHike(final Hike hike)
-    {
+    public void addHike(final Hike hike) {
         hikeList.add(hike);
     }
 
@@ -103,7 +102,7 @@ public class HikeController {
         final List<ChecklistItem> checklist = hike.getTodoChecklist();
         final List<String> newChecklist = new ArrayList<>();
 
-        for(ChecklistItem item : checklist){
+        for (ChecklistItem item : checklist) {
             newChecklist.add(item.getItem());
         }
         return newChecklist;
@@ -121,19 +120,19 @@ public class HikeController {
         return hikeController;
     }
 
-    public void addHeartRateForHike(String name, int heartRate){
+    public void addHeartRateForHike(String name, int heartRate) {
         getHike(name).setHeartBeat(heartRate);
     }
 
-    public void addStepsForHike(String name, int steps){
+    public void addStepsForHike(String name, int steps) {
         getHike(name).setNumberOfSteps(steps);
     }
 
-    public void addItemToCheckList(String name, String item){
+    public void addItemToCheckList(String name, String item) {
         getHike(name).addChecklistItem(item);
     }
 
-    public void setCheckListItemToInactive(String name, String item){
+    public void setCheckListItemToInactive(String name, String item) {
         getHike(name).setChecklistItemToInactive(item);
     }
 }

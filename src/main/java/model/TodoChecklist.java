@@ -24,16 +24,16 @@ class TodoChecklist {
 
     void setItemToInactive(final String item) {
         boolean done = false;
-        if(!findItemInList(defaultCheckList.getItems(), item)){
-            if(!findItemInList(customCheckList, item)){
+        if (!findItemInList(defaultCheckList.getItems(), item)) {
+            if (!findItemInList(customCheckList, item)) {
                 //error handling
             }
         }
     }
 
-    private boolean findItemInList(final List<ChecklistItem> checklist, final String item){
+    private boolean findItemInList(final List<ChecklistItem> checklist, final String item) {
         for (final ChecklistItem checklistItem : checklist) {
-            if(checklistItem.getItem().equals(item)){
+            if (checklistItem.getItem().equals(item)) {
                 checklistItem.setActive(false);
                 return true;
             }

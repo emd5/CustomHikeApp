@@ -21,7 +21,7 @@ public class ExitData {
     }
 
     public void exit(final List<Hike> hikeList, final String saveFile) {
-        final Hike hike = new Hike("first hike", "firstHikeLoc",LocalDate.now ());
+        final Hike hike = new Hike("first hike", "firstHikeLoc", LocalDate.now());
 
         hike.setDuration(500);
         //hike.setFitness(50, 1000);

@@ -63,7 +63,7 @@ public class Hike {
         this.fitness.setNumberOfSteps(numberOfSteps);
     }
 
-    public void addChecklistItem(final String item){
+    public void addChecklistItem(final String item) {
         this.todoChecklist.addItem(item);
     }
 

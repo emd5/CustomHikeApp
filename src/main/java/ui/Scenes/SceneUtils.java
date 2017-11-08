@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -11,6 +13,20 @@ import javafx.stage.Stage;
 import ui.HikeUI;
 
 public class SceneUtils {
+
+    public static Label label(final String labelText, final String labelId) {
+        final Label label = new Label(labelText);
+        label.setId(labelId);
+        return label;
+    }
+
+    public static TextField inputTextFieldWithLabel(String id) {
+        TextField textField = new TextField();
+        textField.setId(id);
+        final Label label = new Label();
+        label.setText(textField.getText());
+        return textField;
+    }
 
     public static VBox mainFrame() {
 
@@ -60,12 +76,12 @@ public class SceneUtils {
             }
         });
 
-       // anchorPane.getChildren().addAll(goBack);
+        // anchorPane.getChildren().addAll(goBack);
         return goBack;
     }
 
-    static Scene makeBasicScene(final Text headerText, final VBox bodyContent, final Text footerText,
-                                final Stage stage, final HikeUI hikeUI) {
+    static Scene makeBasicScene(final Text headerText, final VBox bodyContent, final Text footerText, final Stage stage,
+                                final HikeUI hikeUI) {
         final VBox mainFrame = SceneUtils.mainFrame();
         final HBox header = SceneUtils.headingFrame(headerText);
 

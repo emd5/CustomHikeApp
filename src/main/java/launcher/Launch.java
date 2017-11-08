@@ -19,9 +19,10 @@ public class Launch {
      * @param args command-line arguments
      */
     public static void main(String[] args) {
-        Application.launch(HikeUI.class, args);
+
         ProgramStatusController programStatusController = new ProgramStatusController();
         //programController.exit();
-        //programController.start();
+        programStatusController.start();
+        Application.launch(HikeUI.class, args);
     }
 }

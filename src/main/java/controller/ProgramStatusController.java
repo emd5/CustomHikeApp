@@ -23,5 +23,6 @@ public class ProgramStatusController {
     public void start() {
         StartupData startupData = new StartupData(objectMapper);
         startupData.loadSavedData(SAVE_FILE);
+        HikeController.getInstance().getHikeList();
     }
 }
