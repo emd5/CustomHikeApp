@@ -1,10 +1,13 @@
 package ui.Scenes;
 
-import javafx.geometry.Pos;
+import controller.HikeController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -16,27 +19,65 @@ public class AverageHeartStepScene {
 
     private static final Text footerText = new Text("footer");
 
+    private static TextField inputHikeName;
+
     private static final String PADDING_10 = "padding10";
 
     public static Scene averageHeartStepScene(final Stage stage, final HikeUI hikeUI) {
         Button back = SceneUtils.backButton (stage, hikeUI);
-        return SceneUtils.makeBasicScene(headerText, bodyContent (back), footerText, stage, hikeUI);
+        Button submitHikeName = submitButton (stage,hikeUI);
+
+        return SceneUtils.makeBasicScene(headerText, bodyContent (back, submitHikeName), footerText, stage, hikeUI);
     }
 
-    private static VBox bodyContent(Button back){
-        VBox vBox = new VBox ();
-        vBox.setAlignment (Pos.CENTER_RIGHT);
-        HBox rows = new HBox ();
+    private static VBox bodyContent(Button back, Button submitHikeName){
+        VBox contentBox = new VBox ();
+        contentBox.setId (PADDING_10);
 
+        GridPane gridPane = new GridPane ();
+        gridPane.setId("form-grid-spacing");
+        gridPane.setGridLinesVisible (true);
 
+        inputHikeName = new TextField ();
+        inputHikeName.setId ("form-field");
+        final Label hikeNameLabel = new Label ("Enter Hike Name for Avg heart rate: ");
+        final Label hikeNameInputLabel = new Label ("");
+        hikeNameInputLabel.setText (inputHikeName.getText ());
 
         final Label heartLabel = new Label("Average Heart Rate: ");
+        final Label getAvgHeartbyHikeName = new Label ();
+        getAvgHeartbyHikeName.setId ("form-field");
+
         final Label stepLabel = new Label("Average Steps: ");
+        final Label getAvgStepsByHikeName = new Label ();
+        final Label getAvgHeartRate = new Label ();
+        getAvgHeartRate.setId ("form-field");
 
-        vBox.getChildren().addAll(heartLabel,stepLabel, back);
-        rows.getChildren ().add(vBox);
+        gridPane.add (hikeNameLabel, 0,0);
+        gridPane.add (inputHikeName, 1,0);
+        gridPane.add (submitHikeName,1,1 );
+        gridPane.add (heartLabel,0,10);
+        gridPane.add (getAvgHeartbyHikeName, 1,10);
+        gridPane.add (stepLabel, 0,11);
+        gridPane.add(getAvgStepsByHikeName, 1,11);
+        gridPane.add(back, 1,20);
 
-        return vBox;
+
+        contentBox.getChildren ().addAll (gridPane);
+        return contentBox;
+    }
+
+    private static Button submitButton(final Stage stage, final HikeUI hikeUI ) {
+        final Button submit = new Button("Submit");
+        submit.setOnAction(new EventHandler<ActionEvent> () {
+            @Override
+            public void handle(ActionEvent event) {
+
+                HikeController.getInstance ().getAverageHeartRateByHikeName (inputHikeName.getText ());
+                stage.setScene(hikeUI.homeScene());
+            }
+        });
+        return submit;
     }
 
 }

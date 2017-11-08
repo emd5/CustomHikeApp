@@ -20,7 +20,6 @@ import ui.HikeUI;
 public class ViewChecklistScene {
 
     private static final Text headerText = new Text("View CheckList");
-
     private static final Text footerText = new Text("footer");
 
     private static final String PADDING_10 = "padding10";
