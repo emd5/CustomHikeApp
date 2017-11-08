@@ -1,6 +1,5 @@
 package ui.Scenes;
 
-import controller.HikeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -26,9 +25,11 @@ public class ViewHikeScene {
 
     private static VBox bodyContent(Button back){
 
-        String[] hikeNames = HikeController.getInstance ().getHikeNames ();
-
+        //String[] hikeNames = HikeController.getInstance ().getHikeNames ();
+        String [] hikeNames ={"Sunrise", "Paradise", "Strawberry Trail"};
+        String [] location = {"Mt. Rainier", "Mt. Rainier", "Gifford National Park"};
         VBox hikeViewList = new VBox();
+
         hikeViewList.setId ("view-hikeList");
 
         ListView hikeList = new ListView();

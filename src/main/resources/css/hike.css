@@ -126,7 +126,9 @@
 
 #view-hikeList{
     -fx-spacing: 5px;
-    -fx-alignment: baseline-center;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-max-width: inherit;
 }
 
 #avg-data{
