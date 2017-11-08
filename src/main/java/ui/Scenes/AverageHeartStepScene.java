@@ -65,10 +65,9 @@ public class AverageHeartStepScene {
 
         vBox.getChildren ().addAll(heartLabel,getAvgHeartbyHikeName
                 ,stepLabel,getAvgStepsByHikeName);
-        
+
         gridPane.add(back, 1,8);
-
-
+        
         contentBox.getChildren ().addAll (vBox,gridPane);
         return contentBox;
     }
