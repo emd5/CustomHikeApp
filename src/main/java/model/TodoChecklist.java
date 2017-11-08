@@ -3,41 +3,53 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this class is the to do checklist
+ *
+ * @author Liz Mahoney
+ * @author Jacob Langham
+ * @version 1.0
+ */
 class TodoChecklist {
 
     private final List<ChecklistItem> customCheckList = new ArrayList<>();
 
-    private final static DefaultChecklist defaultCheckList = DefaultChecklist.getInstance();
+    TodoChecklist(){
+        customCheckList.addAll(DefaultChecklist.getInstance().getItems());
+    }
 
+    /**
+     * this adds an item to the checklist
+     *
+     * @param item
+     */
     void addItem(final String item) {
         final ChecklistItem checklistItem = new ChecklistItem(item);
         customCheckList.add(checklistItem);
     }
 
+    /**
+     * this gets the list of checklist items
+     *
+     * @return the list of checklist items
+     */
     List<ChecklistItem> getChecklistItems() {
         final List<ChecklistItem> items = new ArrayList<>();
-        items.addAll(defaultCheckList.getItems());
         items.addAll(customCheckList);
 
         return items;
     }
 
+    /**
+     * sets an item to inactive
+     *
+     * @param item the item name
+     */
     void setItemToInactive(final String item) {
-        boolean done = false;
-        if (!findItemInList(defaultCheckList.getItems(), item)) {
-            if (!findItemInList(customCheckList, item)) {
-                //error handling
-            }
-        }
-    }
-
-    private boolean findItemInList(final List<ChecklistItem> checklist, final String item) {
-        for (final ChecklistItem checklistItem : checklist) {
-            if (checklistItem.getItem().equals(item)) {
+        for(ChecklistItem checklistItem : customCheckList){
+            if(checklistItem.getItem().equals(item)){
                 checklistItem.setActive(false);
-                return true;
             }
         }
-        return false;
     }
 }
