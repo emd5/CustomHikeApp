@@ -24,7 +24,6 @@ public class ViewChecklistScene {
 
     private static final String PADDING_10 = "padding10";
 
-
     public static Scene viewChecklistScene(Stage stage, HikeUI hikeUI) {
 
         Button back = SceneUtils.backButton (stage,hikeUI);
