@@ -43,11 +43,11 @@ public class AddHeartRateScene {
 
         final Label hikeLabel = SceneUtils.label("Hike Name: ", "form-label");
 
-        hikeText = SceneUtils.inputTextFieldWithLabel("form-field");
+        hikeText = SceneUtils.inputTextField("form-field");
 
         final Label heartLabel = SceneUtils.label("Heart Rate: ", "form-label");
 
-        heartText = SceneUtils.inputTextFieldWithLabel("form-field");
+        heartText = SceneUtils.inputTextField("form-field");
 
         gridPane.add(hikeLabel, 0, 0);
         gridPane.add(hikeText, 1, 0);
