@@ -31,7 +31,7 @@ public class Hike {
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate date;
+    private final LocalDate date;
 
     /**
      * This is the hike constructor which sets the default duration to 0
