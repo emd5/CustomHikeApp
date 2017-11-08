@@ -138,7 +138,7 @@ public class HikeUI extends Application {
         buttonsMap.put (menuLabel[1], () ->
                ViewHikeScene.viewHikeScene (stage, HikeUI.this));
         buttonsMap.put (menuLabel[2], () ->
-                HeartScene.addHeartScene  (stage, HikeUI.this));
+                AddHeartRateScene.addHeartScene  (stage, HikeUI.this));
         buttonsMap.put (menuLabel[3], () ->
                 AverageHeartStepScene.averageHeartStepScene (stage, HikeUI.this));
         buttonsMap.put (menuLabel[4], () ->

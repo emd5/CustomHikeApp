@@ -29,6 +29,11 @@
     -fx-spacing: 10px;
 
 }
+#form-grid-spacing{
+    -fx-vgap: 10px;
+    -fx-hgap: 10px;
+    -fx-spacing: 10px;
+}
 
 #formButton{
     -fx-spacing: 10px;

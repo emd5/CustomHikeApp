@@ -63,7 +63,7 @@ public class AddCheckListScene {
                     if (checked) {
                         //do something with the checkbox we're clicking on
                         box.setText("You clicked me: " + checked);
-                        HikeController.getInstance ().setCheckListItemToInactive (box.getText ());
+                      //  HikeController.getInstance ().setCheckListItemToInactive (box.getText ());
                     }
                 }
             });

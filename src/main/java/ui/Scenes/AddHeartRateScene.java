@@ -7,13 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
 
-public class HeartScene {
+public class AddHeartRateScene {
 
     private final static Text headerText = new Text("Add heart rate");
 
@@ -34,31 +34,39 @@ public class HeartScene {
     }
 
     private static VBox bodyContent(Button back, Button submit){
-
         VBox contentBox= new VBox ();
+        contentBox.setId (PADDING_10);
 
-        final HBox row1 = new HBox();
-        row1.setId(PADDING_10);
+        final GridPane gridPane = new GridPane ();
+        gridPane.setId("form-grid-spacing");
 
         final Label hikeLabel = new Label ("Hike Name: ");
         hikeLabel.setId("form-label");
 
-        final Label hikeField = new Label ();
         hikeText = new TextField();
+        hikeText.setId("form-field");
+        final Label hikeField = new Label ();
         hikeField.setText (hikeText.getText ());
-        hikeField.setId("form-field");
 
-        final Label formLabel = new Label("Enter HeartRate");
-        formLabel.setId("form-label");
+        final Label heartLabel = new Label("Heart Rate: ");
+        heartLabel.setId("form-label");
 
-        final Label formField = new Label ();
         heartText = new TextField();
-        formField.setText (heartText.getText ());
-        formField.setId("form-field");
+        heartText.setId("form-field");
+        final Label heartField = new Label ();
+        heartField.setText (heartText.getText ());
 
-        contentBox.getChildren ().addAll (formLabel,formField,hikeText,heartText, submit);
 
-        row1.getChildren ().add(contentBox);
+        gridPane.add (hikeLabel, 0,0);
+        gridPane.add (hikeText, 1,0);
+        gridPane.add (heartLabel,0,1);
+        gridPane.add (heartText, 1,1);
+        gridPane.add (back, 1,20);
+        gridPane.add(submit, 1,2);
+
+
+        contentBox.getChildren ().addAll (gridPane);
+
         return contentBox;
     }
 
@@ -68,9 +76,9 @@ public class HeartScene {
             @Override
             public void handle(ActionEvent event) {
 
-                HikeController.getInstance().addHeartRateForHike (hikeText.getText (), Integer.parseInt (heartText.getText ()));
-
-                 stage.setScene(hikeUI.homeScene());
+                HikeController.getInstance().addHeartRateForHike
+                        (hikeText.getText (), Integer.parseInt (heartText.getText ()));
+                stage.setScene(hikeUI.homeScene());
             }
         });
         return submit;

@@ -39,7 +39,7 @@ public class StartupData {
                             final int heartbeat, final int numberOfSteps) {
         final Hike hike = new Hike(name, location,date);
         hike.setDuration(duration);
-        hike.setFitness(heartbeat, numberOfSteps);
+       // hike.setFitness(heartbeat, numberOfSteps);
         HikeController.getInstance().addHike(hike);
         return hike;
     }

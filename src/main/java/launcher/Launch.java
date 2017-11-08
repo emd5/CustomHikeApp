@@ -1,9 +1,15 @@
+/*
+ *
+ */
 package launcher;
 
 import controller.ProgramStatusController;
 import javafx.application.Application;
 import ui.HikeUI;
 
+/**
+ *
+ */
 public class Launch {
 
     /**
