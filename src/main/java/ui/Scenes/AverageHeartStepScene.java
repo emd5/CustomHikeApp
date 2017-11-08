@@ -27,7 +27,8 @@ public class AverageHeartStepScene {
         Button back = SceneUtils.backButton (stage, hikeUI);
         Button submitHikeName = submitButton (stage,hikeUI);
 
-        return SceneUtils.makeBasicScene(headerText, bodyContent (back, submitHikeName), footerText, stage, hikeUI);
+        return SceneUtils.makeBasicScene(headerText,
+                bodyContent (back, submitHikeName), footerText, stage, hikeUI);
     }
 
     private static VBox bodyContent(Button back, Button submitHikeName){
@@ -36,13 +37,15 @@ public class AverageHeartStepScene {
 
         GridPane gridPane = new GridPane ();
         gridPane.setId("form-grid-spacing");
-        gridPane.setGridLinesVisible (true);
+        //gridPane.setGridLinesVisible (true);
 
         inputHikeName = new TextField ();
         inputHikeName.setId ("form-field");
-        final Label hikeNameLabel = new Label ("Enter Hike Name for Avg heart rate: ");
+        final Label hikeNameLabel = new Label
+                ("Enter Hike Name for Avg heart rate: ");
         final Label hikeNameInputLabel = new Label ("");
         hikeNameInputLabel.setText (inputHikeName.getText ());
+
 
         final Label heartLabel = new Label("Average Heart Rate: ");
         final Label getAvgHeartbyHikeName = new Label ();
@@ -56,14 +59,17 @@ public class AverageHeartStepScene {
         gridPane.add (hikeNameLabel, 0,0);
         gridPane.add (inputHikeName, 1,0);
         gridPane.add (submitHikeName,1,1 );
-        gridPane.add (heartLabel,0,10);
-        gridPane.add (getAvgHeartbyHikeName, 1,10);
-        gridPane.add (stepLabel, 0,11);
-        gridPane.add(getAvgStepsByHikeName, 1,11);
-        gridPane.add(back, 1,20);
+
+        VBox vBox = new VBox ();
+        vBox.setId ("avg-data");
+
+        vBox.getChildren ().addAll(heartLabel,getAvgHeartbyHikeName
+                ,stepLabel,getAvgStepsByHikeName);
+        
+        gridPane.add(back, 1,8);
 
 
-        contentBox.getChildren ().addAll (gridPane);
+        contentBox.getChildren ().addAll (vBox,gridPane);
         return contentBox;
     }
 
