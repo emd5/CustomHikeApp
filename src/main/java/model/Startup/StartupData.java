@@ -14,14 +14,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import controller.HikeController;
 import model.Hike;
 
+/**
+ * this class saves data to a file
+ */
 public class StartupData {
 
     private final ObjectMapper objectMapper;
 
+    /**
+     * The constructor for StartupData
+     *
+     * @author Liz Mahoney
+     * @author Jacob Langham
+     * @version 1.0
+     *
+     * @param objectMapper an Objectmapper to map data to JsonNodes
+     */
     public StartupData(final ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
+    /**
+     * this function loads data from a file
+     *
+     * @param saveFile name of the file path
+     */
     public void loadSavedData(final String saveFile) {
         try {
             final JsonNode savedData = readJsonNodeFromFile(new File(saveFile));

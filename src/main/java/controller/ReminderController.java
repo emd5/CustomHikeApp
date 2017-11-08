@@ -1,10 +1,17 @@
 package controller;
 
-import model.Reminder;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Reminder;
+
+/**
+ * This class is the controller that interacts with the model for all reminder interactions
+ *
+ * @author Liz Mahoney
+ * @author Jacob Langham
+ * @version 1.0
+ */
 public class ReminderController {
 
     private static List<Reminder> reminders;
@@ -26,19 +33,34 @@ public class ReminderController {
         }
     }
 
+    /**
+     * this function adds a reminder to the list
+     *
+     * @param message the message for the reminder
+     */
     public void addReminder(final String message){
         final Reminder reminder = new Reminder (message);
         reminders.add (reminder);
     }
 
-    public Reminder getReminder(){
+    /**
+     * this function gets a reminder
+     *
+     * @return the reminder message
+     */
+    public String getReminder(){
         if(counter > reminders.size ()){
             counter = 0;
         }
 
-        return  reminders.get (counter++);
+        return  reminders.get(counter++).getMessage();
     }
 
+    /**
+     * this provides singleton access to a reminder controller
+     *
+     * @return the reminder controller
+     */
     public static ReminderController getInstance(){
         if(reminderController == null){
             reminderController = new ReminderController ();
@@ -46,6 +68,4 @@ public class ReminderController {
 
         return reminderController;
     }
-
-
 }
