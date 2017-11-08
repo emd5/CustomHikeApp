@@ -7,11 +7,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -54,6 +56,7 @@ public class AddCheckListScene {
         GridPane gridPane = new GridPane ();
         gridPane.setVgap (5);
         gridPane.setHgap (5);
+        gridPane.setPrefHeight (100);
 
 
         //gridPane.setGridLinesVisible (true);
@@ -77,24 +80,24 @@ public class AddCheckListScene {
         checklistItemNameField.setId("form-field");
 
         itemChecklistBoxForm.getChildren().addAll(addItemLabel, checklistItemNameField);
-        gridPane.add(itemChecklistBoxForm, 0,30);
-        gridPane.add (checklistSubmit, 3,30);
+        gridPane.add(itemChecklistBoxForm, 0,15);
+        gridPane.add (checklistSubmit, 3,20);
 
+        checklist.add("six");
         checklist.add("one");
         checklist.add("two");
         checklist.add("three");
-        checklist.add("four");
-        checklist.add("five");
-        checklist.add("six");
 
 
-        ScrollPane scrollBar = new ScrollPane ();
-        VBox checklistVframe = new VBox(new Region ());
+       // ScrollPane scrollBar = new ScrollPane ();
+        VBox checklistVframe = new VBox();
+       // checklistVframe.setPrefHeight (100);
+        //scrollBar.setContent (checklistVframe);
 
-        scrollBar.setContent (checklistVframe);
-        scrollBar.setVbarPolicy (ScrollPane.ScrollBarPolicy.ALWAYS);
 
-       // checklistVframe.setMaxHeight (200);
+       // scrollBar.setContent (checklistVframe);
+        //scrollBar.setVbarPolicy (ScrollPane.ScrollBarPolicy.ALWAYS);
+
         checklistVframe.setId ("checklist-frame");
         checklistVframe.setAlignment (Pos.CENTER);
 
@@ -129,8 +132,8 @@ public class AddCheckListScene {
         }
 
 
-        gridPane.add (checklistVframe,0,6,Integer.MAX_VALUE,20);
-        gridPane.add (back, 3,50);
+        gridPane.add (checklistVframe,0,3);
+        gridPane.add (back, 3,35);
 
         contentBox.getChildren ().addAll (gridPane);
         return contentBox;

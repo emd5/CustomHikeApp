@@ -18,6 +18,7 @@
 #form-label{
     -fx-pref-width: 80;
     -fx-alignment: center-right;
+    -fx-wrap-text: true;
 }
 
 #form-field{

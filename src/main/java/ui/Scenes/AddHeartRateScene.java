@@ -19,8 +19,6 @@ public class AddHeartRateScene {
 
     private final static Text footerText = new Text("footer");
 
-    private final static String PADDING_10 = "padding10";
-
     private static TextField hikeText;
 
     private static TextField heartText;
@@ -36,7 +34,7 @@ public class AddHeartRateScene {
 
     private static VBox bodyContent(final Button back, final Button submit) {
         final VBox contentBox = new VBox();
-        contentBox.setId(PADDING_10);
+
 
         final GridPane gridPane = new GridPane();
         gridPane.setId("form-grid-spacing");

@@ -31,13 +31,33 @@ public class ReminderController {
         reminders.add (reminder);
     }
 
+    /**
+     * Retrieves one reminder.
+     * @return one
+     *
+     */
     public Reminder getReminder(){
         if(counter > reminders.size ()){
             counter = 0;
         }
-
-        return  reminders.get (counter++);
+        return  reminders.get(counter++);
     }
+
+    /**
+     * Retrieves a list of reminders
+     *
+     * @return a string of reminders
+     */
+    public String[] getAllReminders(){
+
+        String[] reminderList = new String [reminders.size ()];
+        for(int i=0; i< reminders.size (); i++){
+            final String reminder = reminders.get (i).getMessage ();
+            reminderList[i] = reminder;
+        }
+        return reminderList;
+    }
+
 
     public static ReminderController getInstance(){
         if(reminderController == null){
