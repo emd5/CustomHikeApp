@@ -1,26 +1,24 @@
 package ui.Scenes;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import controller.HikeController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddCheckListScene {
 
@@ -39,27 +37,85 @@ public class AddCheckListScene {
     private static List<String> checklist = new ArrayList<>();
 
     public static Scene addChecklistScene(final Stage stage, final HikeUI hikeUI) {
+        final Button back = SceneUtils.backButton(stage, hikeUI);
+        final Button hikeSubmit = hikeSubmitButton(stage, hikeUI);
+        //hikeSubmit.setAlignment(Pos.CENTER_RIGHT);
+        final Button checklistSubmit = checklistSubmitButton(stage, hikeUI);
+
+        return SceneUtils.makeBasicScene(headerText, bodyContent(back, hikeSubmit, checklistSubmit), footerText,
+                stage, hikeUI);
+    }
+
+    private static VBox bodyContent(final Button back, final Button hikeSubmit, final Button checklistSubmit) {
+
+        final VBox contentBox = new VBox();
+       // vBox.setAlignment(Pos.CENTER);
+
+        GridPane gridPane = new GridPane ();
+        gridPane.setVgap (5);
+        gridPane.setHgap (5);
+
+
+        //gridPane.setGridLinesVisible (true);
+
+        final HBox hikeBoxForm = new HBox();
+        final Label hikeNameLabel = new Label("Hike Name: ");
+        hikeNameLabel.setId("form-label");
+
+        hikeNameField = new TextField();
+        hikeNameField.setId("form-field");
+
+        hikeBoxForm.getChildren().addAll(hikeNameLabel, hikeNameField);
+        gridPane.add(hikeBoxForm, 0,1);
+        gridPane.add (hikeSubmit,  3,1);
+
+        final HBox itemChecklistBoxForm = new HBox();
+        final Label addItemLabel = new Label("Add Item: ");
+        addItemLabel.setId("form-label");
+
+        checklistItemNameField = new TextField();
+        checklistItemNameField.setId("form-field");
+
+        itemChecklistBoxForm.getChildren().addAll(addItemLabel, checklistItemNameField);
+        gridPane.add(itemChecklistBoxForm, 0,30);
+        gridPane.add (checklistSubmit, 3,30);
+
         checklist.add("one");
         checklist.add("two");
         checklist.add("three");
+        checklist.add("four");
+        checklist.add("five");
+        checklist.add("six");
+
+
+        ScrollPane scrollBar = new ScrollPane ();
+        VBox checklistVframe = new VBox(new Region ());
+
+        scrollBar.setContent (checklistVframe);
+        scrollBar.setVbarPolicy (ScrollPane.ScrollBarPolicy.ALWAYS);
+
+       // checklistVframe.setMaxHeight (200);
+        checklistVframe.setId ("checklist-frame");
+        checklistVframe.setAlignment (Pos.CENTER);
 
         CheckBox[] boxes = new CheckBox[checklist.size()];
-        VBox vbox = new VBox();
-        vbox.setPadding(new Insets(10));
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setSpacing(10);
 
         //add our checkboxes
         for (int i = 0; i < checklist.size(); i++) {
             CheckBox box = new CheckBox(checklist.get(i));
-            boxes[i] = box;
             box.setPrefWidth(200);
-        }
-        vbox.getChildren().addAll(boxes);
+            boxes[i] = box;
+            boxes[i].setLineSpacing (3);
 
+        }
+
+        checklistVframe.getChildren().addAll(boxes);
+
+        //gridPane.add (checklistVframe,);
+
+        //event handling for checkboxes
         for (int i = 0; i < boxes.length; i++) {
             final CheckBox box = boxes[i];
-
             box.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean checked) {
@@ -72,43 +128,11 @@ public class AddCheckListScene {
             });
         }
 
-        final Button back = SceneUtils.backButton(stage, hikeUI);
-        final Button hikeSubmit = hikeSubmitButton(stage, hikeUI);
-        hikeSubmit.setAlignment(Pos.CENTER_RIGHT);
-        final Button checklistSubmit = checklistSubmitButton(stage, hikeUI);
 
-        return SceneUtils.makeBasicScene(headerText, bodyContent(back, vbox, hikeSubmit, checklistSubmit), footerText,
-                stage, hikeUI);
-    }
+        gridPane.add (checklistVframe,0,6,Integer.MAX_VALUE,20);
+        gridPane.add (back, 3,50);
 
-    private static VBox bodyContent(final Button back, final VBox vBox, final Button hikeSubmit,
-                                    final Button checklistSubmit) {
-
-        final VBox contentBox = new VBox();
-        contentBox.setAlignment(Pos.CENTER);
-
-        final HBox hikeBoxForm = new HBox();
-
-        final Label hikeNameLabel = new Label("Hike Name: ");
-        hikeNameLabel.setId("form-label");
-
-        hikeNameField = new TextField();
-        hikeNameField.setId("form-field");
-
-        hikeBoxForm.getChildren().addAll(hikeNameLabel, hikeNameField);
-
-        final HBox itemChecklistBoxForm = new HBox();
-
-        final Label addItemLabel = new Label("Add Item: ");
-        addItemLabel.setId("form-label");
-
-        checklistItemNameField = new TextField();
-        checklistItemNameField.setId("form-field");
-
-        itemChecklistBoxForm.getChildren().addAll(addItemLabel, checklistItemNameField);
-
-        contentBox.getChildren().addAll(hikeBoxForm, hikeSubmit, itemChecklistBoxForm, checklistSubmit, vBox, back);
-
+        contentBox.getChildren ().addAll (gridPane);
         return contentBox;
     }
 
@@ -143,4 +167,6 @@ public class AddCheckListScene {
         });
         return submit;
     }
+
+
 }

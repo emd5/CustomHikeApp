@@ -39,18 +39,14 @@ public class ViewChecklistScene {
 
         itemField.setPromptText ("Add an item");
 
-
         addItemPane.getChildren ().add (itemField);
         bodyContent.getChildren ().addAll(addItemPane, back);
         return bodyContent;
     }
 
-    //method to display addItemPane
 
-    //method for display list of items
 
     private static VBox displayChecklist(){
-
 
         VBox vBox = new VBox ();
 
