@@ -25,12 +25,10 @@ public class LocalDateDeserializer extends StdDeserializer<LocalDate> {
     /**
      * This deserializes Localdates, see super
      *
-     * @param jp Parsed used for reading JSON content
+     * @param jp   Parsed used for reading JSON content
      * @param ctxt Context that can be used to access information about
-     *   this deserialization activity.
-     *
+     *             this deserialization activity.
      * @return Deserialized value
-     *
      * @throws IOException
      */
     @Override

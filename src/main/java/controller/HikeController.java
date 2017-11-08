@@ -35,7 +35,7 @@ public class HikeController {
      *
      * @param name     represents the hike name
      * @param location represents the hike location
-     * @param date represents the date of the hike
+     * @param date     represents the date of the hike
      */
     public void addHike(final String name, final String location, final LocalDate date) {
 
@@ -76,7 +76,6 @@ public class HikeController {
      * Get the number of steps for a hike
      *
      * @param name the hike name
-     *
      * @return the number of steps
      */
     public int getNumberOfSteps(final String name) {
@@ -101,7 +100,6 @@ public class HikeController {
      * This function gets a list of the names of items in a checklist
      *
      * @param name the name of the hike
-     *
      * @return a list of checklist item names
      */
     public List<String> getChecklist(final String name) {
@@ -140,7 +138,7 @@ public class HikeController {
     /**
      * adds a heart rate for a hike
      *
-     * @param name the name of the hike
+     * @param name      the name of the hike
      * @param heartRate the heart rate
      */
     public void addHeartRateForHike(final String name, final int heartRate) {
@@ -150,7 +148,7 @@ public class HikeController {
     /**
      * adds number of steps for a hike
      *
-     * @param name the name of the hike
+     * @param name  the name of the hike
      * @param steps the number of steps
      */
     public void addStepsForHike(final String name, final int steps) {

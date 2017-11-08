@@ -13,14 +13,16 @@ import ui.HikeUI;
 public class Launch {
 
     /**
-     * This is the entry point of the program which allows to test
-     * the calculator ui class.
+     * This is the entry point of the program
      *
      * @param args command-line arguments
+     * @author Liz Mahoney
+     * @author Jacob Langham
+     * @version 1.0
      */
     public static void main(String[] args) {
 
-        ProgramStatusController programStatusController = new ProgramStatusController();
+        final ProgramStatusController programStatusController = new ProgramStatusController();
         //programController.exit();
         programStatusController.start();
         Application.launch(HikeUI.class, args);

@@ -24,11 +24,10 @@ public class StartupData {
     /**
      * The constructor for StartupData
      *
+     * @param objectMapper an Objectmapper to map data to JsonNodes
      * @author Liz Mahoney
      * @author Jacob Langham
      * @version 1.0
-     *
-     * @param objectMapper an Objectmapper to map data to JsonNodes
      */
     public StartupData(final ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;

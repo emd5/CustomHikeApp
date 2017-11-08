@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import model.Reminder;
 
-
 class ReminderControllerTest {
+
     private static ReminderController controller;
 
     @BeforeEach
@@ -23,9 +23,9 @@ class ReminderControllerTest {
     }
 
     @Test
-    void addTest(){
+    void addTest() {
         final String actualReminder = controller.getReminder();
-        final Reminder expectedReminder = new Reminder ("Stop Eating");
+        final Reminder expectedReminder = new Reminder("Stop Eating");
         assertEquals(expectedReminder, actualReminder);
     }
 }

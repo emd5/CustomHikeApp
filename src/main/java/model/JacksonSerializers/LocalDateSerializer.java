@@ -27,8 +27,8 @@ public class LocalDateSerializer extends StdSerializer<LocalDate> {
      * This serializes a localdate, see super
      *
      * @param value the localdate
-     * @param gen the jsonGenerator
-     * @param sp the serializerProvider
+     * @param gen   the jsonGenerator
+     * @param sp    the serializerProvider
      * @throws IOException
      */
     @Override
