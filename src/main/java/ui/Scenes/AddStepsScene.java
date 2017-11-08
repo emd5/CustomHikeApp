@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -22,14 +22,12 @@ import ui.HikeUI;
  * @version 1.0
  */
 public class AddStepsScene {
+
     private static final Text headerText = new Text ("Add Steps to your Hike");
-
     private static final Text footerText = new Text ("");
-
     private static final String PADDING_10 = "padding10";
 
     private static TextField stepsText;
-
     private static TextField hikeText;
 
     public static Scene addStepsScene(Stage stage, HikeUI hikeUI) {
@@ -44,13 +42,13 @@ public class AddStepsScene {
     private static VBox totalStepsForm(Button back, Button submit) {
 
         final VBox contentBox = new VBox ();
-
-
-        final HBox rows = new HBox ();
         contentBox.setId (PADDING_10);
 
-        final Label hikeLabel = new Label ("Total Steps: ");
-        hikeLabel.setId ("steps-label");
+        final GridPane gridPane = new GridPane ();
+        gridPane.setId("form-grid-spacing");
+
+        final Label hikeLabel = new Label ("Hike Name: ");
+        hikeLabel.setId ("form-label");
 
         final Label hikeField = new Label ();
         hikeText = new TextField ();
@@ -58,15 +56,21 @@ public class AddStepsScene {
         hikeField.setId ("form-field");
 
         final Label stepsLabel = new Label ("Total Steps: ");
-        stepsLabel.setId ("steps-label");
+        stepsLabel.setId ("form-label");
 
         final Label stepsField = new Label ();
         stepsText = new TextField ();
         stepsField.setText (stepsText.getText ());
         stepsField.setId ("form-field");
 
-        rows.getChildren ().addAll (stepsLabel, hikeText, stepsText);
-        contentBox.getChildren ().addAll (rows, back, submit);
+        gridPane.add (hikeLabel, 0,0);
+        gridPane.add (hikeText, 1,0);
+        gridPane.add (stepsLabel,0,1);
+        gridPane.add (stepsText, 1,1);
+        gridPane.add (back, 1,20);
+        gridPane.add(submit, 1,2);
+
+        contentBox.getChildren ().addAll (gridPane);
 
         return contentBox;
     }

@@ -16,10 +16,8 @@ import ui.HikeUI;
 public class AddHeartRateScene {
 
     private final static Text headerText = new Text("Add heart rate");
-
     private final static Text footerText = new Text("footer");
-
-    private static final String PADDING_10 = "padding10";
+    private final static String PADDING_10 = "padding10";
 
     private static TextField hikeText;
     private static TextField heartText;
@@ -56,14 +54,12 @@ public class AddHeartRateScene {
         final Label heartField = new Label ();
         heartField.setText (heartText.getText ());
 
-
         gridPane.add (hikeLabel, 0,0);
         gridPane.add (hikeText, 1,0);
         gridPane.add (heartLabel,0,1);
         gridPane.add (heartText, 1,1);
         gridPane.add (back, 1,20);
         gridPane.add(submit, 1,2);
-
 
         contentBox.getChildren ().addAll (gridPane);
 
