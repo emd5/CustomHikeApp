@@ -137,7 +137,6 @@ public class SceneUtils {
         final HBox header = SceneUtils.headingFrame(headerText);
 
         final Button backButton = SceneUtils.backButton(stage, hikeUI);
-        //final AnchorPane anchorBodyContent = SceneUtils.bodyFrame (bodyContent);
         final HBox body = SceneUtils.bodyFrame(bodyContent);
         final HBox footer = SceneUtils.footerFrame(footerText);
 

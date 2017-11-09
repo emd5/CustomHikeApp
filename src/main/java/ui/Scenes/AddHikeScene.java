@@ -37,6 +37,16 @@ public class AddHikeScene {
     private static TextField locationField;
 
     private static DatePicker dateField;
+    
+    private static final String NAME = "Name: ";
+    
+    private static final String LOCATION = "Location: ";
+    
+    private static final String DATE = "Date: ";
+    
+    private static final String FORM_FIELD = "form-field";
+    
+    private static final String FORM_LABEL = "form-label";
 
     /**
      * creates a add hike scene
@@ -45,7 +55,7 @@ public class AddHikeScene {
      * @param hikeUI the hikeui to use
      * @return the scene
      */
-    public static Scene addHikeScene(Stage stage, HikeUI hikeUI) {
+    public static Scene addHikeScene(final Stage stage, final HikeUI hikeUI) {
         final Button submit = submitButton(stage, hikeUI);
         final Button goBack = SceneUtils.backButton(stage, hikeUI);
         final HBox buttonRow = buttonRow(submit);
@@ -65,9 +75,9 @@ public class AddHikeScene {
     }
 
     private static VBox formPane(final HBox bottomRow) {
-        final HBox name = getFormBox("Name: ");
-        final HBox location = getFormBox("Location: ");
-        final HBox date = getFormBox("Date: ");
+        final HBox name = getFormBox(NAME);
+        final HBox location = getFormBox(LOCATION);
+        final HBox date = getFormBox(DATE);
         final VBox formPane = new VBox();
         formPane.setId(PADDING_10);
 
@@ -80,21 +90,21 @@ public class AddHikeScene {
 
         rowField.setId(PADDING_10);
 
-        final Label formLabel = SceneUtils.label(labelName, "form-label");
+        final Label formLabel = SceneUtils.label(labelName, FORM_LABEL);
 
         final Label formField = new Label();
-        if (labelName.equals("Name: ")) {
+        if (labelName.equals(NAME)) {
             nameField = new TextField();
-            nameField.setId("form-field");
+            nameField.setId(FORM_FIELD);
             formField.setText(nameField.getText());
             rowField.getChildren().addAll(formLabel, formField, nameField);
-        } else if (labelName.equals("Location: ")) {
+        } else if (labelName.equals(LOCATION)) {
             locationField = new TextField();
-            locationField.setId("form-field");
+            locationField.setId(FORM_FIELD);
             formField.setText(nameField.getText());
             rowField.getChildren().addAll(formLabel, formField, locationField);
 
-        } else if (labelName.equals("Date: ")) {
+        } else if (labelName.equals(DATE)) {
             dateField = new DatePicker(LocalDate.now());
             dateField.setOnAction(new EventHandler() {
                 public void handle(Event t) {
@@ -102,7 +112,7 @@ public class AddHikeScene {
 
                 }
             });
-            dateField.setId("form-field");
+            dateField.setId(FORM_FIELD);
             rowField.getChildren().addAll(formLabel, formField, dateField);
 
             return rowField;

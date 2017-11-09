@@ -72,7 +72,6 @@ public class HikeUI extends Application {
 
         stage.setTitle(TITLE);
         stage.setScene(WaitingScene.waitingScene(this));
-        //stage.setResizable (false);
         stage.show();
 
         final KeyFrame frame = new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
@@ -158,8 +157,6 @@ public class HikeUI extends Application {
         buttonsMap.put(menuLabel[3], () -> AverageHeartStepScene.averageHeartStepScene(stage, HikeUI.this));
         buttonsMap.put(menuLabel[4], () -> AddStepsScene.addStepsScene(stage, HikeUI.this));
         buttonsMap.put(menuLabel[5], () -> AddCheckListScene.addChecklistScene(stage, HikeUI.this));
-        //        buttonsMap.put (menuLabel[6], () ->
-        //                ViewChecklistScene. (stage, HikeUI.this));
         buttonsMap.put(menuLabel[6], () -> ReminderScene.reminderScene(stage, HikeUI.this));
     }
 

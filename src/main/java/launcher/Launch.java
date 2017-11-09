@@ -25,6 +25,5 @@ public class Launch {
         final ProgramStatusController programStatusController = new ProgramStatusController();
         programStatusController.start();
         Application.launch(HikeUI.class, args);
-        //programController.exit();
     }
 }

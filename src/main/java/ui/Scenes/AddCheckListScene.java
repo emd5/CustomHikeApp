@@ -53,7 +53,6 @@ public class AddCheckListScene {
     public static Scene addChecklistScene(final Stage stage, final HikeUI hikeUI) {
         final Button back = SceneUtils.backButton(stage, hikeUI);
         final Button hikeSubmit = hikeSubmitButton(stage, hikeUI);
-        //hikeSubmit.setAlignment(Pos.CENTER_RIGHT);
         final Button checklistSubmit = checklistSubmitButton(stage, hikeUI);
         final VBox bodyContent = bodyContent(back, hikeSubmit, checklistSubmit);
 
@@ -62,14 +61,11 @@ public class AddCheckListScene {
 
     private static VBox bodyContent(final Button back, final Button hikeSubmit, final Button checklistSubmit) {
         final VBox contentBox = new VBox();
-        // vBox.setAlignment(Pos.CENTER);
 
         final GridPane gridPane = new GridPane();
         gridPane.setVgap(5);
         gridPane.setHgap(5);
         gridPane.setPrefHeight(100);
-
-        //gridPane.setGridLinesVisible (true);
 
         final HBox hikeBoxForm = new HBox();
         final Label hikeNameLabel = new Label("Hike Name: ");
@@ -93,20 +89,13 @@ public class AddCheckListScene {
         gridPane.add(itemChecklistBoxForm, 0, 15);
         gridPane.add(checklistSubmit, 3, 20);
 
-        // ScrollPane scrollBar = new ScrollPane ();
         final VBox checklistVframe = new VBox();
-        // checklistVframe.setPrefHeight (100);
-        //scrollBar.setContent (checklistVframe);
-
-        // scrollBar.setContent (checklistVframe);
-        //scrollBar.setVbarPolicy (ScrollPane.ScrollBarPolicy.ALWAYS);
 
         checklistVframe.setId("checklist-frame");
         checklistVframe.setAlignment(Pos.CENTER);
 
         final CheckBox[] boxes = new CheckBox[checklist.size()];
 
-        //add our checkboxes
         for (int i = 0; i < checklist.size(); i++) {
             final CheckBox box = new CheckBox(checklist.get(i));
             box.setPrefWidth(200);
@@ -116,9 +105,6 @@ public class AddCheckListScene {
 
         checklistVframe.getChildren().addAll(boxes);
 
-        //gridPane.add (checklistVframe,);
-
-        //event handling for checkboxes
         for (int i = 0; i < boxes.length; i++) {
             final CheckBox box = boxes[i];
             box.selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -126,7 +112,6 @@ public class AddCheckListScene {
                 public void changed(ObservableValue<? extends Boolean> observable, final Boolean oldValue,
                                     final Boolean checked) {
                     if (checked) {
-                        //do something with the checkbox we're clicking on
                         box.setText(box.getText() + " done!");
                         HikeController.getInstance().setCheckListItemToInactive(hikeNameField.getText(), box.getText());
                     }
