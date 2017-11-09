@@ -36,7 +36,7 @@ public class ReminderController {
     }
 
     public Reminder getReminder() {
-        if (counter > reminders.size()) {
+        if (counter >= reminders.size()) {
             counter = 0;
         }
 

@@ -3,7 +3,6 @@ package model.JacksonSerializers;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -16,12 +15,12 @@ public class FitnessDeserializer extends StdDeserializer<Fitness> {
         this(null);
     }
 
-    public FitnessDeserializer(Class<?> vc) {
+    private FitnessDeserializer(Class<?> vc) {
         super(vc);
     }
 
     @Override
-    public Fitness deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public Fitness deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
         JsonNode fitnessNode = jp.getCodec().readTree(jp);
         Fitness fitness = new Fitness();
         fitness.setHeartbeat(fitnessNode.get("heartbeat").asInt());
