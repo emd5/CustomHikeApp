@@ -1,11 +1,12 @@
 package controller;
 
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import model.Exit.ExitData;
 import model.Hike;
 import model.Startup.StartupData;
-
-import java.util.List;
 
 /**
  * This class is the controller that loads a programs saved data from a file and saves a programs data
@@ -35,8 +36,8 @@ public class ProgramStatusController {
      */
     public void start() {
         final StartupData startupData = new StartupData(objectMapper);
-        List<Hike> hikeList = startupData.loadSavedData(SAVE_FILE);
-        for (Hike hike : hikeList) {
+        final List<Hike> hikeList = startupData.loadSavedData(SAVE_FILE);
+        for (final Hike hike : hikeList) {
             HikeController.getInstance().addHike(hike);
         }
     }

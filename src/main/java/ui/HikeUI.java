@@ -74,7 +74,7 @@ public class HikeUI extends Application {
         stage.setScene(WaitingScene.waitingScene(this));
         stage.show();
 
-        final KeyFrame frame = new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+        final KeyFrame frame = new KeyFrame(Duration.millis(3000), new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent event) {
                 stage.setScene(homeScene());

@@ -24,7 +24,7 @@ public class ReminderController {
     }
 
     private void setup() {
-        final String[] messageList = new String[] { "Stop Eating", "Go Workout", "Wear your Fitbit", "Jeez Liz" };
+        final String[] messageList = new String[] { "Stop Eating", "Go Workout", "Wear your Fitbit" };
         for (final String message : messageList) {
             addReminder(message);
         }
@@ -49,8 +49,8 @@ public class ReminderController {
      * @return a list of reminder messages
      */
     public List<String> getReminderList() {
-        List<String> reminderMessages = new ArrayList<>();
-        for (Reminder reminder : reminders) {
+        final List<String> reminderMessages = new ArrayList<>();
+        for(final Reminder reminder : reminders) {
             reminderMessages.add(reminder.getMessage());
         }
         return reminderMessages;
