@@ -23,8 +23,8 @@ public class Launch {
     public static void main(String[] args) {
 
         final ProgramStatusController programStatusController = new ProgramStatusController();
-        //programController.exit();
         programStatusController.start();
         Application.launch(HikeUI.class, args);
+        //programController.exit();
     }
 }

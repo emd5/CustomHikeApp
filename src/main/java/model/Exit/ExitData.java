@@ -1,13 +1,14 @@
 package model.Exit;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import model.Hike;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import model.Hike;
 
 /**
  * This class saves data to a file
@@ -42,6 +43,7 @@ public class ExitData {
             System.out.println("something went wrong in exit ");
             e.printStackTrace();
         }
+        System.exit(0);
     }
 
     private void saveJsonNodeToFile(final JsonNode data, final String saveFile) throws IOException {

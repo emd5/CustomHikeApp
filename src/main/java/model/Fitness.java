@@ -1,5 +1,9 @@
 package model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import model.JacksonSerializers.FitnessDeserializer;
+
 /**
  * this class stores fitness details for a hike
  *
@@ -7,7 +11,8 @@ package model;
  * @author Jacob Langham
  * @version 1.0
  */
-class Fitness {
+@JsonDeserialize(using = FitnessDeserializer.class)
+public class Fitness {
 
     private int heartbeat;
 
@@ -16,7 +21,7 @@ class Fitness {
     /**
      * the constructor for fitness
      */
-    Fitness() {
+    public Fitness() {
         this.heartbeat = 0;
         this.numberOfSteps = 0;
     }
@@ -26,7 +31,7 @@ class Fitness {
      *
      * @return the heartbeat
      */
-    int getHeartbeat() {
+    public int getHeartbeat() {
         return heartbeat;
     }
 
@@ -35,7 +40,7 @@ class Fitness {
      *
      * @return the number of steps
      */
-    int getNumberOfSteps() {
+    public int getNumberOfSteps() {
         return numberOfSteps;
     }
 
@@ -44,7 +49,7 @@ class Fitness {
      *
      * @param heartbeat the heartbeat rate
      */
-    void setHeartbeat(final int heartbeat) {
+    public void setHeartbeat(final int heartbeat) {
         this.heartbeat = heartbeat;
     }
 
@@ -53,7 +58,7 @@ class Fitness {
      *
      * @param numberOfSteps the number of steps
      */
-    void setNumberOfSteps(final int numberOfSteps) {
+    public void setNumberOfSteps(final int numberOfSteps) {
         this.numberOfSteps = numberOfSteps;
     }
 }

@@ -29,7 +29,7 @@ public class AverageHeartStepScene {
 
     public static Scene averageHeartStepScene(final Stage stage, final HikeUI hikeUI) {
         final Button back = SceneUtils.backButton(stage, hikeUI);
-        final Button submitHikeName = submitButton(stage, hikeUI);
+        final Button submitHikeName = submitButton();
 
         return SceneUtils.makeBasicScene(headerText, bodyContent(back, submitHikeName), footerText, stage, hikeUI);
     }
@@ -40,7 +40,6 @@ public class AverageHeartStepScene {
 
         final GridPane gridPane = new GridPane();
         gridPane.setId("form-grid-spacing");
-        //gridPane.setGridLinesVisible (true);
 
         inputHikeName = SceneUtils.inputTextField("form-field");
 
@@ -68,7 +67,7 @@ public class AverageHeartStepScene {
         return contentBox;
     }
 
-    private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
+    private static Button submitButton() {
         final Button submit = new Button("Submit");
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -85,11 +84,11 @@ public class AverageHeartStepScene {
     }
 
     private static void updateSteps(final int steps) {
-        stepLabel.setText("Average Heart Rate: " + String.valueOf(steps));
+        stepLabel.setText("Average Steps: " + String.valueOf(steps));
     }
 
     private static void updateHeartRate(final int heartRate) {
-        heartLabel.setText("Average Steps: " + String.valueOf(heartRate));
+        heartLabel.setText("Average Heart Rate: " + String.valueOf(heartRate));
     }
 
 }

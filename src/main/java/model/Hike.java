@@ -1,13 +1,14 @@
 package model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import model.JacksonSerializers.LocalDateDeserializer;
-import model.JacksonSerializers.LocalDateSerializer;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import model.JacksonSerializers.LocalDateDeserializer;
+import model.JacksonSerializers.LocalDateSerializer;
 
 /**
  * This class is a hike
@@ -91,7 +92,7 @@ public class Hike {
      *
      * @param duration the duration
      */
-    public void setDuration(final int duration){
+    public void setDuration(final int duration) {
 
         this.duration = duration;
     }
@@ -135,5 +136,19 @@ public class Hike {
         this.todoChecklist.setItemToInactive(item);
     }
 
-    //public String[] activeItems
+    public int getDuration() {
+        return duration;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Fitness getFitness() {
+        return fitness;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

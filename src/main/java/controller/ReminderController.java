@@ -5,56 +5,55 @@
 
 package controller;
 
-import model.Reminder;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Reminder;
 
 public class ReminderController {
 
     private static List<Reminder> reminders;
+
     private static int counter = 0;
+
     private static ReminderController reminderController;
 
-    private ReminderController(){
-        reminders = new ArrayList<> ();
-        setup ();
+    private ReminderController() {
+        reminders = new ArrayList<>();
+        setup();
     }
 
-    private void setup(){
-        final String[] messageList = new String[]
-                {"Stop Eating", "Go workout",
-                 "Be sure to stretch", "Wear your fitbit" };
-
-        for(String message : messageList){
-          addReminder (message);
+    private void setup() {
+        final String[] messageList = new String[] { "Stop Eating", "Go Workout", "Wear your Fitbit", "Jeez Liz" };
+        for (final String message : messageList) {
+            addReminder(message);
         }
     }
 
-    public void addReminder(final String message){
-        final Reminder reminder = new Reminder (message);
-        reminders.add (reminder);
+    public void addReminder(final String message) {
+        final Reminder reminder = new Reminder(message);
+        reminders.add(reminder);
     }
 
-
-    public Reminder getReminder(){
-        if(counter > reminders.size ()){
+    public Reminder getReminder() {
+        if (counter > reminders.size()) {
             counter = 0;
         }
 
-        return  reminders.get (counter++);
+        return reminders.get(counter++);
     }
 
     /**
-     * Get a list of hikes
+     * Get a list of reminder messages
      *
-     * @return a list of hikes
+     * @return a list of reminder messages
      */
-    public List<Reminder> getReminderList(){
-        for(Reminder eachReminder : reminders){
-            eachReminder.getMessage ();
+    public List<String> getReminderList() {
+        List<String> reminderMessages = new ArrayList<>();
+        for (Reminder reminder : reminders) {
+            reminderMessages.add(reminder.getMessage());
         }
-        return new ArrayList<> (reminders);
+        return reminderMessages;
 
     }
 
@@ -63,13 +62,12 @@ public class ReminderController {
      *
      * @return the reminder controller
      */
-    public static ReminderController getInstance(){
-        if(reminderController == null){
-            reminderController = new ReminderController ();
+    public static ReminderController getInstance() {
+        if (reminderController == null) {
+            reminderController = new ReminderController();
         }
 
         return reminderController;
     }
-
 
 }

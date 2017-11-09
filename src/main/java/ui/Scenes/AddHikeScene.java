@@ -37,25 +37,10 @@ public class AddHikeScene {
         final HBox buttonRow = buttonRow(submit);
 
         final VBox formPane = formPane(buttonRow);
-
         formPane.getChildren().addAll(goBack);
-
         final VBox mainFrame = mainFrame(formPane);
 
         return new Scene(mainFrame, hikeUI.getWindowWidth(), hikeUI.getWindowHeight());
-    }
-
-    private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
-        final Button submit = new Button("Submit");
-        submit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                HikeController.getInstance()
-                              .addHike(nameField.getText(), locationField.getText(), dateField.getValue());
-                stage.setScene(hikeUI.homeScene());
-            }
-        });
-        return submit;
     }
 
     private static HBox buttonRow(final Button button) {
@@ -65,7 +50,7 @@ public class AddHikeScene {
         return formButton;
     }
 
-    private static VBox formPane(HBox bottomRow) {
+    private static VBox formPane(final HBox bottomRow) {
         final HBox name = getFormBox("Name: ");
         final HBox location = getFormBox("Location: ");
         final HBox date = getFormBox("Date: ");
@@ -126,5 +111,18 @@ public class AddHikeScene {
         mainFrame.getStylesheets().addAll("css/hike.css");
 
         return mainFrame;
+    }
+
+    private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
+        final Button submit = new Button("Submit");
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                HikeController.getInstance()
+                              .addHike(nameField.getText(), locationField.getText(), dateField.getValue());
+                stage.setScene(hikeUI.homeScene());
+            }
+        });
+        return submit;
     }
 }

@@ -1,5 +1,8 @@
 package ui.Scenes;
 
+import java.util.List;
+
+import controller.HikeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -17,24 +20,17 @@ public class ViewHikeScene {
     private static final Text footerText = new Text("footer");
 
     public static Scene viewHikeScene(final Stage stage, final HikeUI hikeUI) {
-
         final Button back = SceneUtils.backButton(stage, hikeUI);
-
         return SceneUtils.makeBasicScene(headerText, bodyContent(back), footerText, stage, hikeUI);
     }
 
     private static VBox bodyContent(final Button back) {
+        final List<String> hikeNames = HikeController.getInstance().getHikeNames();
 
-        //String[] hikeNames = HikeController.getInstance ().getHikeNames ();
-        String[] hikeNames = { "Sunrise", "Paradise", "Strawberry Trail" };
-        String[] location = { "Mt. Rainier", "Mt. Rainier", "Gifford National Park" };
-        VBox hikeViewList = new VBox();
-
+        final VBox hikeViewList = new VBox();
         hikeViewList.setId("view-hikeList");
-
-        ListView hikeList = new ListView();
-
-        ObservableList<String> items = FXCollections.observableArrayList(hikeNames);
+        final ListView hikeList = new ListView();
+        final ObservableList<String> items = FXCollections.observableArrayList(hikeNames);
 
         hikeList.getItems().addAll(items);
         hikeViewList.getChildren().addAll(hikeList, back);

@@ -6,12 +6,12 @@
 
 package controller;
 
-import model.ChecklistItem;
-import model.Hike;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.ChecklistItem;
+import model.Hike;
 
 /**
  * This class is the hike controller which interacts with the model.
@@ -67,7 +67,6 @@ public class HikeController {
      * @return a list of hikes
      */
     List<Hike> getHikeList() {
-
         return new ArrayList<>(hikeList);
     }
 
@@ -80,7 +79,6 @@ public class HikeController {
         if (hikeController == null) {
             hikeController = new HikeController();
         }
-
         return hikeController;
     }
 
@@ -90,8 +88,7 @@ public class HikeController {
      * @param name      the name of the hike
      * @param heartRate the heart rate
      */
-    public void addHeartRateForHike(final String name, final int heartRate)
-    {
+    public void addHeartRateForHike(final String name, final int heartRate) {
         getHike(name).setHeartBeat(heartRate);
     }
 
@@ -156,5 +153,13 @@ public class HikeController {
 
     public void setCheckListItemToInactive(String name, String item) {
         getHike(name).setChecklistItemToInactive(item);
+    }
+
+    public List<String> getHikeNames() {
+        List<String> hikeNames = new ArrayList<>();
+        for (Hike hike : hikeList) {
+            hikeNames.add(hike.getName());
+        }
+        return hikeNames;
     }
 }
