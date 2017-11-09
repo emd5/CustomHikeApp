@@ -1,8 +1,9 @@
-package ui.Scenes;/*
- *Liz Mahoney
+/*Liz Mahoney & Jacob Langham
  *11/6/17
  *ReminderScene.java
  */
+
+package ui.Scenes;
 
 import controller.ReminderController;
 import javafx.collections.FXCollections;
@@ -20,8 +21,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
 
+import java.util.List;
+
 /**
- * @author Liz Mahoney
+ * @author Liz Mahoney & Jacob Langham
  * @version 1.0
  */
 public class ReminderScene {
@@ -53,25 +56,23 @@ public class ReminderScene {
         addReminderLabel.setWrapText (true);
         reminderText = SceneUtils.inputTextField("form-field");
 
+        VBox reminderFrame = new VBox();
 
+        reminderFrame.setId("view-hikeList");
 
-        VBox hikeViewList = new VBox();
+        ListView reminderList = new ListView();
 
-        hikeViewList.setId("view-hikeList");
+        List list = ReminderController.getInstance ().getReminderList ();
 
-        ListView hikeList = new ListView();
+        ObservableList<List> items = FXCollections.observableArrayList(list);
 
+        reminderList.getItems().addAll(items);
+        reminderFrame.getChildren().addAll(reminderList, back);
 
-        final String[] getReminders = getReminders();
-        for(int i=0; i< getReminders.length; i++){
-            ObservableList<String> items = FXCollections.observableArrayList(getReminders[i]);
-            hikeList.getItems().addAll(items);
-        }
-        hikeViewList.getChildren().addAll(hikeList, back);
         gridPane.add (addReminderLabel, 0 ,0 );
         gridPane.add (reminderText, 2,0);
-        gridPane.add(hikeList, 0, 2);
-        gridPane.add (back,0,15);
+        gridPane.add(reminderFrame, 0, 2);
+        gridPane.add (back,1,15);
         gridPane.add (submit, 3, 0);
 
         bodyContent.getChildren().addAll(gridPane);
@@ -79,13 +80,12 @@ public class ReminderScene {
         return bodyContent;
     }
 
-    private static String[] getReminders() {
-
-        final String[] getReminder = ReminderController.getInstance()
-                .getAllReminders ();
-
-        return getReminder;
-    }
+//    private static List getReminders() {
+//
+//        final List getReminders = ReminderController.getInstance ().getReminderList ();
+//
+//        return getReminders;
+//    }
 
     private static Button submitButton(final Stage stage, final HikeUI hikeUI) {
         final Button submit = new Button("Submit");

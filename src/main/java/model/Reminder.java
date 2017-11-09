@@ -26,6 +26,7 @@ public class Reminder {
      * @return the message
      */
     public String getMessage() {
+
         return message;
     }
 }

@@ -1,3 +1,8 @@
+/*Liz Mahoney & Jacob Langham
+ *11/6/17
+ *ReminderScene.java
+ */
+
 package controller;
 
 import model.Reminder;
@@ -31,6 +36,7 @@ public class ReminderController {
         reminders.add (reminder);
     }
 
+
     public Reminder getReminder(){
         if(counter > reminders.size ()){
             counter = 0;
@@ -39,6 +45,24 @@ public class ReminderController {
         return  reminders.get (counter++);
     }
 
+    /**
+     * Get a list of hikes
+     *
+     * @return a list of hikes
+     */
+    public List<Reminder> getReminderList(){
+        for(Reminder eachReminder : reminders){
+            eachReminder.getMessage ();
+        }
+        return new ArrayList<> (reminders);
+
+    }
+
+    /**
+     * this provides singleton access to the reminder controller
+     *
+     * @return the reminder controller
+     */
     public static ReminderController getInstance(){
         if(reminderController == null){
             reminderController = new ReminderController ();

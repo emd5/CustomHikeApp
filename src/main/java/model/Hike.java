@@ -1,14 +1,13 @@
 package model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import model.JacksonSerializers.LocalDateDeserializer;
+import model.JacksonSerializers.LocalDateSerializer;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import model.JacksonSerializers.LocalDateDeserializer;
-import model.JacksonSerializers.LocalDateSerializer;
 
 /**
  * This class is a hike
@@ -55,6 +54,7 @@ public class Hike {
      * @return the list of checklist items
      */
     public List<ChecklistItem> getTodoChecklist() {
+
         return new ArrayList<>(todoChecklist.getChecklistItems());
     }
 
@@ -73,6 +73,7 @@ public class Hike {
      * @return the number of steps
      */
     public int getNumberOfSteps() {
+
         return fitness.getNumberOfSteps();
     }
 
@@ -90,7 +91,8 @@ public class Hike {
      *
      * @param duration the duration
      */
-    public void setDuration(final int duration) {
+    public void setDuration(final int duration){
+
         this.duration = duration;
     }
 
@@ -100,6 +102,7 @@ public class Hike {
      * @param heartBeat the heartbeat
      */
     public void setHeartBeat(final int heartBeat) {
+
         this.fitness.setHeartbeat(heartBeat);
     }
 
@@ -109,6 +112,7 @@ public class Hike {
      * @param numberOfSteps the number of steps
      */
     public void setNumberOfSteps(final int numberOfSteps) {
+
         this.fitness.setNumberOfSteps(numberOfSteps);
     }
 
@@ -127,6 +131,7 @@ public class Hike {
      * @param item the name of the item
      */
     public void setChecklistItemToInactive(final String item) {
+
         this.todoChecklist.setItemToInactive(item);
     }
 
