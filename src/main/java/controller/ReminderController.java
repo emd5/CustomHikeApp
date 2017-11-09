@@ -50,7 +50,7 @@ public class ReminderController {
      */
     public List<String> getReminderList() {
         final List<String> reminderMessages = new ArrayList<>();
-        for(final Reminder reminder : reminders) {
+        for (final Reminder reminder : reminders) {
             reminderMessages.add(reminder.getMessage());
         }
         return reminderMessages;

@@ -26,7 +26,7 @@ public class ViewHikeScene {
 
     private static final Text headerText = new Text("View all Hikes");
 
-    private static final Text footerText = new Text("footer");
+    private static final Text footerText = new Text("");
 
     /**
      * creates a view hike scene

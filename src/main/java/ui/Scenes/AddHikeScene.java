@@ -28,7 +28,7 @@ public class AddHikeScene {
 
     private static final Text headerText = new Text("Add A Hike");
 
-    private static final Text footerText = new Text("footer");
+    private static final Text footerText = new Text("");
 
     private static final String PADDING_10 = "padding10";
 

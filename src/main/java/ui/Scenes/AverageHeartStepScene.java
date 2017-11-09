@@ -24,7 +24,7 @@ public class AverageHeartStepScene {
 
     private static final Text headerText = new Text("Average Heart and Steps");
 
-    private static final Text footerText = new Text("footer");
+    private static final Text footerText = new Text("");
 
     private static TextField inputHikeName;
 
@@ -57,13 +57,13 @@ public class AverageHeartStepScene {
 
         inputHikeName = SceneUtils.inputTextField("form-field");
 
-        final Label hikeNameLabel = new Label("Enter Hike Name for Avg heart rate: ");
+        final Label hikeNameLabel = new Label("Enter Hike Name: ");
 
         heartLabel = new Label("Average Heart Rate: ");
         final Label getAvgHeartbyHikeName = new Label();
         getAvgHeartbyHikeName.setId("form-field");
 
-        stepLabel = new Label("Average Steps: ");
+        stepLabel = new Label("Total Steps: ");
         final Label getAvgStepsByHikeName = new Label();//this just adds more space to the bottom as far as I can tell?
 
         gridPane.add(hikeNameLabel, 0, 0);
@@ -98,7 +98,7 @@ public class AverageHeartStepScene {
     }
 
     private static void updateSteps(final int steps) {
-        stepLabel.setText("Average Steps: " + String.valueOf(steps));
+        stepLabel.setText("Total Steps: " + String.valueOf(steps));
     }
 
     private static void updateHeartRate(final int heartRate) {

@@ -33,7 +33,7 @@ public class AddCheckListScene {
 
     private static final Text headerText = new Text("Add Checklist");
 
-    private static final Text footerText = new Text("footer");
+    private static final Text footerText = new Text("");
 
     private static final ImageView backgroundImage = new ImageView("bgimages/forest.jpg");
 

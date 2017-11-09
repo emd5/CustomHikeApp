@@ -29,7 +29,7 @@ public class ReminderScene {
 
     private static final Text headerText = new Text("Add reminders");
 
-    private static final Text footerText = new Text("footer");
+    private static final Text footerText = new Text("");
 
     private final static String PADDING_10 = "padding10";
 

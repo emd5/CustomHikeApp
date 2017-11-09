@@ -24,7 +24,7 @@ public class AddHeartRateScene {
 
     private final static Text headerText = new Text("Add heart rate");
 
-    private final static Text footerText = new Text("footer");
+    private static final Text footerText = new Text("");
 
     private static TextField hikeText;
 
