@@ -1,8 +1,4 @@
-package ui.Scenes;/*
- *Liz Mahoney
- *11/6/17
- *AddStepsScene.java
- */
+package ui.Scenes;
 
 import controller.HikeController;
 import javafx.event.ActionEvent;
@@ -18,7 +14,10 @@ import javafx.stage.Stage;
 import ui.HikeUI;
 
 /**
+ * this class creates a add step scene
+ *
  * @author Liz Mahoney
+ * @author Jacob Langham
  * @version 1.0
  */
 public class AddStepsScene {
@@ -33,8 +32,14 @@ public class AddStepsScene {
 
     private static TextField hikeText;
 
+    /**
+     * creates a add steps scene
+     *
+     * @param stage  the stage to use
+     * @param hikeUI the hikeui to use
+     * @return the scene
+     */
     public static Scene addStepsScene(final Stage stage, final HikeUI hikeUI) {
-
         final Button back = SceneUtils.backButton(stage, hikeUI);
         final Button submit = submitButton(stage, hikeUI);
         final VBox contentBox = totalStepsForm(back, submit);
@@ -55,10 +60,6 @@ public class AddStepsScene {
 
         final Label stepsLabel = SceneUtils.label("Total Steps: ", "form-label");
 
-        //        final Label stepsField = new Label();
-        //        stepsText = new TextField();
-        //        stepsField.setText(stepsText.getText());
-        //        stepsField.setId("form-field");
         stepsText = SceneUtils.inputTextField("form-field");
 
         gridPane.add(hikeLabel, 0, 0);

@@ -1,9 +1,3 @@
-/**
- * Liz Mahoney & Jacob Langham
- * 11/6/17
- * ReminderScene.java
- */
-
 package ui.Scenes;
 
 import java.util.List;
@@ -25,7 +19,10 @@ import javafx.stage.Stage;
 import ui.HikeUI;
 
 /**
- * @author Liz Mahoney & Jacob Langham
+ * this class creates a reminder scene
+ *
+ * @author Liz Mahoney
+ * @author Jacob Langham
  * @version 1.0
  */
 public class ReminderScene {
@@ -38,7 +35,14 @@ public class ReminderScene {
 
     private static TextField reminderText;
 
-    public static Scene reminderScene(Stage stage, HikeUI hikeUI) {
+    /**
+     * creates a reminder scene
+     *
+     * @param stage  the stage to use
+     * @param hikeUI the hikeui to use
+     * @return the scene
+     */
+    public static Scene reminderScene(final Stage stage, final HikeUI hikeUI) {
         final Button back = SceneUtils.backButton(stage, hikeUI);
         final Button submit = submitButton(stage, hikeUI);
         final VBox bodyContent = bodyContent(back, submit);

@@ -13,12 +13,26 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
 
+/**
+ * this class creates a view hike scene
+ *
+ * @author Liz Mahoney
+ * @author Jacob Langham
+ * @version 1.0
+ */
 public class ViewHikeScene {
 
     private static final Text headerText = new Text("View all Hikes");
 
     private static final Text footerText = new Text("footer");
 
+    /**
+     * creates a view hike scene
+     *
+     * @param stage  the stage to use
+     * @param hikeUI the hikeui to use
+     * @return the scene
+     */
     public static Scene viewHikeScene(final Stage stage, final HikeUI hikeUI) {
         final Button back = SceneUtils.backButton(stage, hikeUI);
         return SceneUtils.makeBasicScene(headerText, bodyContent(back), footerText, stage, hikeUI);

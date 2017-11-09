@@ -13,6 +13,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
 
+/**
+ * this class creates an average heart step scene
+ *
+ * @author Liz Mahoney
+ * @author Jacob Langham
+ * @version 1.0
+ */
 public class AverageHeartStepScene {
 
     private static final Text headerText = new Text("Average Heart and Steps");
@@ -27,6 +34,13 @@ public class AverageHeartStepScene {
 
     private static Label stepLabel;
 
+    /**
+     * creates a average heart steps scene
+     *
+     * @param stage  the stage to use
+     * @param hikeUI the hikeui to use
+     * @return the scene
+     */
     public static Scene averageHeartStepScene(final Stage stage, final HikeUI hikeUI) {
         final Button back = SceneUtils.backButton(stage, hikeUI);
         final Button submitHikeName = submitButton();

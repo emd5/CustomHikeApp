@@ -17,6 +17,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
 
+/**
+ * this class creates a add hike scene
+ *
+ * @author Liz Mahoney
+ * @author Jacob Langham
+ * @version 1.0
+ */
 public class AddHikeScene {
 
     private static final Text headerText = new Text("Add A Hike");
@@ -31,6 +38,13 @@ public class AddHikeScene {
 
     private static DatePicker dateField;
 
+    /**
+     * creates a add hike scene
+     *
+     * @param stage  the stage to use
+     * @param hikeUI the hikeui to use
+     * @return the scene
+     */
     public static Scene addHikeScene(Stage stage, HikeUI hikeUI) {
         final Button submit = submitButton(stage, hikeUI);
         final Button goBack = SceneUtils.backButton(stage, hikeUI);
@@ -74,16 +88,13 @@ public class AddHikeScene {
             nameField.setId("form-field");
             formField.setText(nameField.getText());
             rowField.getChildren().addAll(formLabel, formField, nameField);
-        }
-        if (labelName.equals("Location: ")) {
+        } else if (labelName.equals("Location: ")) {
             locationField = new TextField();
             locationField.setId("form-field");
             formField.setText(nameField.getText());
             rowField.getChildren().addAll(formLabel, formField, locationField);
 
-        }
-
-        if (labelName.equals("Date: ")) {
+        } else if (labelName.equals("Date: ")) {
             dateField = new DatePicker(LocalDate.now());
             dateField.setOnAction(new EventHandler() {
                 public void handle(Event t) {
@@ -92,7 +103,6 @@ public class AddHikeScene {
                 }
             });
             dateField.setId("form-field");
-
             rowField.getChildren().addAll(formLabel, formField, dateField);
 
             return rowField;

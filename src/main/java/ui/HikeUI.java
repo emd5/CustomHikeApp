@@ -32,7 +32,7 @@ import ui.Scenes.ViewHikeScene;
 import ui.Scenes.WaitingScene;
 
 /**
- * This class builds the Hike interface
+ * This class builds the Hike user interface
  *
  * @author Liz Mahoney
  * @author Jacob Langham
@@ -50,22 +50,27 @@ public class HikeUI extends Application {
     private static final String[] iconFileNames = { "images/marker.png", "images/hike.png", "images/redheart.png",
             "images/data.png", "images/steps.png", "images/checklist.png", "images/reminder.png" };
 
-    public static final int ICON_IMAGE_WIDTH = 60;
+    private static final int ICON_IMAGE_WIDTH = 60;
 
-    public static final int ICON_IMAGE_HEIGHT = 50;
+    private static final int ICON_IMAGE_HEIGHT = 50;
+
+    private static final String TITLE = "Hike Log Application";
 
     private Stage stage;
 
     private static final Map<String, Callable> buttonsMap = new HashMap<>();
 
+    /**
+     * sets up the user interface
+     *
+     * @param stage the stage to use
+     */
     @Override
     public void start(final Stage stage) {
-
         this.stage = stage;
-
         makeButtonMap();
 
-        stage.setTitle("Hike Log Application");
+        stage.setTitle(TITLE);
         stage.setScene(WaitingScene.waitingScene(this));
         //stage.setResizable (false);
         stage.show();
@@ -81,6 +86,11 @@ public class HikeUI extends Application {
         animation.play();
     }
 
+    /**
+     * creates the home scene
+     *
+     * @return the home scene
+     */
     public Scene homeScene() {
         final Text headerText = new Text("Welcome Jose");
         final VBox menuVbox = homeMenuButtons();
@@ -90,7 +100,7 @@ public class HikeUI extends Application {
 
         final HBox header = SceneUtils.headingFrame(headerText);
 
-        Button exitButton = exitButton();
+        final Button exitButton = exitButton();
 
         final HBox bodyFrame = SceneUtils.bodyFrame(menuVbox);
         final HBox footer = SceneUtils.footerFrame(reminderMessage);
@@ -102,7 +112,7 @@ public class HikeUI extends Application {
     }
 
     private Text reminderMessage() {
-        String message = ReminderController.getInstance().getReminder().getMessage();
+        final String message = ReminderController.getInstance().getReminder().getMessage();
         final Text reminderMessage = new Text(message);
         reminderMessage.setId("reminder-message");
         return reminderMessage;
@@ -124,7 +134,7 @@ public class HikeUI extends Application {
             final String label = menuLabel[i];
             buttons[i].setOnAction(new EventHandler<ActionEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
+                public void handle(final ActionEvent event) {
                     try {
                         stage.setScene((Scene) buttonsMap.get(label).call());
                     } catch (Exception e) {
@@ -138,7 +148,6 @@ public class HikeUI extends Application {
         }
 
         menuBox.getChildren().add(menuGrid);
-
         return menuBox;
     }
 
@@ -154,14 +163,6 @@ public class HikeUI extends Application {
         buttonsMap.put(menuLabel[6], () -> ReminderScene.reminderScene(stage, HikeUI.this));
     }
 
-    public int getWindowWidth() {
-        return WINDOW_WIDTH;
-    }
-
-    public int getWindowHeight() {
-        return WINDOW_HEIGHT;
-    }
-
     private static Button exitButton() {
         final Button submit = new Button("Exit");
         submit.setOnAction(new EventHandler<ActionEvent>() {
@@ -172,5 +173,23 @@ public class HikeUI extends Application {
             }
         });
         return submit;
+    }
+
+    /**
+     * gets the window width
+     *
+     * @return the window width
+     */
+    public int getWindowWidth() {
+        return WINDOW_WIDTH;
+    }
+
+    /**
+     * gets the window height
+     *
+     * @return the window height
+     */
+    public int getWindowHeight() {
+        return WINDOW_HEIGHT;
     }
 }

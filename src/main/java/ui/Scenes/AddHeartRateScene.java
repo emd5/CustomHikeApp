@@ -13,6 +13,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.HikeUI;
 
+/**
+ * this class creates a add heartrate scene
+ *
+ * @author Liz Mahoney
+ * @author Jacob Langham
+ * @version 1.0
+ */
 public class AddHeartRateScene {
 
     private final static Text headerText = new Text("Add heart rate");
@@ -23,8 +30,14 @@ public class AddHeartRateScene {
 
     private static TextField heartText;
 
+    /**
+     * creates a add heart scene
+     *
+     * @param stage  the stage to use
+     * @param hikeUI the hikeui to use
+     * @return the scene
+     */
     public static Scene addHeartScene(final Stage stage, final HikeUI hikeUI) {
-
         final Button back = SceneUtils.backButton(stage, hikeUI);
         final Button submit = submitButton(stage, hikeUI);
         final VBox bodyContent = bodyContent(back, submit);
@@ -34,7 +47,6 @@ public class AddHeartRateScene {
 
     private static VBox bodyContent(final Button back, final Button submit) {
         final VBox contentBox = new VBox();
-
 
         final GridPane gridPane = new GridPane();
         gridPane.setId("form-grid-spacing");
