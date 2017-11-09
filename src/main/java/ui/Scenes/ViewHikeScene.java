@@ -1,5 +1,6 @@
 package ui.Scenes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controller.HikeController;
@@ -11,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Hike;
 import ui.HikeUI;
 
 /**
@@ -39,7 +41,11 @@ public class ViewHikeScene {
     }
 
     private static VBox bodyContent(final Button back) {
-        final List<String> hikeNames = HikeController.getInstance().getHikeNames();
+        final List<Hike> hikes = HikeController.getInstance().getHikeList();
+        final List<String> hikeNames = new ArrayList<>();
+        for (Hike hike : hikes) {
+            hikeNames.add(hike.toString());
+        }
 
         final VBox hikeViewList = new VBox();
         hikeViewList.setId("view-hikeList");

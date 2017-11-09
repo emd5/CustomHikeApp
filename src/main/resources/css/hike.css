@@ -4,67 +4,66 @@
  * This is a hike css file
  */
 
-.root{
-    -fx-background-color:
-            #000000,
-            linear-gradient(#7ebcea, #338f41),
-            linear-gradient(#41b74a, #263e75),
-            linear-gradient(#26ab82, #427a22);
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 3,2,2,2;
+.root {
+    -fx-background-color: #000000,
+    linear-gradient(#7ebcea, #338f41),
+    linear-gradient(#41b74a, #263e75),
+    linear-gradient(#26ab82, #427a22);
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 3, 2, 2, 2;
     -fx-font-size: 12px;
 }
 
-#form-label{
+#form-label {
     -fx-pref-width: 80;
     -fx-alignment: center-right;
     -fx-wrap-text: true;
 }
 
-#form-field{
+#form-field {
     -fx-pref-width: 180px;
     -fx-pref-height: 40;
 }
 
-#padding10{
+#padding10 {
     -fx-spacing: 10px;
 
 }
-#form-grid-spacing{
+
+#form-grid-spacing {
     -fx-vgap: 10px;
     -fx-hgap: 10px;
     -fx-spacing: 10px;
 }
 
-#formButton{
+#formButton {
     -fx-spacing: 10px;
     -fx-pref-width: 100;
     -fx-alignment: center-right;
 }
 
-#menuFrame{
+#menuFrame {
     -fx-hgap: 10px;
     -fx-vgap: 10px;
 }
-.menu-button{
-    -fx-background-color:
-            linear-gradient(#f2f2f2, #d6d6d6),
-            linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
-            linear-gradient(#dddddd 0%, #f6f6f6 50%);
+
+.menu-button {
+    -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+    linear-gradient(#dddddd 0%, #f6f6f6 50%);
     -fx-pref-width: 175px;
-    -fx-background-insets: 0,1,2;
+    -fx-background-insets: 0, 1, 2;
     -fx-text-fill: black;
     -fx-alignment: center-left;
     -fx-padding: 10px;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 }
 
-.menu-button:hover{
-    -fx-background-color:
-            linear-gradient(#f0ff35, #a9ff00),
-            radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+.menu-button:hover {
+    -fx-background-color: linear-gradient(#f0ff35, #a9ff00),
+    radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
     -fx-background-insets: 0, 1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 5, 0.0, 0, 1);
     -fx-alignment: center-left;
     -fx-padding: 10px;
     -fx-text-fill: black;
@@ -76,15 +75,14 @@
 
 }
 
-#mainFrame{
+#mainFrame {
     -fx-padding: 10px;
 }
 
-#headingFrame{
+#headingFrame {
 
-    -fx-background-color:
-            linear-gradient(#f0ff35, #a9ff00),
-            radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-color: linear-gradient(#f0ff35, #a9ff00),
+    radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
     -fx-background-insets: 0, 1;
     /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );*/
     -fx-text-fill: #395306;
@@ -93,24 +91,23 @@
     -fx-pref-width: 300px;
     -fx-border-color: #073406;
     -fx-border-style: solid;
-    -fx-font:  bold  15pt "Verdana";
+    -fx-font: bold 15pt "Verdana";
 }
 
-#bodyFrame{
+#bodyFrame {
     -fx-padding: 10px;
     -fx-pref-height: 400px;
     -fx-pref-width: 300px;
-    -fx-border-color: gainsboro ;
+    -fx-border-color: gainsboro;
     -fx-border-style: solid;
 }
 
-#footerFrame{
-    -fx-background-color:
-            linear-gradient(#f2f2f2, #d6d6d6),
-            linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
-            linear-gradient(#dddddd 0%, #f6f6f6 50%);
+#footerFrame {
+    -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+    linear-gradient(#dddddd 0%, #f6f6f6 50%);
     -fx-pref-width: 175px;
-    -fx-background-insets: 0,1,2;
+    -fx-background-insets: 0, 1, 2;
     -fx-alignment: center;
     -fx-padding: 10px;
     -fx-max-width: inherit;
@@ -118,30 +115,36 @@
     -fx-border-style: solid;
 }
 
-#reminder-message{
+#reminder-message {
     -fx-font: bold italic 20pt "Tahoma";
-    -fx-effect:  innershadow(gaussian, rgba(6, 10, 104, 0.97), 10, 1.0, 100, 100);
+    -fx-effect: innershadow(gaussian, rgba(6, 10, 104, 0.97), 10, 1.0, 100, 100);
 }
 
+#reminder-label {
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+}
 
+#view-reminderList {
+    -fx-pref-width: 100px;
+}
 
-#view-hikeList{
+#view-hikeList {
     -fx-spacing: 5px;
     -fx-alignment: center;
     -fx-font-size: 14px;
     -fx-max-width: inherit;
 }
 
-#avg-data{
-    -fx-background-color:
-            linear-gradient(#f2f2f2, #d6d6d6),
-            linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
-            linear-gradient(#dddddd 0%, #f6f6f6 50%);
+#avg-data {
+    -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+    linear-gradient(#dddddd 0%, #f6f6f6 50%);
     -fx-pref-width: 200px;
-    -fx-background-insets: 0,1,2;
+    -fx-background-insets: 0, 1, 2;
     -fx-text-fill: black;
     -fx-padding: 10px;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0, 0 , 1 );
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
     -fx-spacing: 20px;
     -fx-alignment: center;
     -fx-vgap: 5px;
@@ -150,16 +153,15 @@
 
 }
 
-#checklist-frame{
-    -fx-background-color:
-            linear-gradient(#f2f2f2, #d6d6d6),
-            linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
-            linear-gradient(#dddddd 0%, #f6f6f6 50%);
+#checklist-frame {
+    -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+    linear-gradient(#dddddd 0%, #f6f6f6 50%);
     /*-fx-pref-width: 500px;*/
-    -fx-background-insets: 0,1,2;
+    -fx-background-insets: 0, 1, 2;
     -fx-text-fill: black;
     -fx-padding: 10px;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0, 0 , 1 );
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 
 }
 

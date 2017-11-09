@@ -37,15 +37,15 @@ public class AddHikeScene {
     private static TextField locationField;
 
     private static DatePicker dateField;
-    
+
     private static final String NAME = "Name: ";
-    
+
     private static final String LOCATION = "Location: ";
-    
+
     private static final String DATE = "Date: ";
-    
+
     private static final String FORM_FIELD = "form-field";
-    
+
     private static final String FORM_LABEL = "form-label";
 
     /**

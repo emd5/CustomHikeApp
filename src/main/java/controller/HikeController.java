@@ -66,7 +66,7 @@ public class HikeController {
      *
      * @return a list of hikes
      */
-    List<Hike> getHikeList() {
+    public List<Hike> getHikeList() {
         return new ArrayList<>(hikeList);
     }
 

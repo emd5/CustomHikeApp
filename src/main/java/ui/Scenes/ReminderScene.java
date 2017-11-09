@@ -57,13 +57,11 @@ public class ReminderScene {
         final GridPane gridPane = new GridPane();
         gridPane.setId("form-grid-spacing");
 
-        final Label addReminderLabel = SceneUtils.label("Add a new Reminder: ", "form-label");
-        addReminderLabel.setWrapText(true);
+        final Label addReminderLabel = SceneUtils.label("Add Reminder: ", "reminder-label");
         reminderText = SceneUtils.inputTextField("form-field");
 
         final VBox reminderFrame = new VBox();
-
-        reminderFrame.setId("view-hikeList");
+        reminderFrame.setId("view-reminderList");
 
         final ListView reminderList = new ListView();
 
@@ -75,10 +73,10 @@ public class ReminderScene {
         reminderFrame.getChildren().addAll(reminderList, back);
 
         gridPane.add(addReminderLabel, 0, 0);
-        gridPane.add(reminderText, 2, 0);
-        gridPane.add(reminderFrame, 0, 2);
-        gridPane.add(back, 1, 15);
-        gridPane.add(submit, 3, 0);
+        gridPane.add(reminderText, 1, 0, 1, 1);
+        gridPane.add(reminderFrame, 1, 2);
+        gridPane.add(back, 0, 15);
+        gridPane.add(submit, 2, 0);
 
         bodyContent.getChildren().addAll(gridPane);
 

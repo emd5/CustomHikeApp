@@ -20,9 +20,9 @@ public class FitnessDeserializer extends StdDeserializer<Fitness> {
     }
 
     @Override
-    public Fitness deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
-        JsonNode fitnessNode = jp.getCodec().readTree(jp);
-        Fitness fitness = new Fitness();
+    public Fitness deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException {
+        final JsonNode fitnessNode = jp.getCodec().readTree(jp);
+        final Fitness fitness = new Fitness();
         fitness.setHeartbeat(fitnessNode.get("heartbeat").asInt());
         fitness.setNumberOfSteps(fitnessNode.get("numberOfSteps").asInt());
         return fitness;

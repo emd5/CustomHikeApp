@@ -43,6 +43,11 @@ public class AddCheckListScene {
 
     private static List<String> checklist = new ArrayList<>();
 
+    static {
+        hikeNameField = new TextField();
+        hikeNameField.setId("form-field");
+    }
+
     /**
      * creates a checklist scene
      *
@@ -70,9 +75,6 @@ public class AddCheckListScene {
         final HBox hikeBoxForm = new HBox();
         final Label hikeNameLabel = new Label("Hike Name: ");
         hikeNameLabel.setId("form-label");
-
-        hikeNameField = new TextField();
-        hikeNameField.setId("form-field");
 
         hikeBoxForm.getChildren().addAll(hikeNameLabel, hikeNameField);
         gridPane.add(hikeBoxForm, 0, 1);
@@ -139,18 +141,17 @@ public class AddCheckListScene {
     }
 
     private static Button checklistSubmitButton(final Stage stage, final HikeUI hikeUI) {
-
         final Button submit = new Button("Submit");
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent event) {
+
                 HikeController.getInstance()
                               .addItemToCheckList(hikeNameField.getText(), checklistItemNameField.getText());
-
+                checklist = HikeController.getInstance().getChecklist(hikeNameField.getText());
                 stage.setScene(hikeUI.homeScene());
             }
         });
         return submit;
     }
-
 }

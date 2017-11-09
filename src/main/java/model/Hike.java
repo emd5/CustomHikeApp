@@ -136,19 +136,50 @@ public class Hike {
         this.todoChecklist.setItemToInactive(item);
     }
 
+    /**
+     * the duration the hike took
+     *
+     * @return the duration
+     */
     public int getDuration() {
         return duration;
     }
 
+    /**
+     * the location the hike is at
+     *
+     * @return the location
+     */
     public String getLocation() {
         return location;
     }
 
+    /**
+     * gets a fitness object that contains fitness details for the hike
+     *
+     * @return the fitness object
+     */
     public Fitness getFitness() {
         return fitness;
     }
 
+    /**
+     * the date the hike happened
+     *
+     * @return the date
+     */
     public LocalDate getDate() {
         return date;
+    }
+
+    /**
+     * a string representing the hike
+     *
+     * @return the hikes tostring
+     */
+    @Override
+    public String toString() {
+        return "name: " + name + "\nduration: " + duration + "\nlocation: " + location + "\nheartbeat: " +
+               getHeartbeat() + "\nsteps: " + getNumberOfSteps() + "\ndate: " + date;
     }
 }
