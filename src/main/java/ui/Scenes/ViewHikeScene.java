@@ -1,6 +1,5 @@
 package ui.Scenes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import controller.HikeController;
@@ -12,7 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Hike;
 import ui.HikeUI;
 
 /**
@@ -41,16 +39,12 @@ public class ViewHikeScene {
     }
 
     private static VBox bodyContent(final Button back) {
-        final List<Hike> hikes = HikeController.getInstance().getHikeList();
-        final List<String> hikeNames = new ArrayList<>();
-        for (Hike hike : hikes) {
-            hikeNames.add(hike.toString());
-        }
+        final List<String> hikes = HikeController.getInstance().getHikeToString();
 
         final VBox hikeViewList = new VBox();
         hikeViewList.setId("view-hikeList");
         final ListView hikeList = new ListView();
-        final ObservableList<String> items = FXCollections.observableArrayList(hikeNames);
+        final ObservableList<String> items = FXCollections.observableArrayList(hikes);
 
         hikeList.getItems().addAll(items);
         hikeViewList.getChildren().addAll(hikeList, back);

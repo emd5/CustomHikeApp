@@ -66,7 +66,7 @@ public class HikeController {
      *
      * @return a list of hikes
      */
-    public List<Hike> getHikeList() {
+    List<Hike> getHikeList() {
         return new ArrayList<>(hikeList);
     }
 
@@ -155,11 +155,11 @@ public class HikeController {
         getHike(name).setChecklistItemToInactive(item);
     }
 
-    public List<String> getHikeNames() {
-        List<String> hikeNames = new ArrayList<>();
-        for (Hike hike : hikeList) {
-            hikeNames.add(hike.getName());
+    public List<String> getHikeToString() {
+        final List<String> hikeToStrings = new ArrayList<>();
+        for (final Hike hike : hikeList) {
+            hikeToStrings.add(hike.toString());
         }
-        return hikeNames;
+        return hikeToStrings;
     }
 }
